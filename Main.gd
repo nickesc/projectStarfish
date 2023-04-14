@@ -22,7 +22,7 @@ var is_choosing_angle = false
 var is_choosing_power = false
 
 var start_mouse_vector = false
-var end_mouse_vector 
+var end_mouse_vector = false
 
 var throw_selection_status = false
 var last_throw_selection_status = false
@@ -39,8 +39,6 @@ func _on_AngleTimer_timeout():
             update_angle(angle + 1)
         else:        
             update_angle(angle - 1)
-    
-    $Star/Camera2D/AngleLabel.text = str(angle)
 
 func _on_PowerTimer_timeout():
     if power > last_power:
@@ -53,17 +51,17 @@ func _on_PowerTimer_timeout():
             update_power(power + 1)
         else:        
             update_power(power - 1)
-    
-    $Star/Camera2D/PowerLabel.text = str(power)
 
 func update_angle(new_angle):
     last_angle = angle
     angle = new_angle
+    $Star/Camera2D/AngleLabel.text = str(angle) + "°"
     emit_signal("angle_change",angle)
     
 func update_power(new_power):
     last_power = power
     power = new_power
+    $Star/Camera2D/PowerLabel.text = str(power)
     emit_signal("power_change",power)
 
 
