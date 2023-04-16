@@ -1,0 +1,378 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Main.gd" type="Script" id=2]
+[ext_resource path="res://scenes/sky/SkySliceSprite.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/background/bg.png" type="Texture" id=4]
+[ext_resource path="res://assets/water/water.png" type="Texture" id=5]
+[ext_resource path="res://assets/beach/beach.png" type="Texture" id=6]
+[ext_resource path="res://scenes/obstacles/Walter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/sky/LowCloud.tscn" type="PackedScene" id=8]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+power = 15
+
+[node name="Sky" type="Node2D" parent="."]
+position = Vector2( 0, -4264 )
+
+[node name="SkySpliceSprite" parent="Sky" instance=ExtResource( 3 )]
+position = Vector2( 4800, 2560 )
+scale = Vector2( 75, 10 )
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Bg" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 611, -9 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg4" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 611, -1190 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg2" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 4981, -9 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg5" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 4981, -1190 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg7" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 7166, -9 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg8" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 7166, -1190 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg3" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 2796, -9 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Bg6" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 2796, -1192 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 4 )
+
+[node name="Water" type="Node2D" parent="."]
+position = Vector2( 1942, 380 )
+
+[node name="Beach" type="Sprite" parent="Water"]
+position = Vector2( -1250, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="WaterBeach" type="Sprite" parent="Water"]
+visible = false
+position = Vector2( 611, 636 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 5 )
+
+[node name="Water1" type="Sprite" parent="Water"]
+position = Vector2( 2500, 250 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="Water2" type="Sprite" parent="Water"]
+visible = false
+position = Vector2( 3583, 372 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 5 )
+offset = Vector2( 3199.08, 604.119 )
+
+[node name="Water3" type="Sprite" parent="Water"]
+visible = false
+position = Vector2( 5768, 372 )
+scale = Vector2( 0.437, 0.437 )
+texture = ExtResource( 5 )
+offset = Vector2( 3199.08, 604.119 )
+flip_h = true
+
+[node name="Star" parent="." instance=ExtResource( 1 )]
+position = Vector2( 206, 375 )
+max_jumps = 100
+
+[node name="Camera2D" type="Camera2D" parent="Star"]
+position = Vector2( 299, -109 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="AngleLabel" type="Label" parent="Star/Camera2D"]
+margin_left = -351.0
+margin_top = 57.0
+margin_right = -221.0
+margin_bottom = 107.0
+text = "1"
+
+[node name="PowerLabel" type="Label" parent="Star/Camera2D"]
+margin_left = -351.0
+margin_top = 73.0
+margin_right = -311.0
+margin_bottom = 87.0
+text = "1"
+
+[node name="ScoreLabel" type="Label" parent="Star/Camera2D"]
+margin_left = 413.0
+margin_top = -226.0
+margin_right = 453.0
+margin_bottom = -212.0
+text = "0"
+
+[node name="Walters" type="Node2D" parent="."]
+position = Vector2( 394, 321 )
+
+[node name="Walter" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 285, -126 )
+
+[node name="Walter2" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 436, -204 )
+
+[node name="Walter3" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 765, -135 )
+
+[node name="Walter4" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 820, -428 )
+
+[node name="Walter5" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1079, -81 )
+
+[node name="Walter6" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1221, -143 )
+
+[node name="Walter7" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1342, -228 )
+
+[node name="Walter8" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1522, -140 )
+
+[node name="Walter9" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1693, -99 )
+
+[node name="Walter10" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1961, -109 )
+
+[node name="Walter11" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1865, -256 )
+
+[node name="Walter12" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1759, -401 )
+
+[node name="Walter13" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1361, -554 )
+
+[node name="Walter14" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2133, -761 )
+
+[node name="Walter15" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2311, -490 )
+
+[node name="Walter16" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2614, -227 )
+
+[node name="Walter17" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2234, -101 )
+
+[node name="Walter18" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2583, -90 )
+
+[node name="Walter19" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2832, -269 )
+
+[node name="Walter20" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3092, -496 )
+
+[node name="Walter21" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3549, -451 )
+
+[node name="Walter22" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3283, -73 )
+
+[node name="Walter23" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3885, -120 )
+
+[node name="Walter24" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 4367, -94 )
+
+[node name="Walter25" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 4267, -517 )
+
+[node name="Walter26" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 4918, -232 )
+
+[node name="Walter27" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 5214, -413 )
+
+[node name="Walter28" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 4624, -632 )
+
+[node name="Walter29" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 5232, -82 )
+
+[node name="Walter30" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3850, -573 )
+
+[node name="Walter31" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 2687, -696 )
+
+[node name="Walter32" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3328, -668 )
+
+[node name="Walter33" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 620, -578 )
+
+[node name="Walter34" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1071, -710 )
+
+[node name="Walter35" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 1546, -774 )
+
+[node name="Walter36" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 42, -542 )
+
+[node name="Walter37" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 296, -351 )
+
+[node name="Walter38" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3186, -165 )
+
+[node name="Walter39" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3616, -652 )
+
+[node name="Walter40" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 3611, -100 )
+
+[node name="Walter41" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 4117, -682 )
+
+[node name="Walter42" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 5009, -558 )
+
+[node name="Walter43" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 4581, -177 )
+
+[node name="Walter44" parent="Walters" instance=ExtResource( 7 )]
+position = Vector2( 5252, -773 )
+
+[node name="LowClouds" type="Node2D" parent="."]
+
+[node name="LowCloud" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 759, -217 )
+
+[node name="LowCloud2" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1128, -377 )
+
+[node name="LowCloud3" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1469, -70 )
+
+[node name="LowCloud4" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1666, -415 )
+
+[node name="LowCloud5" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1886, 0 )
+
+[node name="LowCloud6" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2164, -390 )
+
+[node name="LowCloud7" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1423, -251 )
+
+[node name="LowCloud8" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2715, -789 )
+
+[node name="LowCloud9" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2284, -639 )
+
+[node name="LowCloud10" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 3005, -545 )
+
+[node name="LowCloud11" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1572, -778 )
+
+[node name="LowCloud12" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 1158, -627 )
+
+[node name="LowCloud13" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 664, -598 )
+
+[node name="LowCloud14" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2418, -150 )
+
+[node name="LowCloud15" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2978, -226 )
+
+[node name="LowCloud16" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 3341, -654 )
+
+[node name="LowCloud17" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 3456, -365 )
+
+[node name="LowCloud18" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 4058, -610 )
+
+[node name="LowCloud19" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 4414, -687 )
+
+[node name="LowCloud20" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 967, -27 )
+
+[node name="LowCloud21" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2011, -184 )
+
+[node name="LowCloud22" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2722, -493 )
+
+[node name="LowCloud23" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 3262, -97 )
+
+[node name="LowCloud24" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 2609, -10 )
+
+[node name="LowCloud25" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 3728, 42 )
+
+[node name="LowCloud26" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 3739, -525 )
+
+[node name="LowCloud27" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 4219, -79 )
+
+[node name="LowCloud28" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 4350, -456 )
+
+[node name="LowCloud29" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 4830, -422 )
+
+[node name="LowCloud30" parent="LowClouds" instance=ExtResource( 8 )]
+position = Vector2( 4588, 86 )
+
+[node name="AngleTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="PowerTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="throw" from="." to="Star" method="throw"]
+[connection signal="throwable" from="Star" to="." method="_on_Star_throwable"]
+[connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
+[connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

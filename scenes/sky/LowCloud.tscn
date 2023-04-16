@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/sky/LowCloud.gd" type="Script" id=1]
+[ext_resource path="res://assets/sky/clouds/low_cloud_3.png" type="Texture" id=2]
+[ext_resource path="res://assets/sky/clouds/low_cloud_7.png" type="Texture" id=3]
+[ext_resource path="res://assets/sky/clouds/low_cloud_4.png" type="Texture" id=4]
+[ext_resource path="res://assets/sky/clouds/low_cloud_8.png" type="Texture" id=5]
+[ext_resource path="res://assets/sky/clouds/low_cloud_9.png" type="Texture" id=6]
+[ext_resource path="res://assets/sky/clouds/low_cloud_5.png" type="Texture" id=7]
+[ext_resource path="res://assets/sky/clouds/low_cloud_1.png" type="Texture" id=8]
+[ext_resource path="res://assets/sky/clouds/low_cloud_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/sky/clouds/low_cloud_6.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "large_curly",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "large_long",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "large_puffy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "medium_2_hump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "medium_even",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "medium_jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "small_giant_dwarf",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "small_pill",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "small_v",
+"speed": 5.0
+} ]
+
+[node name="LowCloud" type="AnimatedSprite"]
+scale = Vector2( 4, 4 )
+frames = SubResource( 1 )
+animation = "medium_even"
+script = ExtResource( 1 )
