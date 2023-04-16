@@ -1,5 +1,7 @@
 extends StarState
 
+var throwing_vector_line
+
 var tapped = false
 var released = false
 # Virtual function. Receives events from the `_unhandled_input()` callback
@@ -7,44 +9,38 @@ func handle_input(event: InputEvent) -> void:
     
     var mouse_pos1 = Vector2.ZERO
     var mouse_pos2 = Vector2.ZERO
-    var theta1
-    var theta2
 
     if event.is_action_pressed("throw_input") and not tapped:
         tapped = true
         released = false
-        mouse_pos1 = get_viewport().get_mouse_position()/2 - owner.position + (star.position - star.initial_position) + Vector2(0,20)
-        owner.get_node("ThrowingVectorLine").clear_points()
-        owner.get_node("ThrowingVectorLine").add_point(mouse_pos1,0)
-        theta1 = rad2deg(atan2(mouse_pos1.y, mouse_pos1.x))
-        print("mouse1: ",mouse_pos1,theta1)
+        mouse_pos1 = get_viewport().get_mouse_position()/2  - star.initial_position + Vector2(0,20)
+        throwing_vector_line.clear_points()
+        throwing_vector_line.add_point(mouse_pos1,0)
+        print("mouse1: ",mouse_pos1,rad2deg(atan2(mouse_pos1.y, mouse_pos1.x)))
 
     if event.is_action_released("throw_input") and not released:
         released = true
         tapped = false
-        mouse_pos2 = get_viewport().get_mouse_position()/2 - owner.position  + (star.position - star.initial_position) + Vector2(0,20)
-        owner.get_node("ThrowingVectorLine").add_point(mouse_pos2,1)
-        theta2 = rad2deg(atan2(mouse_pos2.y, mouse_pos2.x))
-        print("mouse2: ",mouse_pos2,theta2)
+        mouse_pos2 = get_viewport().get_mouse_position()/2 - star.initial_position + Vector2(0,20)
+        throwing_vector_line.add_point(mouse_pos2,1)
+        print("mouse2: ",mouse_pos2,rad2deg(atan2(mouse_pos2.y, mouse_pos2.x)))
         #var throw_vector = mouse_pos2 - mouse_pos1
         
         
-        var first = owner.get_node("ThrowingVectorLine").points[0]
-        var second = owner.get_node("ThrowingVectorLine").points[1]
+        var first = throwing_vector_line.points[0]
+        var second = throwing_vector_line.points[1]
         
         var throw_vector = first - second
-        var power = throw_vector.length()/30
+        var power = throw_vector.length() / star.throw_input_power_division_factor
         var degrees = rad2deg(throw_vector.angle())*-1
         
-        owner.get_node("ThrowingVectorLine").clear_points()
+        throwing_vector_line.clear_points()
         star.throw(power,degrees)
         print ("power: ",power, " angle: ", degrees)
-    
-    
-    pass
 
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
+    throwing_vector_line = star.get_node("ThrowingVectorLine")
     print("state: throwable")
     star.emit_signal("throwable")
     
@@ -60,4 +56,5 @@ func physics_update(delta: float) -> void:
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:
     star.jumps-=1
+    star.start_score_timer()
     star.emit_signal("thrown", star.speed, star.angle)

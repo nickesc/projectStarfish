@@ -5,6 +5,7 @@ signal throwable()
 signal thrown(speed, angle)
 signal flailing()
 signal gravity_change(gravity)
+signal score_change(score)
 
 export (bool) var dev = false
 
@@ -21,6 +22,7 @@ export var left_flailing_movement_modifier = -100
 export var down_movement_modifier = 1.5
 export var velocity_increase_reward = .75
 export var velocity_decrease_cost = 1.5
+export var throw_input_power_division_factor = 50
 
 var initial_position
 var last_thrown_inputs = [false, false, false]
@@ -36,6 +38,7 @@ var Vy = 0
 var angle
 var speed
 var jumps
+var score = 0
 
 
 
@@ -51,12 +54,24 @@ var sliding = false
 var still = false
 var still_and_sliding = 0
 
+func start_score_timer():
+    $ScoreTimer.start()
+
+func reset_score_timer():
+    $ScoreTimer.stop()
+    
+
+
 func change_state(target_state: String, msg: Dictionary = {}):
     state_machine.change_state(target_state, msg)
 
 func update_gravity(new_gravity):
     gravity = new_gravity
     emit_signal("gravity_change",gravity)
+
+func _on_ScoreTimer_timeout():
+    score += .1
+    emit_signal("score_change",score)
 
 # the regular physics loop for the star; asks for velocity components, a delta, and whether the star is flailing
 func normal_physics(velocity_x, velocity_y, modifier, delta, flailing=false):
@@ -245,3 +260,6 @@ func _physics_process(delta):
 #    last_position = position
     #print(velocity)
         
+
+
+

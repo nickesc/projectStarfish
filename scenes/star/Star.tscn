@@ -8,7 +8,7 @@
 [ext_resource path="res://src/states/Fallen.gd" type="Script" id=6]
 [ext_resource path="res://src/state_machine_components/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/states/Idle.gd" type="Script" id=8]
-[ext_resource path="res://scenes/star/ThrowingVectorLine.gd" type="Script" id=9]
+[ext_resource path="res://src/star/ThrowingVectorLine.gd" type="Script" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -55,3 +55,8 @@ script = ExtResource( 6 )
 
 [node name="ThrowingVectorLine" type="Line2D" parent="."]
 script = ExtResource( 9 )
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

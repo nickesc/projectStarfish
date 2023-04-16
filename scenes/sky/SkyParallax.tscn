@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/water/water.png" type="Texture" id=1]
+[ext_resource path="res://scenes/sky/SkySliceSprite.tscn" type="PackedScene" id=2]
+
+[node name="SkyParallax" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="SkySpliceSprite" parent="ParallaxLayer" instance=ExtResource( 2 )]
+position = Vector2( 64, 256 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_offset = Vector2( 50, 0 )
+
+[node name="Water" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 900, 5270 )
+texture = ExtResource( 1 )

@@ -14,6 +14,7 @@ var score = 0
 
 export var power = 1
 export var angle = 1
+export (Color) var clear_color = Color(0.3,0.3,0.3)
 var last_angle = 0
 var last_power = 0
 var throwable = false
@@ -99,7 +100,7 @@ func check_throw_selection():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    
+    VisualServer.set_default_clear_color(clear_color)
     
     pass # Replace with function body.
 
@@ -130,13 +131,8 @@ func _process(delta):
 
 func _on_Star_throwable():
     #print("throwable")
-    $ScoreTimer.stop()
-    $AngleTimer.start()
-    is_choosing_angle = true
-    throwable = true
-
-
-func _on_ScoreTimer_timeout():
-    score += .1
-    $Star/Camera2D/ScoreLabel.text=str(score) + "sec"
-    emit_signal("score_change",score)
+    #$ScoreTimer.stop()
+    #$AngleTimer.start()
+    #is_choosing_angle = true
+    #throwable = true
+    pass
