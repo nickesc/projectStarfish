@@ -11,3 +11,7 @@ func _on_Star_fallen():
 func _on_Star_thrown(speed, angle):
     print("set_Layer")
     set_layer(-2)
+
+
+func _on_Star_flying():
+    pass # Replace with function body.

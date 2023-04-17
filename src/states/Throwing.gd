@@ -44,7 +44,7 @@ func enter(msg: Dictionary = {}) -> void:
     print("state: throwable")
     
     
-    
+    star.emit_signal("throwing")
     star.emit_signal("throwable")
     
     

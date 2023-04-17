@@ -1,7 +1,7 @@
 extends AnimatedSprite
 
 
-export(String, "large_curly", "large_long", "large_puffy", "medium_2_hump", "medium_even", "medium_jumping", "small_giant_dwarf", "small_pill", "small_v") var shape = false
+export(String, "large_curly", "large_long", "large_puffy", "medium_2_hump", "medium_even", "medium_jumping", "small_giant_dwarf", "small_pill", "small_v") var shape = null
 var shapes =  ["large_curly", "large_long", "large_puffy", "medium_2_hump", "medium_even", "medium_jumping", "small_giant_dwarf", "small_pill", "small_v"]
 var shapes_reference = shapes
 var shape_picker: RandomNumberGenerator
@@ -31,7 +31,7 @@ func _ready():
     shape_picker.randomize()
     #shape_picker.seed = 1234
     
-    if not shape:
+    if shape == null:
         shape = pick_shape()
     
     

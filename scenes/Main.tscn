@@ -530,11 +530,13 @@ wait_time = 0.1
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="TimeLimitTimer" type="Timer" parent="."]
+
 [connection signal="throw" from="." to="Star" method="throw"]
 [connection signal="fallen" from="Star" to="OceanParallaxBackground" method="_on_Star_fallen"]
 [connection signal="fallen" from="Star" to="SandFront" method="_on_Star_fallen"]
+[connection signal="flying" from="Star" to="OceanParallaxBackground" method="_on_Star_flying"]
 [connection signal="score_change" from="Star" to="Star/Camera2D/ScoreLabel" method="_on_Star_score_change"]
-[connection signal="throwable" from="Star" to="." method="_on_Star_throwable"]
 [connection signal="thrown" from="Star" to="OceanParallaxBackground" method="_on_Star_thrown"]
 [connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]

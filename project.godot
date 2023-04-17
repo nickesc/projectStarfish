@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Obstacle",
+"language": "GDScript",
+"path": "res://src/obstacles/Obstacle.gd"
+}, {
+"base": "Node",
+"class": "ObstacleController",
+"language": "GDScript",
+"path": "res://src/obstacles/ObstacleController.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Star",
 "language": "GDScript",
 "path": "res://src/star/Star.gd"
@@ -30,6 +40,8 @@ _global_script_classes=[ {
 "path": "res://src/state_machine_components/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Obstacle": "",
+"ObstacleController": "",
 "Star": "",
 "StarState": "",
 "State": "",

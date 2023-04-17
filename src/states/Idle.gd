@@ -7,6 +7,7 @@ func handle_input(event: InputEvent) -> void:
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
     print("state: idle")
+    star.emit_signal("idle")
     star.change_state("Throwing")
     
 # Virtual function. Corresponds to the `_process()` callback

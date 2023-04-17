@@ -86,10 +86,7 @@ func handle_input(event: InputEvent) -> void:
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
     print("state: flying")
-    
-    
-    
-    star.emit_signal("thrown")
+    star.emit_signal("flying")
     
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:

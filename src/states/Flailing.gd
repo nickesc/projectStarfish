@@ -30,7 +30,7 @@ func physics_update(delta: float) -> void:
     #var modified_velocity = star.next_velocity + vector_modifier
     var modified_velocity = star.next_velocity
     
-    star.next_velocity = star.normal_physics(star.next_velocity.x, star.next_velocity.y, Vector2.ZERO, delta, true)
+    star.next_velocity = star.normal_physics(star.next_velocity.x, star.next_velocity.y, Vector2.ZERO, delta)
 #    var velocity = Vector2(star.Vx,star.Vy)
 #
 #    if star.Vy!=0:

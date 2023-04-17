@@ -1,11 +1,17 @@
 class_name Star
 extends KinematicBody2D
 
-signal throwable()
-signal thrown(speed, angle)
-signal flailing()
+
 signal gravity_change(gravity)
 signal score_change(score)
+
+signal throwable()
+signal thrown(speed, angle)
+
+signal idle()
+signal throwing()
+signal flying()
+signal flailing()
 signal fallen()
 
 export (bool) var dev = false
@@ -86,7 +92,7 @@ func _on_ScoreTimer_timeout():
     emit_signal("score_change",score)
 
 # the regular physics loop for the star; asks for velocity components, a delta, and whether the star is flailing
-func normal_physics(velocity_x, velocity_y, modifier, delta, flailing=false):
+func normal_physics(velocity_x, velocity_y, modifier, delta):
     
     # set the last velocity from whatever the vector given was, before we start changing it
     last_velocity = Vector2(velocity_x,velocity_y)

@@ -10,7 +10,10 @@ signal score_change(score)
 # var a = 2
 # var b = "text"
 
+var time_limit = 60
 var score = 0
+
+var time_limit_timer: Timer
 
 export var power = 1
 export var angle = 1
@@ -100,7 +103,10 @@ func check_throw_selection():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    
     VisualServer.set_default_clear_color(clear_color)
+    time_limit_timer = $TimeLimitTimer
+    time_limit_timer.wait_time = time_limit
     
     pass # Replace with function body.
 
@@ -127,12 +133,3 @@ func _process(delta):
         
             
             #thrown = true
-
-
-func _on_Star_throwable():
-    #print("throwable")
-    #$ScoreTimer.stop()
-    #$AngleTimer.start()
-    #is_choosing_angle = true
-    #throwable = true
-    pass
