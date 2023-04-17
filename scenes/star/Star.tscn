@@ -33,7 +33,7 @@ __meta__ = {
 "_edit_group_": true
 }
 dev = true
-throwing_vector_line_path = NodePath("ThrowingVectorLine")
+throwing_vector_line_path = NodePath("ThrowingLine/ThrowingVectorLine")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -62,14 +62,19 @@ script = ExtResource( 4 )
 [node name="Fallen" type="Node" parent="StarStateMachine"]
 script = ExtResource( 6 )
 
-[node name="ThrowingVectorLine" type="Line2D" parent="."]
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="ThrowingLine" type="CanvasLayer" parent="."]
+layer = 3
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
+
+[node name="ThrowingVectorLine" type="Line2D" parent="ThrowingLine"]
 width = 8.0
 width_curve = SubResource( 4 )
 gradient = SubResource( 5 )
 script = ExtResource( 9 )
-star_path = NodePath("..")
-
-[node name="ScoreTimer" type="Timer" parent="."]
-wait_time = 0.1
+star_path = NodePath("../..")
 
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

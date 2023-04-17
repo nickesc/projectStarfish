@@ -279,7 +279,7 @@ visible = false
 position = Vector2( 503, 393 )
 frames = SubResource( 1 )
 animation = "steady_wave"
-frame = 2
+frame = 5
 playing = true
 
 [node name="SandFront" type="CanvasLayer" parent="."]

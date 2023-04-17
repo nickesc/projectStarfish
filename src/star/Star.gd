@@ -42,6 +42,7 @@ var screen_size
 export var throwing_vector_line_path: NodePath
 var throwing_vector_line: Line2D
 
+
 var Vx = 0
 var Vy = 0
 var angle
