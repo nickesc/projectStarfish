@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/star/star.png" type="Texture" id=1]
 [ext_resource path="res://src/star/Star.gd" type="Script" id=2]
@@ -10,16 +10,22 @@
 [ext_resource path="res://src/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/star/ThrowingVectorLine.gd" type="Script" id=9]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "default",
+"name": "idle",
 "speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 24.0
+radius = 19.0263
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 0.607843, 0, 0.588235, 1, 0, 0, 0.588235 )
 
 [node name="Star" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -29,7 +35,9 @@ __meta__ = {
 dev = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -54,6 +62,9 @@ script = ExtResource( 4 )
 script = ExtResource( 6 )
 
 [node name="ThrowingVectorLine" type="Line2D" parent="."]
+width = 8.0
+width_curve = SubResource( 4 )
+gradient = SubResource( 5 )
 script = ExtResource( 9 )
 
 [node name="ScoreTimer" type="Timer" parent="."]

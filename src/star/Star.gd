@@ -175,7 +175,7 @@ func _ready():
 func movement_cleanup(velocity):
     
     #position_vector = Vector2(position.x, position.y)
-    
+    $AnimatedSprite.rotation = velocity.angle()
     
     if (position.y >= 400):
          change_state("Fallen")
