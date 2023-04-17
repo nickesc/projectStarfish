@@ -21,14 +21,20 @@ func handle_input(event: InputEvent) -> void:
                             "up_release":event.is_action_released("starfish_up")
                             }
     
+    #var zoom_out = false
+    #var zoom_in = false
+    
     if curr_flying_inputs["right_press"] and not event.is_echo():
         active_movement_modifiers["right"] = true
+        #zoom_out = true
         
     if curr_flying_inputs["left_press"] and not event.is_echo():
         active_movement_modifiers["left"] = true
+        #zoom_out = true
         
     if curr_flying_inputs["down_press"] and not event.is_echo():
         active_movement_modifiers["down"] = true
+        #zoom_out = true
     
     if curr_flying_inputs["up_press"] and not event.is_echo():
         active_movement_modifiers["up"] = true
@@ -37,17 +43,25 @@ func handle_input(event: InputEvent) -> void:
         active_movement_modifiers["right"] = false
         # if right is released, the permenant x speed is multiplied by 75% of the right movement modifier (if velocity_increase_reward = .75)
         star.next_velocity.x = (star.right_flying_movement_modifier * star.velocity_increase_reward) * star.next_velocity.x
+        #zoom_in = true
         
     if curr_flying_inputs["left_release"] and not event.is_echo():
         active_movement_modifiers["left"] = false
         # if left is released, the permenant x speed is multiplied by 150% of the left movement modifier (if velocity_decrease_cost = 1.5)
         star.next_velocity.x = (star.left_flying_movement_modifier * star.velocity_decrease_cost) * star.next_velocity.x
+        #zoom_in = true
         
     if curr_flying_inputs["down_release"] and not event.is_echo():
         active_movement_modifiers["down"] = false
+        #zoom_in = true
     
     if curr_flying_inputs["up_release"] and not event.is_echo():
         active_movement_modifiers["up"] = false
+    
+    #if zoom_out:
+        #star.camera.set_zoom(Vector2(1,1))
+    #elif zoom_in:
+        #star.camera.set_zoom(Vector2(.5,.5))
     
     
 #    

@@ -11,6 +11,7 @@ func handle_input(event: InputEvent) -> void:
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
     print("state: flailing")
+    star.update_gravity(13)
     star.emit_signal("flailing")
     #star.next_velocity.x = -35
     
@@ -52,4 +53,4 @@ func physics_update(delta: float) -> void:
 
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:
-    pass
+    star.update_gravity(star.initial_gravity)

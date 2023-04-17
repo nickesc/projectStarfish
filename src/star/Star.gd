@@ -31,6 +31,7 @@ export var beach_y_offset = 50
 
 var initial_position
 var initial_y_minimum = y_minimum
+var initial_gravity = gravity
 var last_thrown_inputs = [false, false, false]
 var last_position = position
 var last_collision
@@ -39,6 +40,8 @@ var next_velocity = Vector2.ZERO
 
 var screen_size
 
+export var camera_path: NodePath
+var camera: Camera2D
 export var throwing_vector_line_path: NodePath
 var throwing_vector_line: Line2D
 
@@ -90,9 +93,12 @@ func normal_physics(velocity_x, velocity_y, modifier, delta, flailing=false):
     
     # if the ball is moving in the downwards direction
     if velocity_y!=0:
-        # apply gravity to the current velocity calculations and to the permement velocity
-        velocity_y += gravity
-        next_velocity.y = velocity_y
+        
+        if not is_on_ceiling() and not is_on_floor() and not is_on_wall():
+        
+            # apply gravity to the current velocity calculations and to the permement velocity
+            velocity_y += gravity
+            next_velocity.y = velocity_y
     
     # create a vector from the velocity components
     var velocity = Vector2(velocity_x,velocity_y) + modifier
@@ -137,6 +143,7 @@ func throw(power, degrees):
 func _ready():
     screen_size = get_viewport_rect().size
     throwing_vector_line = get_node(throwing_vector_line_path)
+    camera = get_node(camera_path)
     Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, gravity*10)
     initial_position = position
     y_minimum = initial_y_minimum + beach_y_offset

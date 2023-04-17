@@ -40,7 +40,8 @@ _global_script_class_icons={
 
 config/name="Starfish"
 run/main_scene="res://scenes/Main.tscn"
-config/icon="res://icon.png"
+boot_splash/show_image=false
+config/icon="res://assets/star/star.png"
 
 [debug]
 
