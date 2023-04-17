@@ -13,7 +13,7 @@ func handle_input(event: InputEvent) -> void:
     if event.is_action_pressed("throw_input") and not tapped:
         tapped = true
         released = false
-        mouse_pos1 = get_viewport().get_mouse_position()/2  - star.initial_position + Vector2(0,20)
+        mouse_pos1 = get_viewport().get_mouse_position()/2  - star.initial_position
         throwing_vector_line.clear_points()
         throwing_vector_line.add_point(mouse_pos1,0)
         print("mouse1: ",mouse_pos1,rad2deg(atan2(mouse_pos1.y, mouse_pos1.x)))
@@ -21,7 +21,7 @@ func handle_input(event: InputEvent) -> void:
     if event.is_action_released("throw_input") and not released:
         released = true
         tapped = false
-        mouse_pos2 = get_viewport().get_mouse_position()/2 - star.initial_position + Vector2(0,20)
+        mouse_pos2 = get_viewport().get_mouse_position()/2 - star.initial_position
         throwing_vector_line.add_point(mouse_pos2,1)
         print("mouse2: ",mouse_pos2,rad2deg(atan2(mouse_pos2.y, mouse_pos2.x)))
         #var throw_vector = mouse_pos2 - mouse_pos1
@@ -40,8 +40,11 @@ func handle_input(event: InputEvent) -> void:
 
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
-    throwing_vector_line = star.get_node("ThrowingVectorLine")
+    throwing_vector_line = star.throwing_vector_line
     print("state: throwable")
+    
+    
+    
     star.emit_signal("throwable")
     
     

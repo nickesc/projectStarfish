@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -21,6 +21,19 @@
 [ext_resource path="res://assets/ocean/steady_wave/steady_wave_4.png" type="Texture" id=19]
 [ext_resource path="res://assets/ocean/steady_wave/steady_wave_8.png" type="Texture" id=20]
 [ext_resource path="res://assets/fonts/Born2bSportyV2.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://assets/beach/sand_back.png" type="Texture" id=22]
+[ext_resource path="res://assets/beach/sand_front.png" type="Texture" id=23]
+[ext_resource path="res://src/beach/SandFront.gd" type="Script" id=24]
+[ext_resource path="res://src/beach/SandBack.gd" type="Script" id=25]
+[ext_resource path="res://src/ocean/OceanParallaxBackground.gd" type="Script" id=26]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_2.png" type="Texture" id=27]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_7.png" type="Texture" id=28]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_5.png" type="Texture" id=29]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_6.png" type="Texture" id=30]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_1.png" type="Texture" id=31]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_3.png" type="Texture" id=32]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_0.png" type="Texture" id=33]
+[ext_resource path="res://assets/ocean/single_wave/single_wave_4.png" type="Texture" id=34]
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
@@ -30,24 +43,31 @@ font_data = ExtResource( 21 )
 size = 32
 font_data = ExtResource( 21 )
 
-[sub_resource type="AnimatedTexture" id=2]
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "back",
+"speed": 5.0
+} ]
+
+[sub_resource type="AnimatedTexture" id=7]
 flags = 2
 frames = 8
-fps = 6.0
-frame_0/texture = ExtResource( 13 )
-frame_1/texture = ExtResource( 14 )
+frame_0/texture = ExtResource( 33 )
+frame_1/texture = ExtResource( 31 )
 frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 18 )
+frame_2/texture = ExtResource( 27 )
 frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 19 )
+frame_3/texture = ExtResource( 32 )
 frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 17 )
+frame_4/texture = ExtResource( 34 )
 frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 15 )
+frame_5/texture = ExtResource( 29 )
 frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 16 )
+frame_6/texture = ExtResource( 30 )
 frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 20 )
+frame_7/texture = ExtResource( 28 )
 frame_7/delay_sec = 0.0
 
 [sub_resource type="SpriteFrames" id=1]
@@ -57,6 +77,17 @@ animations = [ {
 "name": "steady_wave",
 "speed": 4.0
 } ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "front",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 48.5, 829.5 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -171,11 +202,12 @@ offset = Vector2( 3199.08, 604.119 )
 flip_h = true
 
 [node name="Star" parent="." instance=ExtResource( 1 )]
-position = Vector2( 206, 375 )
+position = Vector2( 202, 328 )
 max_jumps = 100
+beach_y_offset = 70
 
 [node name="Camera2D" type="Camera2D" parent="Star"]
-position = Vector2( 299, -109 )
+position = Vector2( 299, -77 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
@@ -216,35 +248,53 @@ custom_fonts/font = SubResource( 4 )
 text = "Air-time:"
 align = 2
 
-[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-layer = 1
+[node name="SandBack" type="CanvasLayer" parent="."]
+layer = -3
+follow_viewport_enable = true
+script = ExtResource( 25 )
 
-[node name="OceanParallax" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="SandBack" type="AnimatedSprite" parent="SandBack"]
+position = Vector2( 991, 305 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 5 )
+animation = "back"
+
+[node name="OceanParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -2
+script = ExtResource( 26 )
+
+[node name="OceanParallax" type="ParallaxLayer" parent="OceanParallaxBackground"]
 motion_scale = Vector2( 2, 1 )
-motion_mirroring = Vector2( 1024, 0 )
+motion_mirroring = Vector2( 2048, 0 )
 script = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground2/OceanParallax"]
-position = Vector2( 503, 408 )
-scale = Vector2( 1, 0.75 )
-texture = SubResource( 2 )
+[node name="Sprite" type="Sprite" parent="OceanParallaxBackground/OceanParallax"]
+position = Vector2( 823, 296 )
+scale = Vector2( 8, 4 )
+texture = SubResource( 7 )
+offset = Vector2( -40, 65.25 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground2/OceanParallax"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="OceanParallaxBackground/OceanParallax"]
 visible = false
 position = Vector2( 503, 393 )
 frames = SubResource( 1 )
 animation = "steady_wave"
-frame = 1
+frame = 2
 playing = true
+
+[node name="SandFront" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+script = ExtResource( 24 )
+
+[node name="SandFront" type="AnimatedSprite" parent="SandFront"]
+position = Vector2( 991, 305 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 6 )
+animation = "front"
 
 [node name="Walters" type="Node2D" parent="."]
 position = Vector2( 394, 321 )
-
-[node name="Walter" parent="Walters" instance=ExtResource( 7 )]
-position = Vector2( 285, -126 )
-
-[node name="Walter2" parent="Walters" instance=ExtResource( 7 )]
-position = Vector2( 436, -204 )
 
 [node name="Walter3" parent="Walters" instance=ExtResource( 7 )]
 position = Vector2( 765, -135 )
@@ -347,9 +397,6 @@ position = Vector2( 1546, -774 )
 
 [node name="Walter36" parent="Walters" instance=ExtResource( 7 )]
 position = Vector2( 42, -542 )
-
-[node name="Walter37" parent="Walters" instance=ExtResource( 7 )]
-position = Vector2( 296, -351 )
 
 [node name="Walter38" parent="Walters" instance=ExtResource( 7 )]
 position = Vector2( 3186, -165 )
@@ -464,6 +511,13 @@ position = Vector2( 4830, -422 )
 [node name="LowCloud30" parent="LowClouds" instance=ExtResource( 8 )]
 position = Vector2( 4588, 86 )
 
+[node name="LeftBarrier" type="KinematicBody2D" parent="."]
+collision/safe_margin = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
+position = Vector2( 56, -327.5 )
+shape = SubResource( 8 )
+
 [node name="AngleTimer" type="Timer" parent="."]
 wait_time = 0.05
 
@@ -473,8 +527,14 @@ wait_time = 0.1
 [node name="ScoreTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
 [connection signal="throw" from="." to="Star" method="throw"]
+[connection signal="fallen" from="Star" to="OceanParallaxBackground" method="_on_Star_fallen"]
+[connection signal="fallen" from="Star" to="SandFront" method="_on_Star_fallen"]
 [connection signal="score_change" from="Star" to="Star/Camera2D/ScoreLabel" method="_on_Star_score_change"]
 [connection signal="throwable" from="Star" to="." method="_on_Star_throwable"]
+[connection signal="thrown" from="Star" to="OceanParallaxBackground" method="_on_Star_thrown"]
+[connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]

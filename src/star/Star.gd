@@ -6,25 +6,31 @@ signal thrown(speed, angle)
 signal flailing()
 signal gravity_change(gravity)
 signal score_change(score)
+signal fallen()
 
 export (bool) var dev = false
 
 export var max_jumps = 3
-export var gravity = 9.8
+export var gravity = 7.3
 onready var state_machine =  get_node("StarStateMachine")
 export var flailing_speed = -35
+export var y_minimum = 340
 
 
-export var right_flying_movement_modifier = 1.25
-export var left_flying_movement_modifier = .5
+export var right_flying_movement_modifier = 1.5
+export var left_flying_movement_modifier = .3
 export var right_flailing_movement_modifier = 100
 export var left_flailing_movement_modifier = -100
 export var down_movement_modifier = 1.5
 export var velocity_increase_reward = .75
 export var velocity_decrease_cost = 1.5
-export var throw_input_power_division_factor = 50
+export var throw_input_power_division_factor = 35
+
+export var beach_x_offset = 250
+export var beach_y_offset = 50
 
 var initial_position
+var initial_y_minimum = y_minimum
 var last_thrown_inputs = [false, false, false]
 var last_position = position
 var last_collision
@@ -33,14 +39,15 @@ var next_velocity = Vector2.ZERO
 
 var screen_size
 
+export var throwing_vector_line_path: NodePath
+var throwing_vector_line: Line2D
+
 var Vx = 0
 var Vy = 0
 var angle
 var speed
 var jumps
 var score = 0
-
-
 
 
 var Vx_reference = Vx
@@ -67,6 +74,7 @@ func change_state(target_state: String, msg: Dictionary = {}):
 
 func update_gravity(new_gravity):
     gravity = new_gravity
+    Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, gravity*10)
     emit_signal("gravity_change",gravity)
 
 func _on_ScoreTimer_timeout():
@@ -127,7 +135,10 @@ func throw(power, degrees):
 # Called when the node enters the scene tree for the first time.
 func _ready():
     screen_size = get_viewport_rect().size
+    throwing_vector_line = get_node(throwing_vector_line_path)
+    Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, gravity*10)
     initial_position = position
+    y_minimum = initial_y_minimum + beach_y_offset
     jumps = max_jumps
     if dev:
         jumps = 1000
@@ -177,7 +188,14 @@ func movement_cleanup(velocity):
     #position_vector = Vector2(position.x, position.y)
     $AnimatedSprite.rotation = velocity.angle()
     
-    if (position.y >= 400):
+    if y_minimum>=initial_y_minimum:
+        if position.x > initial_position.x + beach_x_offset and position.y < initial_y_minimum:
+            y_minimum = initial_y_minimum
+        #elif position.x > initial_position.x + beach_x_offset:
+            #y_minimum = y_minimum - (position.x - (initial_position.x + beach_x_offset))
+        
+    
+    if (position.y >= y_minimum):
          change_state("Fallen")
     elif velocity.x <= 0 or position.is_equal_approx(last_position):
          change_state("Flailing")
@@ -188,77 +206,7 @@ func movement_cleanup(velocity):
 func _physics_process(delta):
     #print(next_velocity)
     pass
-#    #var elapsed_time = Time.get_ticks_usec() - start_time
-#
-#    var velocity = Vector2(Vx,Vy)
-#
-#
-#    if thrown:
-#
-#        #if int(round(position.x)) == int(round(last_position.x)) and int(round(position.y)) == int(round(last_position.y)):
-#        #    still = true
-#        #else:
-#        #    still = false
-#
-#        #if still and sliding:
-#        #    still_and_sliding+=1
-#        #else:
-#        #    still_and_sliding = 0
-#            #print("Still and sliding")
-#        #if still_and_sliding>100:
-#        #    Vx = -20
-#        #    Vy = -1
-#        #    print("Still and sliding")
-#
-#        if Vy!=0:
-#            Vy += gravity
-#
-#        if not flailing:
-#            velocity = check_movement(velocity)
-#        else:
-#            velocity = check_flailing(velocity)
-#
-#        var collision_info = move_and_collide(velocity * delta)
-#        #var collision_test = move_and_collide(velocity * delta, true, true, true)
-#
-#        if collision_info:
-#            velocity = velocity.bounce(collision_info.normal)
-#
-#            if velocity.x <= 0:
-#                flailing = true
-#                emit_signal("flailing")
-#            else:
-#                Vx = velocity.x
-#                Vy = velocity.y
-#
-#        last_collision = collision_info
-#
-#
-#
-#        #else:
-#
-#            #collision_info = move_and_collide(velocity * delta)
-#            #sliding = false
-#            #if Vx <= 0:
-#                #Vx = 20
-#
-#        #if flailing:
-#            #Vx = -35
-#
-#
-#    #position.x = clamp(position.x, 0, screen_size.x)
-#    #position.y = clamp(position.y, 0, screen_size.y)
-#
-#        if (position.y >= 400):
-#            position.y = 400
-#            Vy=0
-#            Vx=0
-#            thrown = false
-#            flailing = false
-#            emit_signal("throwable")
-#
-#    last_position = position
-    #print(velocity)
+
         
 
 

@@ -8,8 +8,9 @@ func handle_input(event: InputEvent) -> void:
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
     print("state: fallen")
+    star.emit_signal("fallen")
     star.reset_score_timer()
-    star.position.y = 400
+    star.position.y = star.y_minimum
     star.Vy=0
     star.Vx=0
     #star.emit_signal("throwable")
