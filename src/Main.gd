@@ -13,6 +13,8 @@ signal time_limit_set(time_limit)
 # var a = 2
 # var b = "text"
 
+export var dev = false
+
 export var time_limit: float = 10
 var initial_time_limit = time_limit
 var score = 0
@@ -111,6 +113,9 @@ func reset_star():
 
 func set_time_limit(time):
     time_limit = time
+    if dev:
+        time_limit = 1000
+    
     time_limit_timer.wait_time = time_limit
     emit_signal("time_limit_set", time_limit)
 

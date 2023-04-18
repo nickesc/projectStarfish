@@ -67,4 +67,5 @@ func exit() -> void:
         star.first_throw = false
     star.jumps-=1
     star.start_score_timer()
+    star.emit_signal("throwing_end")
     #star.emit_signal("thrown", star.speed, star.angle)

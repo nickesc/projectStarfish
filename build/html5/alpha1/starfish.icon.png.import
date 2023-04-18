@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/star_old.png-296ef7a1989e213e9ad56ad2ea1cba12.stex"
+path="res://.import/starfish.icon.png-82e8d853b0c51cf619142bfbd6d4f3a3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/star/star_old.png"
-dest_files=[ "res://.import/star_old.png-296ef7a1989e213e9ad56ad2ea1cba12.stex" ]
+source_file="res://build/html5/alpha1/starfish.icon.png"
+dest_files=[ "res://.import/starfish.icon.png-82e8d853b0c51cf619142bfbd6d4f3a3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

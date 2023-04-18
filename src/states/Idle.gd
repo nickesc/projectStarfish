@@ -20,4 +20,4 @@ func physics_update(delta: float) -> void:
 
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:
-    pass
+    star.emit_signal("idle_end")

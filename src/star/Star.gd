@@ -14,6 +14,11 @@ signal throwing()
 signal flying()
 signal flailing()
 signal fallen()
+signal idle_end()
+signal throwing_end()
+signal flying_end()
+signal flailing_end()
+signal fallen_end()
 
 signal first_throw()
 
@@ -162,6 +167,7 @@ func normal_physics(velocity_x, velocity_y, modifier, delta):
     
     # if there is collision info, adjust the velocity for it
     if collision_info:
+        last_collision = collision_info
         velocity = velocity.bounce(collision_info.normal)
     
     # cleanup movement at the end

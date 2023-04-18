@@ -13,6 +13,9 @@ func enter(msg: Dictionary = {}) -> void:
     print("state: flailing")
     star.update_gravity(13)
     star.emit_signal("flailing")
+    
+    if star.next_velocity.y == 0 or star.next_velocity.is_equal_approx(Vector2.ZERO):
+        star.next_velocity.y = 1
     #star.next_velocity.x = -35
     
 # Virtual function. Corresponds to the `_process()` callback
@@ -54,3 +57,4 @@ func physics_update(delta: float) -> void:
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:
     star.update_gravity(star.initial_gravity)
+    star.emit_signal("flailing_end")

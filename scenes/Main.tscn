@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -35,14 +35,10 @@
 [ext_resource path="res://assets/ocean/single_wave/single_wave_0.png" type="Texture" id=33]
 [ext_resource path="res://assets/ocean/single_wave/single_wave_4.png" type="Texture" id=34]
 [ext_resource path="res://src/game/TimeLimitTimer.gd" type="Script" id=35]
-
-[sub_resource type="DynamicFont" id=3]
-size = 48
-font_data = ExtResource( 21 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 21 )
+[ext_resource path="res://assets/ui/movement_button_unpressed.png" type="Texture" id=36]
+[ext_resource path="res://src/ui/HUD.gd" type="Script" id=37]
+[ext_resource path="res://assets/ui/movement_button_pressed.png" type="Texture" id=38]
+[ext_resource path="res://src/ui/MovementButton.gd" type="Script" id=39]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -90,8 +86,17 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 48.5, 829.5 )
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+use_mipmaps = true
+font_data = ExtResource( 21 )
+
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
+dev = true
 power = 15
 clear_color = Color( 0.0235294, 0.027451, 0.054902, 1 )
 
@@ -204,7 +209,7 @@ flip_h = true
 
 [node name="Star" parent="." instance=ExtResource( 1 )]
 position = Vector2( 202, 328 )
-max_jumps = 100
+dev = true
 beach_y_offset = 70
 camera_path = NodePath("Camera2D")
 
@@ -224,31 +229,6 @@ margin_left = -351.0
 margin_top = 73.0
 margin_right = -311.0
 margin_bottom = 87.0
-
-[node name="ScoreLabel" type="Label" parent="Star/Camera2D"]
-margin_left = 319.0
-margin_top = -213.0
-margin_right = 418.0
-margin_bottom = -165.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "0.00 sec"
-align = 2
-script = ExtResource( 12 )
-
-[node name="TimeLimitLabel" type="Label" parent="Star/Camera2D"]
-margin_left = 318.0
-margin_top = -238.0
-margin_right = 418.0
-margin_bottom = -190.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Time Limit:"
-align = 2
 
 [node name="SandBack" type="CanvasLayer" parent="."]
 layer = -3
@@ -281,7 +261,7 @@ visible = false
 position = Vector2( 503, 393 )
 frames = SubResource( 1 )
 animation = "steady_wave"
-frame = 5
+frame = 7
 playing = true
 
 [node name="SandFront" type="CanvasLayer" parent="."]
@@ -530,26 +510,76 @@ wait_time = 0.1
 wait_time = 0.1
 
 [node name="HUD" type="CanvasLayer" parent="."]
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
+script = ExtResource( 37 )
+
+[node name="TimeLimitLabel" type="Label" parent="HUD"]
+margin_left = 419.0
+margin_top = 12.5
+margin_right = 480.0
+margin_bottom = 28.5
+grow_horizontal = 0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Time Limit:"
+align = 2
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+margin_left = 380.0
+margin_top = 26.5
+margin_right = 480.0
+margin_bottom = 58.5
+grow_horizontal = 0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0.00 sec"
+align = 2
+script = ExtResource( 12 )
+
+[node name="MovementButtons" type="Control" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 39 )
+
+[node name="RightMovementButton" type="TouchScreenButton" parent="HUD/MovementButtons"]
+position = Vector2( 415, 159 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 36 )
+pressed = ExtResource( 38 )
+action = "starfish_right"
+
+[node name="LeftMovementButton" type="TouchScreenButton" parent="HUD/MovementButtons"]
+position = Vector2( 399, 159 )
+rotation = 3.14159
+scale = Vector2( 2, -2 )
+normal = ExtResource( 36 )
+pressed = ExtResource( 38 )
+action = "starfish_right"
 
 [node name="TimeLimitTimer" type="Timer" parent="."]
 script = ExtResource( 35 )
 
 [connection signal="reset_star" from="." to="Star" method="reset"]
 [connection signal="throw" from="." to="Star" method="throw"]
-[connection signal="time_limit_set" from="." to="Star/Camera2D/ScoreLabel" method="_on_Main_time_limit_set"]
+[connection signal="time_limit_set" from="." to="HUD/ScoreLabel" method="_on_Main_time_limit_set"]
 [connection signal="fallen" from="Star" to="OceanParallaxBackground" method="_on_Star_fallen"]
 [connection signal="fallen" from="Star" to="SandFront" method="_on_Star_fallen"]
 [connection signal="first_throw" from="Star" to="TimeLimitTimer" method="_on_Star_first_throw"]
 [connection signal="flying" from="Star" to="OceanParallaxBackground" method="_on_Star_flying"]
 [connection signal="flying" from="Star" to="SandFront" method="_on_Star_flying"]
+[connection signal="flying" from="Star" to="HUD/MovementButtons" method="_on_Star_flying"]
+[connection signal="flying_end" from="Star" to="HUD/MovementButtons" method="_on_Star_flying_end"]
 [connection signal="reset" from="Star" to="." method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="OceanParallaxBackground" method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="SandFront" method="_on_Star_reset"]
-[connection signal="score_change" from="Star" to="Star/Camera2D/ScoreLabel" method="_on_Star_score_change"]
+[connection signal="score_change" from="Star" to="HUD/ScoreLabel" method="_on_Star_score_change"]
 [connection signal="thrown" from="Star" to="OceanParallaxBackground" method="_on_Star_thrown"]
 [connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
-[connection signal="time_change" from="TimeLimitTimer" to="Star/Camera2D/ScoreLabel" method="_on_TimeLimitTimer_time_change"]
+[connection signal="time_change" from="TimeLimitTimer" to="HUD/ScoreLabel" method="_on_TimeLimitTimer_time_change"]
 [connection signal="timeout" from="TimeLimitTimer" to="." method="_on_TimeLimitTimer_timeout"]
 [connection signal="timeout" from="TimeLimitTimer" to="Star" method="_on_TimeLimitTimer_timeout"]
