@@ -260,6 +260,7 @@ visible = false
 position = Vector2( 503, 393 )
 frames = SubResource( 1 )
 animation = "steady_wave"
+frame = 1
 playing = true
 
 [node name="SandFront" type="CanvasLayer" parent="."]
@@ -555,7 +556,7 @@ rotation = 3.14159
 scale = Vector2( 2, -2 )
 normal = ExtResource( 36 )
 pressed = ExtResource( 38 )
-action = "starfish_right"
+action = "starfish_left"
 
 [node name="TimeLimitTimer" type="Timer" parent="."]
 script = ExtResource( 35 )
