@@ -5,12 +5,16 @@ signal angle_change(angle)
 signal power_change(power)
 signal score_change(score)
 
+signal reset_star()
+
+signal time_limit_set(time_limit)
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-var time_limit = 60
+export var time_limit: float = 10
+var initial_time_limit = time_limit
 var score = 0
 
 var time_limit_timer: Timer
@@ -74,15 +78,12 @@ func update_power(new_power):
     $Star/Camera2D/PowerLabel.text = str(power)
     emit_signal("power_change",power)
 
-
 func choose_angle():
     $AngleTimer.stop()
     $PowerTimer.start()
     is_choosing_angle = false
     is_choosing_power = true
     
-    
-
 func choose_power():
     $PowerTimer.stop()
     is_choosing_power = false
@@ -100,36 +101,42 @@ func check_throw_selection():
         return false
     
 
+func reset_game():
+    score = 0
+    reset_time_limit_timer()
+
+func reset_star():
+    emit_signal("reset_star")
+    
+
+func set_time_limit(time):
+    time_limit = time
+    time_limit_timer.wait_time = time_limit
+    emit_signal("time_limit_set", time_limit)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     
     VisualServer.set_default_clear_color(clear_color)
     time_limit_timer = $TimeLimitTimer
-    time_limit_timer.wait_time = time_limit
+    set_time_limit(time_limit)
     
     pass # Replace with function body.
 
 func _process(delta):
     pass
-#    if throwable:
-#
-#
-#
-#        if is_choosing_angle:
-#
-#
-#
-#            if check_throw_selection():
-#                choose_angle()
-#                var mouse_pos = get_viewport().get_mouse_position()
-#                var theta = rad2deg(atan2(mouse_pos.y, mouse_pos.x))
-#                #print(mouse_pos, theta)
-#                #print(atan())
-#        if is_choosing_power:
-#            if check_throw_selection():
-#                choose_power()
-        
-        
-            
-            #thrown = true
+
+func reset_time_limit_timer():
+    time_limit_timer.stop()
+    set_time_limit(initial_time_limit)
+
+func _on_TimeLimitTimer_timeout():
+    time_limit_timer.stop()
+    
+    print("time limit")
+
+
+func _on_Star_reset():
+    reset_game()
+    #pass # Replace with function body.

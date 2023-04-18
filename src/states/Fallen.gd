@@ -14,12 +14,15 @@ func enter(msg: Dictionary = {}) -> void:
     star.Vy=0
     star.Vx=0
     #star.emit_signal("throwable")
-    if star.jumps>0:
+    if star.jumps>0 and not star.time_up:
         machine.change_state("Throwing")
+    
+    
     
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:
-    pass
+    if star.time_up or star.jumps <= 0:
+        star.reset()
 
 # Virtual function. Corresponds to the `_physics_process()` callback
 func physics_update(delta: float) -> void:

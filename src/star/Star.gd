@@ -1,6 +1,7 @@
 class_name Star
 extends KinematicBody2D
 
+signal reset()
 
 signal gravity_change(gravity)
 signal score_change(score)
@@ -14,14 +15,22 @@ signal flying()
 signal flailing()
 signal fallen()
 
+signal first_throw()
+
 export (bool) var dev = false
+
+
 
 export var max_jumps = 3
 export var gravity = 7.3
 onready var state_machine =  get_node("StarStateMachine")
 export var flailing_speed = -35
 export var y_minimum = 340
+var first_throw = true
+var time_up = false
 
+var jumps = max_jumps
+var score = 0
 
 export var right_flying_movement_modifier = 1.5
 export var left_flying_movement_modifier = .3
@@ -38,6 +47,8 @@ export var beach_y_offset = 50
 var initial_position
 var initial_y_minimum = y_minimum
 var initial_gravity = gravity
+var initial_max_jumps = max_jumps
+var initial_flailing_speed = flailing_speed
 var last_thrown_inputs = [false, false, false]
 var last_position = position
 var last_collision
@@ -56,8 +67,7 @@ var Vx = 0
 var Vy = 0
 var angle
 var speed
-var jumps
-var score = 0
+
 
 
 var Vx_reference = Vx
@@ -70,6 +80,37 @@ var flailing = false
 var sliding = false
 var still = false
 var still_and_sliding = 0
+
+
+func reset_jumps():
+    jumps = initial_max_jumps
+    if dev:
+        jumps = 1000
+
+func reset_throw():
+    position = initial_position
+    last_position = position
+    y_minimum = initial_y_minimum + beach_y_offset
+    first_throw = true
+    #print("help me :P")
+    change_state("Idle")
+
+func reset_velocity():
+    flailing_speed = initial_flailing_speed
+    last_collision = null
+    last_velocity = Vector2.ZERO
+    next_velocity = Vector2.ZERO
+
+func reset():
+    time_up = false
+    score = 0
+    reset_score_timer()
+    reset_jumps()
+    #jumps = 1000
+    emit_signal("reset")
+    reset_throw()
+    update_gravity(initial_gravity)
+
 
 func start_score_timer():
     $ScoreTimer.start()
@@ -145,6 +186,7 @@ func throw(power, degrees):
     
     change_state("Flying")
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     screen_size = get_viewport_rect().size
@@ -153,10 +195,10 @@ func _ready():
     Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, gravity*10)
     initial_position = position
     y_minimum = initial_y_minimum + beach_y_offset
-    jumps = max_jumps
     if dev:
         jumps = 1000
 
+    if true:
 #func check_movement(velocity):
 #
 #    var thrown_inputs = [Input.is_action_pressed("starfish_right"), Input.is_action_pressed("starfish_left"), Input.is_action_pressed("starfish_down")]
@@ -196,13 +238,15 @@ func _ready():
 #            velocity.y *= down_movement_modifier
 #
 #    return velocity
-#
+        pass
+
 func movement_cleanup(velocity):
     
     #position_vector = Vector2(position.x, position.y)
     $AnimatedSprite.rotation = velocity.angle()
     
     if y_minimum>=initial_y_minimum:
+        
         if position.x > initial_position.x + beach_x_offset and position.y < initial_y_minimum:
             y_minimum = initial_y_minimum
         #elif position.x > initial_position.x + beach_x_offset:
@@ -211,7 +255,7 @@ func movement_cleanup(velocity):
     
     if (position.y >= y_minimum):
          change_state("Fallen")
-    elif velocity.x <= 0 or position.is_equal_approx(last_position):
+    elif velocity.x <= 0 or position.is_equal_approx(last_position) or time_up:
          change_state("Flailing")
     last_position = position
     #next_velocity = velocity
@@ -221,7 +265,9 @@ func _physics_process(delta):
     #print(next_velocity)
     pass
 
-        
 
+
+func _on_TimeLimitTimer_timeout():
+    time_up = true # Replace with function body.
 
 

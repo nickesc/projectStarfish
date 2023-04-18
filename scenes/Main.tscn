@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://assets/ocean/single_wave/single_wave_3.png" type="Texture" id=32]
 [ext_resource path="res://assets/ocean/single_wave/single_wave_0.png" type="Texture" id=33]
 [ext_resource path="res://assets/ocean/single_wave/single_wave_4.png" type="Texture" id=34]
+[ext_resource path="res://src/game/TimeLimitTimer.gd" type="Script" id=35]
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
@@ -233,11 +234,11 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "0 sec"
+text = "0.00 sec"
 align = 2
 script = ExtResource( 12 )
 
-[node name="ScoreLabel2" type="Label" parent="Star/Camera2D"]
+[node name="TimeLimitLabel" type="Label" parent="Star/Camera2D"]
 margin_left = 318.0
 margin_top = -238.0
 margin_right = 418.0
@@ -246,7 +247,7 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
-text = "Air-time:"
+text = "Time Limit:"
 align = 2
 
 [node name="SandBack" type="CanvasLayer" parent="."]
@@ -280,7 +281,7 @@ visible = false
 position = Vector2( 503, 393 )
 frames = SubResource( 1 )
 animation = "steady_wave"
-frame = 1
+frame = 5
 playing = true
 
 [node name="SandFront" type="CanvasLayer" parent="."]
@@ -531,13 +532,24 @@ wait_time = 0.1
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="TimeLimitTimer" type="Timer" parent="."]
+script = ExtResource( 35 )
 
+[connection signal="reset_star" from="." to="Star" method="reset"]
 [connection signal="throw" from="." to="Star" method="throw"]
+[connection signal="time_limit_set" from="." to="Star/Camera2D/ScoreLabel" method="_on_Main_time_limit_set"]
 [connection signal="fallen" from="Star" to="OceanParallaxBackground" method="_on_Star_fallen"]
 [connection signal="fallen" from="Star" to="SandFront" method="_on_Star_fallen"]
+[connection signal="first_throw" from="Star" to="TimeLimitTimer" method="_on_Star_first_throw"]
 [connection signal="flying" from="Star" to="OceanParallaxBackground" method="_on_Star_flying"]
+[connection signal="flying" from="Star" to="SandFront" method="_on_Star_flying"]
+[connection signal="reset" from="Star" to="." method="_on_Star_reset"]
+[connection signal="reset" from="Star" to="OceanParallaxBackground" method="_on_Star_reset"]
+[connection signal="reset" from="Star" to="SandFront" method="_on_Star_reset"]
 [connection signal="score_change" from="Star" to="Star/Camera2D/ScoreLabel" method="_on_Star_score_change"]
 [connection signal="thrown" from="Star" to="OceanParallaxBackground" method="_on_Star_thrown"]
 [connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
+[connection signal="time_change" from="TimeLimitTimer" to="Star/Camera2D/ScoreLabel" method="_on_TimeLimitTimer_time_change"]
+[connection signal="timeout" from="TimeLimitTimer" to="." method="_on_TimeLimitTimer_timeout"]
+[connection signal="timeout" from="TimeLimitTimer" to="Star" method="_on_TimeLimitTimer_timeout"]

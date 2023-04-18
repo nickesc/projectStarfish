@@ -2,16 +2,25 @@ extends ParallaxBackground
 
 
 
-func _on_Star_fallen():
-    print("set_Layer")
+func send_to_back():
+    set_layer(-2)
+
+func send_to_front():
     set_layer(1)
+
+
+func _on_Star_fallen():
+    send_to_front()
 
 
 
 func _on_Star_thrown(speed, angle):
-    print("set_Layer")
-    set_layer(-2)
+    pass
 
 
 func _on_Star_flying():
-    pass # Replace with function body.
+    send_to_back()
+
+
+func _on_Star_reset():
+    send_to_back()

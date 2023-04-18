@@ -50,6 +50,10 @@ func enter(msg: Dictionary = {}) -> void:
     
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:
+    
+    if star.time_up:
+        star.throw(0,0)
+    
     pass
 
 # Virtual function. Corresponds to the `_physics_process()` callback
@@ -58,6 +62,9 @@ func physics_update(delta: float) -> void:
 
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:
+    if star.first_throw == true:
+        star.emit_signal("first_throw")
+        star.first_throw = false
     star.jumps-=1
     star.start_score_timer()
-    star.emit_signal("thrown", star.speed, star.angle)
+    #star.emit_signal("thrown", star.speed, star.angle)
