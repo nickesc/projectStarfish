@@ -43,7 +43,9 @@ func handle_input(event: InputEvent) -> void:
         var degrees = rad2deg(throw_vector.angle())*-1
         
         throwing_vector_line.clear_points()
-        star.throw(power,degrees)
+        
+        if power > 0.01:
+            star.throw(power,degrees)
         print ("power: ",power, " angle: ", degrees)
 
 # Virtual function. Called by the state machine upon changing the active state
@@ -73,7 +75,6 @@ func exit() -> void:
     if star.first_throw == true:
         star.emit_signal("first_throw")
         star.first_throw = false
-    star.jumps-=1
     star.start_score_timer()
     star.emit_signal("throwing_end")
     #star.emit_signal("thrown", star.speed, star.angle)

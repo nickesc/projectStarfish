@@ -51,7 +51,7 @@ func play(animation_name: String):
                 if resuming_animation:
                     sprite.set_frame(resume_on_frame)
                 else:
-                    sprite.set_frame(randi() % num_frames)
+                    sprite.set_frame(controller.random_int(num_frames))
     
 func stop():
     if playing:
@@ -65,8 +65,10 @@ func stop():
 func animation_setup() -> bool:
     if sprite:
         animations = sprite.get_sprite_frames()
-        default_animation = animations.get_animation_names()[0]
-        play(default_animation)
+        if animations:
+            if animations.get_animation_names().size() > 0:
+                default_animation = animations.get_animation_names()[0]
+                play(default_animation)
         
         if not playing_by_default:
             stop()

@@ -14,6 +14,8 @@ signal time_limit_set(time_limit)
 # var b = "text"
 
 export var dev = false
+export var pixel_to_meter_conversion_factor = 200
+export (Color) var clear_color = Color(0.3,0.3,0.3)
 
 export var time_limit: float = 10
 var initial_time_limit
@@ -23,7 +25,7 @@ var time_limit_timer: Timer
 
 export var power = 1
 export var angle = 1
-export (Color) var clear_color = Color(0.3,0.3,0.3)
+
 var last_angle = 0
 var last_power = 0
 var throwable = false
@@ -101,7 +103,6 @@ func check_throw_selection():
         return true
     else:
         return false
-    
 
 func reset_game():
     score = 0

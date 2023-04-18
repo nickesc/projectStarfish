@@ -33,6 +33,7 @@ __meta__ = {
 "_edit_group_": true
 }
 throwing_vector_line_path = NodePath("ThrowingLine/ThrowingVectorLine")
+sprite_path = NodePath("AnimatedSprite")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
