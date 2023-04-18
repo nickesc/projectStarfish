@@ -34,8 +34,12 @@ export var y_minimum = 340
 var first_throw = true
 var time_up = false
 
-var jumps = max_jumps
+
+
+var jumps
 var score = 0
+
+
 
 export var right_flying_movement_modifier = 1.5
 export var left_flying_movement_modifier = .3
@@ -50,10 +54,10 @@ export var beach_x_offset = 250
 export var beach_y_offset = 50
 
 var initial_position
-var initial_y_minimum = y_minimum
-var initial_gravity = gravity
-var initial_max_jumps = max_jumps
-var initial_flailing_speed = flailing_speed
+var initial_y_minimum
+var initial_gravity
+var initial_max_jumps
+var initial_flailing_speed
 var last_thrown_inputs = [false, false, false]
 var last_position = position
 var last_collision
@@ -85,6 +89,8 @@ var flailing = false
 var sliding = false
 var still = false
 var still_and_sliding = 0
+
+
 
 
 func reset_jumps():
@@ -192,17 +198,26 @@ func throw(power, degrees):
     
     change_state("Flying")
 
+func set_initial_values():
+    jumps = max_jumps
+    if dev:
+        jumps = 1000
+        
+    initial_y_minimum = y_minimum
+    initial_gravity = gravity
+    initial_max_jumps = max_jumps
+    initial_flailing_speed = flailing_speed
+    initial_position = position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    set_initial_values()
     screen_size = get_viewport_rect().size
     throwing_vector_line = get_node(throwing_vector_line_path)
     camera = get_node(camera_path)
     Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, gravity*10)
-    initial_position = position
     y_minimum = initial_y_minimum + beach_y_offset
-    if dev:
-        jumps = 1000
+    
 
     if true:
 #func check_movement(velocity):

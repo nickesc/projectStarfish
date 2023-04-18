@@ -16,7 +16,7 @@ signal time_limit_set(time_limit)
 export var dev = false
 
 export var time_limit: float = 10
-var initial_time_limit = time_limit
+var initial_time_limit
 var score = 0
 
 var time_limit_timer: Timer
@@ -119,10 +119,12 @@ func set_time_limit(time):
     time_limit_timer.wait_time = time_limit
     emit_signal("time_limit_set", time_limit)
 
+func set_initial_values():
+    initial_time_limit = time_limit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    
+    set_initial_values()
     VisualServer.set_default_clear_color(clear_color)
     time_limit_timer = $TimeLimitTimer
     set_time_limit(time_limit)
