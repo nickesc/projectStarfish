@@ -15,6 +15,10 @@ func handle_input(event: InputEvent) -> void:
         released = false
         mouse_pos1 = star.throwing_vector_line.get_local_mouse_position()
         throwing_vector_line.clear_points()
+        
+        mouse_pos1.x = clamp(mouse_pos1.x, 0, star.screen_size.x)
+        mouse_pos1.y = clamp(mouse_pos1.y, 0, star.screen_size.y)
+        
         throwing_vector_line.add_point(mouse_pos1,0)
         print("mouse1: ",mouse_pos1,rad2deg(atan2(mouse_pos1.y, mouse_pos1.x)))
 
@@ -22,6 +26,10 @@ func handle_input(event: InputEvent) -> void:
         released = true
         tapped = false
         mouse_pos2 = star.throwing_vector_line.get_local_mouse_position()
+        
+        mouse_pos2.x = clamp(mouse_pos2.x, 0, star.screen_size.x)
+        mouse_pos2.y = clamp(mouse_pos2.y, 0, star.screen_size.y)
+        
         throwing_vector_line.add_point(mouse_pos2,1)
         print("mouse2: ",mouse_pos2,rad2deg(atan2(mouse_pos2.y, mouse_pos2.x)))
         #var throw_vector = mouse_pos2 - mouse_pos1
