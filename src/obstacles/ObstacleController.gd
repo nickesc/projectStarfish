@@ -52,6 +52,8 @@ func spawn_obstacles(position_offset):
         make_walters(position_offset)
 
 func clear_obstacles():
+    intervals_spawned = 0
+    max_position = 0
     for obstacle in obstacles:
         obstacle.queue_free()
     

@@ -366,8 +366,6 @@ wait_time = 0.1
 
 [node name="ObstacleController" parent="." instance=ExtResource( 41 )]
 
-[node name="ObstaclesHolder" type="Node2D" parent="ObstacleController"]
-
 [node name="HUD" type="CanvasLayer" parent="."]
 scale = Vector2( 2, 2 )
 transform = Transform2D( 2, 0, 0, 2, 0, 0 )
