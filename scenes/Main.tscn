@@ -96,7 +96,7 @@ font_data = ExtResource( 21 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
-dev = true
+time_limit = 15.0
 power = 15
 clear_color = Color( 0.0235294, 0.027451, 0.054902, 1 )
 
@@ -209,7 +209,6 @@ flip_h = true
 
 [node name="Star" parent="." instance=ExtResource( 1 )]
 position = Vector2( 202, 328 )
-dev = true
 beach_y_offset = 70
 camera_path = NodePath("Camera2D")
 
@@ -261,7 +260,7 @@ visible = false
 position = Vector2( 503, 393 )
 frames = SubResource( 1 )
 animation = "steady_wave"
-frame = 7
+frame = 6
 playing = true
 
 [node name="SandFront" type="CanvasLayer" parent="."]
@@ -523,7 +522,7 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
-text = "Time Limit:"
+text = "Time Left:"
 align = 2
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
