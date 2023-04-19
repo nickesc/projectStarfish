@@ -46,7 +46,7 @@ The game is loosely based on the starfish story:
 > 
 > The old man asks the child, "what are you doing?" The child responds, gesturing down to the starfish covered beach, "throwing them back in the water. The tide is going out. If I don't throw them back, they'll die."
 >
-> The old man shakes his head, and says "it's pointless, there are hundreds of starfish on th beach, you won't make a difference"
+> The old man shakes his head, and says "it's pointless, there are hundreds of starfish on th beach, you won't make a difference."
 >
 > The child bends down and picks up another starfish. "Maybe," they say, throwing in the starfish.
 >
