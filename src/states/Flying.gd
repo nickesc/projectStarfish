@@ -26,37 +26,45 @@ func handle_input(event: InputEvent) -> void:
     
     if curr_flying_inputs["right_press"] and not event.is_echo():
         active_movement_modifiers["right"] = true
+        star.emit_signal("modifying_movement","right")
         #zoom_out = true
         
     if curr_flying_inputs["left_press"] and not event.is_echo():
         active_movement_modifiers["left"] = true
+        star.emit_signal("modifying_movement","left")
         #zoom_out = true
         
     if curr_flying_inputs["down_press"] and not event.is_echo():
         active_movement_modifiers["down"] = true
+        star.emit_signal("modifying_movement","down")
         #zoom_out = true
     
     if curr_flying_inputs["up_press"] and not event.is_echo():
         active_movement_modifiers["up"] = true
+        star.emit_signal("modifying_movement","up")
         
     if curr_flying_inputs["right_release"] and not event.is_echo():
         active_movement_modifiers["right"] = false
         # if right is released, the permenant x speed is multiplied by 75% of the right movement modifier (if velocity_increase_reward = .75)
         star.next_velocity.x = (star.right_flying_movement_modifier * star.velocity_increase_reward) * star.next_velocity.x
+        star.emit_signal("stopped_modifying_movement","right")
         #zoom_in = true
         
     if curr_flying_inputs["left_release"] and not event.is_echo():
         active_movement_modifiers["left"] = false
         # if left is released, the permenant x speed is multiplied by 150% of the left movement modifier (if velocity_decrease_cost = 1.5)
         star.next_velocity.x = (star.left_flying_movement_modifier * star.velocity_decrease_cost) * star.next_velocity.x
+        star.emit_signal("stopped_modifying_movement","left")
         #zoom_in = true
         
     if curr_flying_inputs["down_release"] and not event.is_echo():
         active_movement_modifiers["down"] = false
+        star.emit_signal("stopped_modifying_movement","down")
         #zoom_in = true
     
     if curr_flying_inputs["up_release"] and not event.is_echo():
         active_movement_modifiers["up"] = false
+        star.emit_signal("stopped_modifying_movement","down")
     
     #if zoom_out:
         #star.camera.set_zoom(Vector2(1,1))

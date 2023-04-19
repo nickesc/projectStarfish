@@ -7,6 +7,8 @@ signal gravity_change(gravity)
 signal score_change(score)
 signal max_position_change(new_max_position)
 signal jumps_changed(jumps_left)
+signal modifying_movement(direction)
+signal stopped_modifying_movement(direction)
 
 signal throwable()
 signal thrown(speed, angle)

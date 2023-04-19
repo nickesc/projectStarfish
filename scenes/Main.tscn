@@ -394,7 +394,7 @@ margin_bottom = 253.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "alpha-0.2.1"
+text = "alpha-0.2.2"
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 margin_left = 380.0
@@ -471,11 +471,13 @@ script = ExtResource( 35 )
 [connection signal="jumps_changed" from="Star" to="HUD/JumpsLabel" method="_on_Star_jumps_changed"]
 [connection signal="max_position_change" from="Star" to="ObstacleController" method="_on_Star_max_position_change"]
 [connection signal="max_position_change" from="Star" to="HUD/MetersLabel" method="_on_Star_max_position_change"]
+[connection signal="modifying_movement" from="Star" to="HUD/MovementButtons" method="_on_Star_modifying_movement"]
 [connection signal="reset" from="Star" to="." method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="OceanParallaxBackground" method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="SandFront" method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="ObstacleController" method="_on_Star_reset"]
 [connection signal="score_change" from="Star" to="HUD/ScoreLabel" method="_on_Star_score_change"]
+[connection signal="stopped_modifying_movement" from="Star" to="HUD/MovementButtons" method="_on_Star_stopped_modifying_movement"]
 [connection signal="thrown" from="Star" to="OceanParallaxBackground" method="_on_Star_thrown"]
 [connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
