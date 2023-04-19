@@ -372,9 +372,9 @@ transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 script = ExtResource( 37 )
 
 [node name="TimeLeftLabel" type="Label" parent="HUD"]
-margin_left = 363.0
+margin_left = 355.0
 margin_top = 2.0
-margin_right = 424.0
+margin_right = 416.0
 margin_bottom = 18.0
 grow_horizontal = 0
 size_flags_horizontal = 3
@@ -418,7 +418,7 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
-text = "0 jumps"
+text = "0 throws"
 align = 2
 script = ExtResource( 7 )
 

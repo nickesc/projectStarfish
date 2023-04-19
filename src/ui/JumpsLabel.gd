@@ -1,6 +1,6 @@
 extends Label
 
-var jumps_format = "%d jumps"
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,7 +13,12 @@ func _ready():
 
 
 func _on_Star_jumps_changed(jumps_left):
-    var jumps_string = jumps_format % int(jumps_left)
+    var throws_format = "%d throws"
     
-    text = jumps_string
+    if jumps_left == 1:
+        throws_format = "%d throw"
+    
+    var throws_string = throws_format % int(jumps_left)
+    
+    text = throws_string
     #text=jumps_left

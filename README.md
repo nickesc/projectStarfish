@@ -20,7 +20,7 @@
 
 <br>
 <p align="center" >
-  <img alt="Demo of the game, with a starfish being thrown from a beach into the ocean and hitting a bird before it falls into the ocean and resets" src="docs/assets/throw_demo.gif">
+  <img alt="A demo of Starfish, where the player drags on the screen to select their throw angle and power, and releases to throw the starfish into the ocean. The starfish flies for a short time before hitting a bird and falling into the water. The starfish is thrown 2 more times from the water, before resetting to the beach. 3 counters in the corner show the number of throws remaining, the time remaining, and the distance traveled, and there are two onscreen buttons for movement control in the air." src="docs/assets/long_throw_demo.gif" width="100%">
 </p>
 
 
@@ -34,7 +34,7 @@ You can throw the starfish up to 3 times, but if the time limit is reached the s
 
 <br>
 <p align="center" >
-  <img alt="Demo of the game, with a starfish being thrown from a beach into the ocean once, then thrown from the ocean twice" src="docs/assets/3_throw_demo.gif">
+  <img alt="A demo of Starfish, where the player drags on the screen to select their throw angle and power, and releases to throw the starfish into the ocean. The starfish flies for a short time before hitting a bird and falling into the water." src="docs/assets/fall_demo.gif" width="64%">
 </p>
 
 
@@ -52,7 +52,7 @@ The game is loosely based on the starfish story:
 >
 > #### "But to that one, it made all the difference in the world."
 
-In the final game, the idea is you'll play as the old man, trying out the child's point-of-view and throwing in as many starfish as he can.
+In the final game, the idea is you play as the old man, trying out the child's point-of-view and throwing in as many starfish as he can.
 
 There will also be significantly more obstacles, including boosting obstacles, trampoline obstacles, boat obstacles and shells as currency. Shells will be used to purchase upgrades to do things like increase your time limit, increase your max power, and increase your number of throws.
 
@@ -74,8 +74,7 @@ The game is also playable in, and primarily developed for, the browser, at [`htt
 *Starfish* is released by N. Escobar Media under the MIT License. For more information, see [`LICENSE`](license).
 
 <br>
-<br>
 <p align="center" >
-  <img alt="An animation of Walter flying, in his blue form" src="docs/assets/walter_blue.gif" height = 100> <img alt="An animation of Walter flying, in his red form" src="docs/assets/walter_red.gif" height = 100> <img alt="An animation of Walter flying, in his yellow form" src="docs/assets/walter_yellow.gif" height = 100> <img alt="An animation of Walter flying, in his green form" src="docs/assets/walter_green.gif" height = 100>
+  <img alt="An animation of Walter flying, in his blue form" src="docs/assets/walter_blue.gif" width = "20%"> <img alt="An animation of Walter flying, in his red form" src="docs/assets/walter_red.gif" width = "20%"> <img alt="An animation of Walter flying, in his yellow form" src="docs/assets/walter_yellow.gif" width = "20%"> <img alt="An animation of Walter flying, in his green form" src="docs/assets/walter_green.gif" width = "20%">
 </p>
 <br>
