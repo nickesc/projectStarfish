@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -73,6 +73,9 @@ animations = [ {
 extents = Vector2( 48.5, 829.5 )
 
 [sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=10]
 font_data = ExtResource( 21 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -382,6 +385,16 @@ custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "Time Left:"
 align = 2
+
+[node name="BuildLabel" type="Label" parent="HUD"]
+margin_left = 4.0
+margin_top = 234.0
+margin_right = 77.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "alpha-0.2.1"
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 margin_left = 380.0
