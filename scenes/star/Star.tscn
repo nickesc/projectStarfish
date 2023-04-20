@@ -28,6 +28,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 colors = PoolColorArray( 1, 0.607843, 0, 0.588235, 1, 0, 0, 0.588235 )
 
 [node name="Star" type="KinematicBody2D"]
+collision_mask = 7
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

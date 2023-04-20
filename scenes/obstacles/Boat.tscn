@@ -23,13 +23,14 @@ animations = [ {
 } ]
 
 [node name="Boat" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 12 )
 playing_by_default = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )
 frames = SubResource( 1 )
-frame = 7
+frame = 9
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
