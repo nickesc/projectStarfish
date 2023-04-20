@@ -60,6 +60,8 @@ func clear_obstacles():
     
     obstacles = []
 
+
+
 func make_boats(position_offset = Vector2.ZERO):
     if configured:
         var boat = load("res://scenes/obstacles/Boat.tscn")
@@ -88,17 +90,23 @@ func make_walters(position_offset = Vector2.ZERO):
             obstacles.append(walter_instance)
             walter_instance.position = vector
     
-func generate_random_vector_list(num_vectors = 0, position_offset = Vector2.ZERO) -> PoolVector2Array:
+func generate_random_vector_list(num_vectors = 0, position_offset = Vector2.ZERO, y_range = [0,0]) -> PoolVector2Array:
     var vector_list = PoolVector2Array()
     var x_list = PoolIntArray()
     var y_list = PoolIntArray()
     
-    # add 250 to the y position of all obstacles to bring them below y=0
-    var adjust_obstacles_offset = Vector2(0,250)
+    # add 250 and subtract the minimum y range from the y position of all obstacles to bring them below y=0, then to get them to their minimum height
+    var adjust_obstacles_offset = Vector2(0,250 - y_range[0])
     
     if configured:
         var max_x = int(spawn_distance_interval.x)
-        var max_y = int(spawn_distance_interval.y)
+        var max_y
+        # if there is no set maximum y, use the max of the spawn interval
+        # otherwise, max y is the max y in the y_range
+        if y_range[1] == 0:
+             max_y = int(spawn_distance_interval.y)
+        else:
+            max_y = int(y_range[1])
         
         var vector = 0
         if num_vectors == 0:
