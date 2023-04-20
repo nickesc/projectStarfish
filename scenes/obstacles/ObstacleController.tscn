@@ -4,3 +4,10 @@
 
 [node name="ObstacleController" type="Node"]
 script = ExtResource( 1 )
+
+[node name="Walters" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Boats" type="CanvasLayer" parent="."]
+layer = -5
+follow_viewport_enable = true

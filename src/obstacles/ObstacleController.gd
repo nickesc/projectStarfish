@@ -69,7 +69,7 @@ func make_boats(position_offset = Vector2.ZERO):
         for vector in boat_positions:
             var boat_instance = boat.instance()
             boat_instance.controller = self
-            add_child(boat_instance)
+            $Boats.add_child(boat_instance)
             obstacles.append(boat_instance)
             vector.y = 285
             boat_instance.position = vector
@@ -84,7 +84,7 @@ func make_walters(position_offset = Vector2.ZERO):
         for vector in walter_positions:
             var walter_instance = walter.instance()
             walter_instance.controller = self
-            add_child(walter_instance)
+            $Walters.add_child(walter_instance)
             obstacles.append(walter_instance)
             walter_instance.position = vector
     
