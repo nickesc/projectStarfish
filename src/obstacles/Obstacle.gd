@@ -2,6 +2,8 @@ tool
 class_name Obstacle
 extends KinematicBody2D
 
+signal past_origin(obstacle_instance)
+
 var controller: ObstacleController
 
 export (float, 0, 1.0, 0.05) var speed: float = 1.0
@@ -89,8 +91,11 @@ func enter():
 func _physics_process(delta):
     if not Engine.editor_hint:
         if moving:
-            position.x -= 1
+            position.x -= 60 * speed * delta
+            if position.x < -100:
+                emit_signal("past_origin", self)
         physics_update(delta)
+        
 
 func physics_update(delta):
     pass

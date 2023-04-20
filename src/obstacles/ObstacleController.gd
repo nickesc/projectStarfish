@@ -4,12 +4,16 @@ extends Node
 export var spawn_seed: int = 1234
 
 export var spawn_distance_interval = Vector2(4000,5000)
-export var num_walters = 80
-export var num_clouds = 150
+export var num_walters = 20
+export var num_lower_clouds = 20
+export var num_middle_clouds = 20
+export var num_high_clouds = 20
 export var num_boosts = 150
 export var num_trampolines = 150
 export var num_coins = 150
-export var num_boats = 5
+export var num_boats = 1
+
+export var cloud_speed = .3
 
 var offscreen_x_offset = 2000
 #export var star_path: NodePath
@@ -23,6 +27,15 @@ var max_position = 0
 
 var intervals_spawned = 0
 
+func _clear_obstacle(obstacle):
+    var i = 0
+    while obstacles[i]!=obstacle:
+        i+=1
+    obstacles.pop_at(i)
+    obstacle.queue_free()
+
+        
+
 func _ready():
     #if get_node_or_null(star_path):
         #star = get_node(star_path)
@@ -30,27 +43,31 @@ func _ready():
     set_randomizer(spawn_seed)
     configured = true
     spawn_obstacles(Vector2.ZERO)
-    
-func set_spawn_parameters(distance_interval,walters,clouds,boosts,trampolines,coins,boats):
+
+func _process(delta):
+    pass
+
+
+
+func set_spawn_parameters(distance_interval,walters,lower_clouds,middle_clouds,high_clouds,boosts,trampolines,coins,boats):
     spawn_distance_interval = distance_interval
     num_walters = walters
-    num_clouds = clouds
+    num_lower_clouds = lower_clouds
+    num_middle_clouds = middle_clouds
+    num_high_clouds = high_clouds
     num_boosts = boosts
     num_trampolines = trampolines
     num_coins = coins
     num_boats = boats 
-    
-func spawn_initial_obstacles():
-    intervals_spawned += 1
-    if configured:
-        make_walters() 
 
 func spawn_obstacles(position_offset):
     print("spawning")
-    intervals_spawned += 1
+    
     if configured:
+        intervals_spawned += 1
         make_walters(position_offset)
         make_boats(position_offset)
+        make_lower_clouds(position_offset)
 
 func clear_obstacles():
     intervals_spawned = 0
@@ -60,6 +77,21 @@ func clear_obstacles():
     
     obstacles = []
 
+func make_lower_clouds(position_offset = Vector2.ZERO):
+    if configured:
+        
+        
+        var lower_cloud = load("res://scenes/obstacles/LowerCloud.tscn")
+        
+        var lower_cloud_positions = generate_random_vector_list(num_lower_clouds, position_offset, [400,1400])
+        
+        for vector in lower_cloud_positions:
+            var lower_cloud_instance = lower_cloud.instance()
+            lower_cloud_instance.controller = self
+            $LowerClouds.add_child(lower_cloud_instance)
+            obstacles.append(lower_cloud_instance)
+            lower_cloud_instance.position = vector
+            
 
 
 func make_boats(position_offset = Vector2.ZERO):
@@ -80,7 +112,7 @@ func make_walters(position_offset = Vector2.ZERO):
     if configured:
         var walter = load("res://scenes/obstacles/WalterBird.tscn")
         
-        var walter_positions = generate_random_vector_list(num_walters, position_offset)
+        var walter_positions = generate_random_vector_list(num_walters, position_offset, [0,1600])
         
         
         for vector in walter_positions:
@@ -101,8 +133,9 @@ func generate_random_vector_list(num_vectors = 0, position_offset = Vector2.ZERO
     if configured:
         var max_x = int(spawn_distance_interval.x)
         var max_y
+        # max y refers to the maximum height that the vector will generate to
         # if there is no set maximum y, use the max of the spawn interval
-        # otherwise, max y is the max y in the y_range
+        # otherwise, max y is the second y in the y_range
         if y_range[1] == 0:
              max_y = int(spawn_distance_interval.y)
         else:
@@ -171,11 +204,11 @@ func _on_Star_reset():
 
 func _on_Star_max_position_change(new_max_position):
     if configured:
-        max_position = new_max_position
+        max_position = new_max_position.x
         
         var star_position_required_for_next_spawn = (intervals_spawned * spawn_distance_interval.x) - offscreen_x_offset
         
-        print(star_position_required_for_next_spawn, " ",max_position.x)
+        print(star_position_required_for_next_spawn, " ",max_position)
         
-        if max_position.x >= star_position_required_for_next_spawn:
+        if max_position >= star_position_required_for_next_spawn:
             spawn_obstacles(Vector2((intervals_spawned) * spawn_distance_interval.x,0))

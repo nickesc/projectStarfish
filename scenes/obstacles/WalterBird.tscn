@@ -172,4 +172,5 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 43 )
 animation = "blue_flying"
+frame = 2
 playing = true

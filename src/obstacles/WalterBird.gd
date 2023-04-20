@@ -18,7 +18,8 @@ func pick_animation(animation):
     return animation_name
 
 
-func _ready():
+
+func enter():
     stop()
 
     if color == null:

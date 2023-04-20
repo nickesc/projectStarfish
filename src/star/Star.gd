@@ -58,7 +58,7 @@ export var throw_input_power_division_factor = 35
 export var pixel_to_meter_conversion_factor = 200
 
 export var beach_x_offset = 250
-export var beach_y_offset = 50
+export var beach_y_offset = 70
 export var obstacle_spawn_x_interval = 3000
 
 var initial_position
