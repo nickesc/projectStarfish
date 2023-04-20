@@ -9,7 +9,7 @@ export var num_clouds = 150
 export var num_boosts = 150
 export var num_trampolines = 150
 export var num_coins = 150
-export var num_boats = 150
+export var num_boats = 5
 
 var offscreen_x_offset = 2000
 #export var star_path: NodePath
@@ -50,6 +50,7 @@ func spawn_obstacles(position_offset):
     intervals_spawned += 1
     if configured:
         make_walters(position_offset)
+        make_boats(position_offset)
 
 func clear_obstacles():
     intervals_spawned = 0
@@ -59,11 +60,26 @@ func clear_obstacles():
     
     obstacles = []
 
+func make_boats(position_offset = Vector2.ZERO):
+    if configured:
+        var boat = load("res://scenes/obstacles/Boat.tscn")
+        
+        var boat_positions = generate_random_vector_list(num_boats, position_offset)
+        
+        for vector in boat_positions:
+            var boat_instance = boat.instance()
+            boat_instance.controller = self
+            add_child(boat_instance)
+            obstacles.append(boat_instance)
+            vector.y = 285
+            boat_instance.position = vector
+
 func make_walters(position_offset = Vector2.ZERO):
     if configured:
         var walter = load("res://scenes/obstacles/WalterBird.tscn")
         
         var walter_positions = generate_random_vector_list(num_walters, position_offset)
+        
         
         for vector in walter_positions:
             var walter_instance = walter.instance()

@@ -63,6 +63,7 @@ gdscript/warnings/unused_argument=false
 
 window/size/width=2000
 window/size/height=1000
+mouse_cursor/tooltip_position_offset=Vector2( 0, 0 )
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
