@@ -1,10 +1,5 @@
 extends Control
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var right_button: TouchScreenButton
 var left_button: TouchScreenButton
 
@@ -25,7 +20,6 @@ func press(button: TouchScreenButton):
 func release(button: TouchScreenButton):
     button.set_texture(_initial_normal)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():    
     right_button = get_node("RightMovementButton")
     left_button = get_node("LeftMovementButton")

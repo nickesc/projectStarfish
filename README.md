@@ -7,7 +7,7 @@
   <br>
   <strong style="font-size:1.17em">Starfish</strong>
   <br>
-  <code style="font-size:1em">alpha-0.2.4</code>
+  <code style="font-size:1em">alpha-0.2.5</code>
   <br>
   <h6 align="center" style="margin-top:0; margin-bottom:0">
     by <a href="https://nickesc.github.io">N. Escobar</a> / <a href="https://github.com/nickesc">nickesc</a>

@@ -1,8 +1,5 @@
 extends StarState
 
-#var last_flying_inputs = [false,false,false]
-#var last_flying_inputs = {"right":false, "left":false, "down":false, "up":false}
-#var last_flying_release = {"right":false, "left":false, "down":false, "up":false}
 var vector_modifier = Vector2.ZERO
 
 var active_movement_modifiers = {"right":false, "left": false, "down": false, "up": false}

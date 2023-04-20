@@ -1,12 +1,5 @@
 extends Label
 
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
@@ -21,4 +14,3 @@ func _on_Star_jumps_changed(jumps_left):
     var throws_string = throws_format % int(jumps_left)
     
     text = throws_string
-    #text=jumps_left

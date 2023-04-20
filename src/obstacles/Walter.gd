@@ -4,7 +4,6 @@ extends KinematicBody2D
 export(String, "blue", "red", "yellow", "green") var color = null
 var colors =  ["blue", "red", "yellow", "green"]
 var colors_reference = colors
-#var color_picker: RandomNumberGenerator
 var curr_animation
 
 var moving = false
@@ -30,9 +29,7 @@ func pick_animation(animation):
 
 func _ready():
     stop()
-    #color_picker = RandomNumberGenerator.new()
     randomize()
-    #seed(1234)
     
     if color == null:
         color = pick_color()

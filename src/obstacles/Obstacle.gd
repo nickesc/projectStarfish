@@ -19,18 +19,6 @@ var resume_on_frame: int
 
 var obstacle: String
 var moving: bool = false
-
-#func _unhandled_input(event):
-#
-#    if event.is_action_pressed("starfish_up") and not event.is_echo():
-#        play(default_animation)
-#    elif event.is_action_pressed("starfish_down") and not event.is_echo():
-#        stop()
-#
-#    elif event.is_action_pressed("starfish_right") and not event.is_echo():
-#        moving = true
-#    elif event.is_action_pressed("starfish_left") and not event.is_echo():
-#        moving = false
     
 func play(animation_name: String):
     if not playing:

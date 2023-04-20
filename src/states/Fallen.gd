@@ -13,7 +13,6 @@ func enter(msg: Dictionary = {}) -> void:
     star.position.y = star.y_minimum
     star.Vy=0
     star.Vx=0
-    #star.emit_signal("throwable")
     if star.jumps>0 and not star.time_up:
         machine.change_state("Throwing")
     

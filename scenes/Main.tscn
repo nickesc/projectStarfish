@@ -397,7 +397,7 @@ margin_bottom = 253.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "alpha-0.2.4"
+text = "alpha-0.2.5"
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 margin_left = 380.0

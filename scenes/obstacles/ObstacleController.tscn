@@ -4,7 +4,7 @@
 
 [node name="ObstacleController" type="Node"]
 script = ExtResource( 1 )
-spawn_seed = 9873
+spawn_seed = 9859
 
 [node name="Walters" type="CanvasLayer" parent="."]
 follow_viewport_enable = true

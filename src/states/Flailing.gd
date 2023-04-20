@@ -41,35 +41,11 @@ func physics_update(delta: float) -> void:
     var modified_velocity = star.next_velocity
     
     star.next_velocity = star.normal_physics(star.next_velocity.x, star.next_velocity.y, Vector2.ZERO, delta)
-        
-        # Get the global rotation of the parent node
-    #star.sprite.set_rotation(star.sprite.get_global_rotation() * -1)
-    
-    #star.sprite.look_at(Vector2(cos(star.sprite.get_global_rotation() + PI), sin(star.sprite.get_global_rotation() + PI)))
     
     star.sprite.look_at(Vector2(0,1))
     if star.last_collision == null:
         flail_rotation -= .08
     star.sprite.rotate(PI * flail_rotation)
-#    var velocity = Vector2(star.Vx,star.Vy)
-#
-#    if star.Vy!=0:
-#        star.Vy += star.gravity
-#
-#    velocity = star.check_flailing(velocity)
-#
-#    var collision_info = star.move_and_collide(velocity * delta)        
-#    if collision_info:
-#        velocity = velocity.bounce(collision_info.normal)
-#
-#        if velocity.x <= 0:
-#
-#            emit_signal("flailing")
-#        else:
-#            Vx = velocity.x
-#            Vy = velocity.y
-#
-#    star.movement_cleanup()
 
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:

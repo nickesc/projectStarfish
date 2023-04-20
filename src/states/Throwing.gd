@@ -32,7 +32,6 @@ func handle_input(event: InputEvent) -> void:
         
         throwing_vector_line.add_point(mouse_pos2,1)
         print("mouse2: ",mouse_pos2,rad2deg(atan2(mouse_pos2.y, mouse_pos2.x)))
-        #var throw_vector = mouse_pos2 - mouse_pos1
         
         
         var first = throwing_vector_line.points[0]
@@ -60,11 +59,8 @@ func enter(msg: Dictionary = {}) -> void:
     
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:
-    
     if star.time_up:
         star.throw(0,0)
-    
-    pass
 
 # Virtual function. Corresponds to the `_physics_process()` callback
 func physics_update(delta: float) -> void:
@@ -77,4 +73,3 @@ func exit() -> void:
         star.first_throw = false
     star.start_score_timer()
     star.emit_signal("throwing_end")
-    #star.emit_signal("thrown", star.speed, star.angle)

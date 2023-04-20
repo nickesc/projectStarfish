@@ -17,8 +17,6 @@ func pick_animation(animation):
     
     return animation_name
 
-
-
 func enter():
     stop()
 

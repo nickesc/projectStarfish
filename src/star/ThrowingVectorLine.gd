@@ -8,9 +8,6 @@ var star: Star
 func _ready():
     
     star = get_node(star_path)
-    #star.throwing_vector_line = get_path()
-    #add_point(Vector2.ZERO)
-    #add_point(get_viewport().get_mouse_position())
     pass
 
 func _process(delta):

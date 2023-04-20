@@ -9,9 +9,6 @@ signal reset_star()
 
 signal time_limit_set(time_limit)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 export var dev = false
 export var pixel_to_meter_conversion_factor = 200
@@ -129,8 +126,6 @@ func _ready():
     VisualServer.set_default_clear_color(clear_color)
     time_limit_timer = $TimeLimitTimer
     set_time_limit(time_limit)
-    
-    pass # Replace with function body.
 
 func _process(delta):
     pass
@@ -147,4 +142,3 @@ func _on_TimeLimitTimer_timeout():
 
 func _on_Star_reset():
     reset_game()
-    #pass # Replace with function body.
