@@ -4,6 +4,7 @@ signal throw(speed, angle)
 signal angle_change(angle)
 signal power_change(power)
 signal score_change(score)
+signal shells_change(shells)
 
 signal reset_star()
 
@@ -17,6 +18,7 @@ export (Color) var clear_color = Color(0.3,0.3,0.3)
 export var time_limit: float = 10
 var initial_time_limit
 var score = 0
+var shells = 0
 
 var time_limit_timer: Timer
 
@@ -41,6 +43,14 @@ var end_mouse_vector = false
 var throw_selection_status = false
 var last_throw_selection_status = false
 
+
+func update_shells(new_shells):
+    shells = new_shells
+    print(shells)
+    emit_signal("shells_change", shells)
+
+func _on_collect_shell():
+    update_shells(shells+1)
 
 func _on_AngleTimer_timeout():
     

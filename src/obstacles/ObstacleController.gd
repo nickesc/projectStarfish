@@ -10,7 +10,7 @@ export var num_middle_clouds = 20
 export var num_high_clouds = 20
 export var num_boosts = 150
 export var num_trampolines = 150
-export var num_coins = 150
+export var num_shells = 150
 export var num_boats = 1
 
 export var cloud_speed = .3
@@ -49,7 +49,7 @@ func _process(delta):
 
 
 
-func set_spawn_parameters(distance_interval,walters,lower_clouds,middle_clouds,high_clouds,boosts,trampolines,coins,boats):
+func set_spawn_parameters(distance_interval,walters,lower_clouds,middle_clouds,high_clouds,boosts,trampolines,shells,boats):
     spawn_distance_interval = distance_interval
     num_walters = walters
     num_lower_clouds = lower_clouds
@@ -57,7 +57,7 @@ func set_spawn_parameters(distance_interval,walters,lower_clouds,middle_clouds,h
     num_high_clouds = high_clouds
     num_boosts = boosts
     num_trampolines = trampolines
-    num_coins = coins
+    num_shells = shells
     num_boats = boats 
 
 func spawn_obstacles(position_offset):
@@ -68,6 +68,7 @@ func spawn_obstacles(position_offset):
         make_walters(position_offset)
         make_boats(position_offset)
         make_lower_clouds(position_offset)
+        make_shells(position_offset)
 
 func clear_obstacles():
     intervals_spawned = 0
@@ -76,6 +77,21 @@ func clear_obstacles():
         obstacle.queue_free()
     
     obstacles = []
+
+func make_shells(position_offset = Vector2.ZERO):
+    if configured:
+
+        var shell = load("res://scenes/obstacles/Shell.tscn")
+        
+        var shell_positions = generate_random_vector_list(num_shells, position_offset)
+        
+        for vector in shell_positions:
+            var shell_instance = shell.instance()
+            shell_instance.controller = self
+            $Shells.add_child(shell_instance)
+            obstacles.append(shell_instance)
+            shell_instance.position = vector
+            shell_instance.connect("collect_shell", owner, "_on_collect_shell")
 
 func make_lower_clouds(position_offset = Vector2.ZERO):
     if configured:
@@ -208,7 +224,7 @@ func _on_Star_max_position_change(new_max_position):
         
         var star_position_required_for_next_spawn = (intervals_spawned * spawn_distance_interval.x) - offscreen_x_offset
         
-        print(star_position_required_for_next_spawn, " ",max_position)
+        #print(star_position_required_for_next_spawn, " ",max_position)
         
         if max_position >= star_position_required_for_next_spawn:
             spawn_obstacles(Vector2((intervals_spawned) * spawn_distance_interval.x,0))

@@ -10,7 +10,7 @@
 [ext_resource path="res://src/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/star/ThrowingVectorLine.gd" type="Script" id=9]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -38,7 +38,7 @@ sprite_path = NodePath("AnimatedSprite")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
-frames = SubResource( 3 )
+frames = SubResource( 6 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
