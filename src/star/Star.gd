@@ -1,5 +1,5 @@
 class_name Star
-extends KinematicBody2D
+extends RigidBody2D
 
 signal reset()
 
@@ -147,23 +147,23 @@ func normal_physics(velocity_x, velocity_y, modifier, delta):
     # set the last velocity from whatever the vector given was, before we start changing it
     last_velocity = Vector2(velocity_x,velocity_y)
     # if the ball is moving in the downwards direction
-    if velocity_y!=0:
-        if not is_on_ceiling() and not is_on_floor() and not is_on_wall():
+    #if velocity_y!=0:
+        #if not is_on_ceiling() and not is_on_floor() and not is_on_wall():
             # apply gravity to the current velocity calculations and to the permement velocity
-            velocity_y += gravity * delta * 60
-            next_velocity.y = velocity_y
+    #    velocity_y += gravity * delta * 60
+    #    next_velocity.y = velocity_y
     
     # create a vector from the velocity components
     var velocity = Vector2(velocity_x,velocity_y) + modifier
     
     # move the star and get collision info, and if there is collision info, adjust the velocity for it
-    var collision_info = move_and_collide(velocity * delta)
-    last_collision = collision_info
-    if collision_info:
-        velocity = velocity.bounce(collision_info.normal)
+    #var collision_info = move_and_collide(velocity * delta)
+    #last_collision = collision_info
+    #if collision_info:
+    #    velocity = Vector2(velocity.x, velocity.y).bounce(collision_info.normal)
     
     # cleanup movement at the end
-    movement_cleanup(velocity)
+    #movement_cleanup(velocity)
     return velocity
 
 

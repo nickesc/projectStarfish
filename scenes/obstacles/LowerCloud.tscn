@@ -13,11 +13,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "large_curly",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "large_long",
@@ -33,6 +28,11 @@ animations = [ {
 "name": "medium_2_hump",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "medium_curly",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "medium_even",
@@ -41,6 +41,11 @@ animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "medium_jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "medium_v",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -52,15 +57,11 @@ animations = [ {
 "loop": true,
 "name": "small_pill",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "small_v",
-"speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 143.014
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 89.0
+height = 122.0
 
 [node name="LowerCloud" type="KinematicBody2D"]
 collision_layer = 0
@@ -70,14 +71,14 @@ script = ExtResource( 10 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
-animation = "large_long"
+animation = "medium_even"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2( 1.4, 0.7 )
+rotation = 1.5708
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

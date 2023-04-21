@@ -27,7 +27,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="Gradient" id=5]
 colors = PoolColorArray( 1, 0.607843, 0, 0.588235, 1, 0, 0, 0.588235 )
 
-[node name="Star" type="KinematicBody2D"]
+[node name="Star" type="RigidBody2D"]
 collision_mask = 7
 script = ExtResource( 2 )
 __meta__ = {

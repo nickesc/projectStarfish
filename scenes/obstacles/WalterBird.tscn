@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/obstacles/walter/walter_yellow.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 6 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
@@ -166,11 +167,10 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
-scale = Vector2( 1.2, 0.6 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 43 )
 animation = "blue_flying"
-frame = 2
+frame = 3
 playing = true
