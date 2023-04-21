@@ -16,4 +16,4 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
     emit_signal("collect_shell")
-    queue_free()
+    controller._clear_obstacle(self)
