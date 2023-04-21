@@ -4,9 +4,10 @@ var throwing_vector_line
 
 var tapped = false
 var released = false
+
 # Virtual function. Receives events from the `_unhandled_input()` callback
 func handle_input(event: InputEvent) -> void:
-    
+
     var mouse_pos1 = Vector2.ZERO
     var mouse_pos2 = Vector2.ZERO
 
@@ -15,10 +16,10 @@ func handle_input(event: InputEvent) -> void:
         released = false
         mouse_pos1 = star.throwing_vector_line.get_local_mouse_position()
         throwing_vector_line.clear_points()
-        
+
         mouse_pos1.x = clamp(mouse_pos1.x, 0, star.screen_size.x)
         mouse_pos1.y = clamp(mouse_pos1.y, 0, star.screen_size.y)
-        
+
         throwing_vector_line.add_point(mouse_pos1,0)
         print("mouse1: ",mouse_pos1,rad2deg(atan2(mouse_pos1.y, mouse_pos1.x)))
 
@@ -26,37 +27,36 @@ func handle_input(event: InputEvent) -> void:
         released = true
         tapped = false
         mouse_pos2 = star.throwing_vector_line.get_local_mouse_position()
-        
+
         mouse_pos2.x = clamp(mouse_pos2.x, 0, star.screen_size.x)
         mouse_pos2.y = clamp(mouse_pos2.y, 0, star.screen_size.y)
-        
+
         throwing_vector_line.add_point(mouse_pos2,1)
         print("mouse2: ",mouse_pos2,rad2deg(atan2(mouse_pos2.y, mouse_pos2.x)))
-        
-        
+
+
         var first = throwing_vector_line.points[0]
         var second = throwing_vector_line.points[1]
-        
+
         var throw_vector = first - second
         var power = throw_vector.length() / star.throw_input_power_division_factor
         var degrees = rad2deg(throw_vector.angle())*-1
-        
+
         throwing_vector_line.clear_points()
-        
+
         if power > 0.01:
             star.throw(power,degrees)
         print ("power: ",power, " angle: ", degrees)
 
 # Virtual function. Called by the state machine upon changing the active state
 func enter(msg: Dictionary = {}) -> void:
+    print("state: throwing")
     throwing_vector_line = star.throwing_vector_line
-    print("state: throwable")
-    
-    
+
     star.emit_signal("throwing")
     star.emit_signal("throwable")
-    
-    
+
+
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:
     if star.time_up:

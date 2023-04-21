@@ -1,3 +1,3 @@
 extends CanvasLayer
 
-onready var camera = get_tree().current_scene.get_node("Star/Camera2D")
+onready var camera = get_tree().current_scene.get_node("Camera2D")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -41,6 +41,10 @@
 [ext_resource path="res://src/ui/MovementButton.gd" type="Script" id=39]
 [ext_resource path="res://src/ui/MetersLabel.gd" type="Script" id=40]
 [ext_resource path="res://scenes/obstacles/ObstacleController.tscn" type="PackedScene" id=41]
+[ext_resource path="res://src/game/Camera.gd" type="Script" id=42]
+
+[sub_resource type="PhysicsMaterial" id=15]
+bounce = 0.75
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -219,26 +223,33 @@ texture = ExtResource( 5 )
 offset = Vector2( 3199.08, 604.119 )
 flip_h = true
 
-[node name="Star" parent="." instance=ExtResource( 1 )]
-position = Vector2( 202, 328 )
-camera_path = NodePath("Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="Star"]
-position = Vector2( 299, -77 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 501, 251 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 42 )
+star_path = NodePath("../Star")
 
-[node name="AngleLabel" type="Label" parent="Star/Camera2D"]
+[node name="AngleLabel" type="Label" parent="Camera2D"]
+visible = false
 margin_left = -351.0
 margin_top = 57.0
 margin_right = -221.0
 margin_bottom = 107.0
 
-[node name="PowerLabel" type="Label" parent="Star/Camera2D"]
+[node name="PowerLabel" type="Label" parent="Camera2D"]
+visible = false
 margin_left = -351.0
 margin_top = 73.0
 margin_right = -311.0
 margin_bottom = 87.0
+
+[node name="Star" parent="." instance=ExtResource( 1 )]
+position = Vector2( 202, 328 )
+physics_material_override = SubResource( 15 )
+gravity_scale = 8.0
+gravity = 9.8
+camera_path = NodePath("../Camera2D")
 
 [node name="SandBack" type="CanvasLayer" parent="."]
 layer = -3
@@ -371,6 +382,7 @@ position = Vector2( 4830, -422 )
 position = Vector2( 4588, 86 )
 
 [node name="LeftBarrier" type="KinematicBody2D" parent="."]
+collision_layer = 16
 collision/safe_margin = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
@@ -387,7 +399,7 @@ wait_time = 0.1
 wait_time = 0.1
 
 [node name="ObstacleController" parent="." instance=ExtResource( 41 )]
-spawn_seed = 9857
+spawn_seed = 9853
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 10
@@ -415,7 +427,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "alpha-0.2.6"
+text = "alpha-0.2.7"
 
 [node name="ShellsLabel" type="Label" parent="HUD"]
 margin_left = 27.0
@@ -431,6 +443,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
+frame = 1
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]

@@ -16,4 +16,5 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
     emit_signal("collect_shell")
+    print(body)
     controller._clear_obstacle(self)

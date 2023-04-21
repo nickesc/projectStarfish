@@ -1,5 +1,6 @@
 extends StarState
 
+var change_to_throwing = false
 
 # Virtual function. Receives events from the `_unhandled_input()` callback
 func handle_input(event: InputEvent) -> void:
@@ -10,16 +11,21 @@ func enter(msg: Dictionary = {}) -> void:
     print("state: fallen")
     star.emit_signal("fallen")
     star.reset_score_timer()
-    star.position.y = star.y_minimum
-    star.Vy=0
-    star.Vx=0
-    if star.jumps>0 and not star.time_up:
-        machine.change_state("Throwing")
-    
-    
-    
+    ##change_to_throwing = true
+
+
+
+
+
+
+
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:
+
+    if star.jumps>0 and not star.time_up:
+        machine.change_state("Throwing")
+
+
     if star.time_up or star.jumps <= 0:
         star.reset()
 

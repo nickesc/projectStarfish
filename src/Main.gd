@@ -80,13 +80,13 @@ func _on_PowerTimer_timeout():
 func update_angle(new_angle):
     last_angle = angle
     angle = new_angle
-    $Star/Camera2D/AngleLabel.text = str(angle) + "°"
+    $Camera2D/AngleLabel.text = str(angle) + "°"
     emit_signal("angle_change",angle)
     
 func update_power(new_power):
     last_power = power
     power = new_power
-    $Star/Camera2D/PowerLabel.text = str(power)
+    $Camera2D/PowerLabel.text = str(power)
     emit_signal("power_change",power)
 
 func choose_angle():

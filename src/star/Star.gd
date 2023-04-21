@@ -89,6 +89,8 @@ var sliding = false
 var still = false
 var still_and_sliding = 0
 
+#var reset_star = false
+
 func update_jumps(new_jumps):
     jumps = new_jumps
     if dev:
@@ -97,7 +99,7 @@ func update_jumps(new_jumps):
 
 func reset_jumps():
     update_jumps(initial_max_jumps)
-    
+
 
 func reset_throw():
     position = initial_position
@@ -105,7 +107,7 @@ func reset_throw():
     last_position = position
     y_minimum = initial_y_minimum + beach_y_offset
     first_throw = true
-    change_state("Idle")
+    #change_state("Idle")
 
 func reset_velocity():
     flailing_speed = initial_flailing_speed
@@ -122,6 +124,7 @@ func reset():
     emit_signal("reset")
     reset_throw()
     update_gravity(initial_gravity)
+    change_state("Idle")
 
 
 func start_score_timer():
@@ -142,67 +145,110 @@ func _on_ScoreTimer_timeout():
     score += .1
     emit_signal("score_change",score)
 
+func _physics_process(delta):
+    pass
+
+var under_y_minimum = false
+var curr_throwing = false
+var throw_position = Vector2.ZERO
+
 # the regular physics loop for the star; asks for velocity components, a delta, and whether the star is flailing
-func normal_physics(velocity_x, velocity_y, modifier, delta):
-    # set the last velocity from whatever the vector given was, before we start changing it
-    last_velocity = Vector2(velocity_x,velocity_y)
-    # if the ball is moving in the downwards direction
-    #if velocity_y!=0:
-        #if not is_on_ceiling() and not is_on_floor() and not is_on_wall():
-            # apply gravity to the current velocity calculations and to the permement velocity
-    #    velocity_y += gravity * delta * 60
-    #    next_velocity.y = velocity_y
-    
-    # create a vector from the velocity components
-    var velocity = Vector2(velocity_x,velocity_y) + modifier
-    
-    # move the star and get collision info, and if there is collision info, adjust the velocity for it
-    #var collision_info = move_and_collide(velocity * delta)
-    #last_collision = collision_info
-    #if collision_info:
-    #    velocity = Vector2(velocity.x, velocity.y).bounce(collision_info.normal)
-    
-    # cleanup movement at the end
+func normal_physics(delta):
+
+    if under_y_minimum:
+        under_y_minimum = false
+        position.y = y_minimum
+        change_state("Fallen")
+
+
+    # if the current y minimum is lower than the default y minimum
+    if y_minimum>=initial_y_minimum:
+        # if the star has gone past it's initial x position plus the x offset until the end of the beach
+        # and it's current position is below the default y minimum, set the current y minimum to the default y minimum
+        if position.x > initial_position.x + beach_x_offset and position.y < initial_y_minimum:
+            y_minimum = initial_y_minimum
+
+    last_position = position
+    update_max_position(get_max_position_vector(last_position))
+
+    if (position.y > y_minimum):
+        set_mode(RigidBody2D.MODE_KINEMATIC)
+        under_y_minimum = true
+        print("under y min normal physics")
+
+
     #movement_cleanup(velocity)
-    return velocity
+    #return velocity
+
+func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+
+    #print("help")
+
+    if curr_throwing:
+        curr_throwing = false
+        var t = state.get_transform()
+        t.origin.x = throw_position.x
+        t.origin.y = throw_position.y
+        state.set_transform(t)
+
+
+
+    pass
+    # if reset_star:
+    #     set_mode(RigidBody2D.MODE_RIGID)
+    #     var r = state.get_transform()
+    #     print("reset")
+    #     reset_star = false
+    #     #position = initial_position
+    #     r.origin.x = initial_position.x
+    #     r.origin.y =  initial_position.y
+    #     state.set_transform(r)
+
+
+
+#func _integrate_forces(state):
 
 
 func movement_cleanup(velocity):
-    
-    $AnimatedSprite.rotation = velocity.angle()
-    
-    if y_minimum>=initial_y_minimum:
-        
-        if position.x > initial_position.x + beach_x_offset and position.y < initial_y_minimum:
-            y_minimum = initial_y_minimum
-    
-    if (position.y >= y_minimum):
-         change_state("Fallen")
-    elif velocity.x <= 0 or position.is_equal_approx(last_position) or time_up or (velocity.x != 0 and last_collision == null and velocity.y==0):
+
+    #$AnimatedSprite.rotation = velocity.angle()
+
+
+
+    #if (position.y >= y_minimum):
+    #    position.y = y_minimum
+    #elif velocity.x <= 0 or position.is_equal_approx(last_position) or time_up or (velocity.x != 0 and last_collision == null and velocity.y==0):
     #elif time_up:
-         change_state("Flailing")
-    
+         #change_state("Flailing")
+
     last_position = position
     update_max_position(get_max_position_vector(last_position))
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func throw(power, degrees):
     start_time = Time.get_ticks_usec()
-    
+
     speed = power * 100
     angle = deg2rad(degrees * -1)
-    
+
     Vx = cos(angle) * speed
     Vy = sin(angle) * speed
-    
-    next_velocity = Vector2(Vx, Vy)
-    
+
+    #next_velocity = Vector2(Vx, Vy)
+    curr_throwing = true
+    throw_position = position
+
+    set_mode(RigidBody2D.MODE_RIGID)
+    apply_central_impulse(Vector2(Vx,Vy))
+
     update_jumps(jumps-1)
-    
+
     change_state("Flying")
 
 func set_initial_values():
-        
+
     initial_y_minimum = y_minimum
     initial_gravity = gravity
     initial_max_jumps = max_jumps
@@ -222,7 +268,7 @@ func _ready():
 
 
 func update_max_position(new_max_position):
-    
+
     max_position = new_max_position
     emit_signal("max_position_change", max_position)
 
@@ -230,21 +276,18 @@ func update_max_position(new_max_position):
 func get_max_position_vector(test_vector) -> Vector2:
     var new_max_position = max_position
     test_vector = test_vector - initial_position
-    
+
     if test_vector.x > max_position.x:
         new_max_position.x = test_vector.x
-        
-        
+
+
     if test_vector.y < max_position.y:
         new_max_position.y = test_vector.y
-        
+
     if test_vector.x < 0 and max_position.x <= 0:
         new_max_position.x = test_vector.x
-        
-    return new_max_position
 
-func _physics_process(delta):
-    pass
+    return new_max_position
 
 
 

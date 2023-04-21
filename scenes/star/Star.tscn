@@ -29,6 +29,7 @@ colors = PoolColorArray( 1, 0.607843, 0, 0.588235, 1, 0, 0, 0.588235 )
 
 [node name="Star" type="RigidBody2D"]
 collision_mask = 7
+mode = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
