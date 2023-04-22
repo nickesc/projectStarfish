@@ -11,7 +11,9 @@ func enter(msg: Dictionary = {}) -> void:
 
 # Virtual function. Corresponds to the `_process()` callback
 func update(delta: float) -> void:
-    star.change_state("Throwing")
+    if star.ready_to_go:
+        star.ready_to_go = false
+        star.change_state("Throwing")
 
 # Virtual function. Corresponds to the `_physics_process()` callback
 func physics_update(delta: float) -> void:

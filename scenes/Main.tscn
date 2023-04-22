@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -42,6 +42,10 @@
 [ext_resource path="res://src/ui/MetersLabel.gd" type="Script" id=40]
 [ext_resource path="res://scenes/obstacles/ObstacleController.tscn" type="PackedScene" id=41]
 [ext_resource path="res://src/game/Camera.gd" type="Script" id=42]
+[ext_resource path="res://assets/ui/button_pressed_texture.png" type="Texture" id=43]
+[ext_resource path="res://assets/ui/button_texture.png" type="Texture" id=44]
+[ext_resource path="res://assets/ui/box_texture.png" type="Texture" id=45]
+[ext_resource path="res://src/ui/StartDialogue.gd" type="Script" id=46]
 
 [sub_resource type="PhysicsMaterial" id=15]
 bounce = 0.75
@@ -109,6 +113,51 @@ font_data = ExtResource( 21 )
 [sub_resource type="DynamicFont" id=9]
 use_mipmaps = true
 font_data = ExtResource( 21 )
+
+[sub_resource type="StyleBoxTexture" id=22]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 160, 170 )
+margin_left = 20.0
+margin_right = 20.0
+margin_top = 20.0
+margin_bottom = 20.0
+modulate_color = Color( 0.465537, 0.703125, 0.416226, 1 )
+
+[sub_resource type="StyleBoxTexture" id=23]
+texture = ExtResource( 43 )
+region_rect = Rect2( 0, 0, 160, 170 )
+margin_left = 20.0
+margin_right = 20.0
+margin_top = 20.0
+margin_bottom = 20.0
+modulate_color = Color( 0.465537, 0.703125, 0.416226, 1 )
+
+[sub_resource type="StyleBoxTexture" id=24]
+texture = ExtResource( 45 )
+margin_left = 20.0
+margin_right = 20.0
+margin_top = 20.0
+margin_bottom = 20.0
+
+[sub_resource type="DynamicFont" id=20]
+font_data = ExtResource( 21 )
+
+[sub_resource type="Theme" id=21]
+default_font = SubResource( 20 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/styles/hover = SubResource( 22 )
+Button/styles/normal = SubResource( 22 )
+Button/styles/pressed = SubResource( 23 )
+PanelContainer/styles/panel = SubResource( 24 )
+
+[sub_resource type="DynamicFont" id=25]
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 32
+font_data = ExtResource( 21 )
+
+[sub_resource type="ButtonGroup" id=26]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -428,7 +477,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "alpha-0.2.7"
+text = "alpha-0.2.8"
 
 [node name="ShellsLabel" type="Label" parent="HUD"]
 margin_left = 27.0
@@ -444,7 +493,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 2
+frame = 6
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
@@ -506,6 +555,49 @@ normal = ExtResource( 36 )
 pressed = ExtResource( 38 )
 action = "starfish_left"
 
+[node name="StartDialogue" type="PanelContainer" parent="HUD"]
+margin_left = 120.0
+margin_top = 10.0
+margin_right = 380.0
+margin_bottom = 241.0
+theme = SubResource( 21 )
+script = ExtResource( 46 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/StartDialogue"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 240.0
+margin_bottom = 211.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/StartDialogue/VBoxContainer"]
+margin_right = 220.0
+
+[node name="Label" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+margin_top = 4.0
+margin_right = 220.0
+margin_bottom = 115.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 25 )
+text = "Throw the starfish back into the ocean as far as possible!
+Click and drag on the screen to select your angle and power, and release to throw.
+Pick up shells and avoid obstacles!"
+autowrap = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="HUD/StartDialogue/VBoxContainer"]
+margin_top = 119.0
+margin_right = 220.0
+margin_bottom = 191.0
+
+[node name="StartButton" type="Button" parent="HUD/StartDialogue/VBoxContainer/CenterContainer2"]
+margin_left = 59.0
+margin_right = 161.0
+margin_bottom = 72.0
+focus_mode = 0
+custom_fonts/font = SubResource( 19 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = "Start"
+
 [node name="TimeLimitTimer" type="Timer" parent="."]
 script = ExtResource( 35 )
 
@@ -534,6 +626,8 @@ script = ExtResource( 35 )
 [connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
+[connection signal="get_ready" from="HUD/StartDialogue" to="Star" method="_on_StartDialogue_get_ready"]
+[connection signal="button_up" from="HUD/StartDialogue/VBoxContainer/CenterContainer2/StartButton" to="HUD/StartDialogue" method="_on_StartButton_button_up"]
 [connection signal="time_change" from="TimeLimitTimer" to="HUD/ScoreLabel" method="_on_TimeLimitTimer_time_change"]
 [connection signal="timeout" from="TimeLimitTimer" to="." method="_on_TimeLimitTimer_timeout"]
 [connection signal="timeout" from="TimeLimitTimer" to="Star" method="_on_TimeLimitTimer_timeout"]

@@ -7,7 +7,7 @@
   <br>
   <strong style="font-size:1.17em">Starfish</strong>
   <br>
-  <code style="font-size:1em">alpha-0.2.7</code>
+  <code style="font-size:1em">alpha-0.2.8</code>
   <br>
   <h6 align="center" style="margin-top:0; margin-bottom:0">
     by <a href="https://nickesc.github.io">N. Escobar</a> / <a href="https://github.com/nickesc">nickesc</a>
@@ -46,7 +46,7 @@ The game is loosely based on the starfish story:
 > 
 > The old man asks the child, "what are you doing?" The child responds, gesturing down to the starfish covered beach, "throwing them back in the water. The tide is going out. If I don't throw them back, they'll die."
 >
-> The old man shakes his head, and says "it's pointless, there are hundreds of starfish on th beach, you won't make a difference."
+> The old man shakes his head, and says "it's pointless, there are hundreds of starfish on the beach, you won't make a difference."
 >
 > The child bends down and picks up another starfish. "Maybe," they say, throwing in the starfish.
 >

@@ -133,4 +133,6 @@ func physics_update(delta: float) -> void:
 
 # Virtual function. Called by the state machine before changing the active state
 func exit() -> void:
+    star.emit_signal("stopped_modifying_movement", "left")
+    star.emit_signal("stopped_modifying_movement", "right")
     star.emit_signal("flying_end")

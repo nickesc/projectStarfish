@@ -6,6 +6,7 @@ signal reset()
 signal gravity_change(gravity)
 signal score_change(score)
 signal max_position_change(new_max_position)
+signal max_max_position_changed(new_max_max)
 signal jumps_changed(jumps_left)
 signal modifying_movement(direction)
 signal stopped_modifying_movement(direction)
@@ -26,6 +27,8 @@ signal fallen_end()
 
 signal first_throw()
 
+var ready_to_go = false
+
 export (bool) var dev = false
 
 export var max_jumps = 3
@@ -39,6 +42,7 @@ var time_up = false
 var jumps
 var score = 0
 var max_position = Vector2.ZERO
+var max_max_position = max_position
 
 export var right_flying_movement_modifier = 1.5
 export var left_flying_movement_modifier = .3
@@ -178,7 +182,6 @@ func normal_physics(delta):
     if (position.y > y_minimum):
         set_mode(RigidBody2D.MODE_KINEMATIC)
         under_y_minimum = true
-        print("under y min normal physics")
 
 
     #movement_cleanup(velocity)
@@ -186,7 +189,7 @@ func normal_physics(delta):
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
-    print("ig")
+    #print("ig")
 
     pass
 
@@ -248,10 +251,15 @@ func _ready():
     update_jumps(max_jumps)
 
 
-func update_max_position(new_max_position):
 
+func update_max_position(new_max_position):
     max_position = new_max_position
+    max_max_position = get_max_position_vector(max_max_position)
     emit_signal("max_position_change", max_position)
+    
+func update_max_max_position(new_max_max):
+    max_max_position = new_max_max
+    emit_signal("max_max_position_changed")
 
 
 func get_max_position_vector(test_vector) -> Vector2:
@@ -273,45 +281,7 @@ func get_max_position_vector(test_vector) -> Vector2:
 
 
 func _on_TimeLimitTimer_timeout():
-    time_up = true # Replace with function body.
+    time_up = true
 
-
-#func check_movement(velocity):
-#
-#    var thrown_inputs = [Input.is_action_pressed("starfish_right"), Input.is_action_pressed("starfish_left"), Input.is_action_pressed("starfish_down")]
-#
-#    if velocity.x != 0:
-#        if thrown_inputs[0]:
-#            velocity.x *= right_thrown_movement_modifier
-#            if thrown_inputs[0] != last_thrown_inputs[0]:
-#                Vx = (right_thrown_movement_modifier*.75) * velocity.x
-#        if thrown_inputs[1]:
-#            velocity.x *= left_thrown_movement_modifier
-#            if thrown_inputs[1] != last_thrown_inputs[1]:
-#                Vx = (left_thrown_movement_modifier*1.5) * velocity.x
-#
-#    if velocity.y !=0:
-#        if thrown_inputs[2]:
-#            if velocity.y > 0:
-#                velocity.y *= down_movement_modifier
-#            else:
-#                velocity.y /=down_movement_modifier
-#
-#    last_thrown_inputs = thrown_inputs
-#    return velocity
-#
-#func check_flailing(velocity):
-#
-#    var flailing_inputs = [Input.is_action_pressed("starfish_right"), Input.is_action_pressed("starfish_left"), Input.is_action_pressed("starfish_down")]
-#
-#    if velocity.x != 0:
-#        if flailing_inputs[0]:
-#            velocity.x += 100
-#        if flailing_inputs[1]:
-#            velocity.x -= 100
-#
-#    if velocity.y !=0:
-#        if flailing_inputs[2]:
-#            velocity.y *= down_movement_modifier
-#
-#    return velocity
+func _on_StartDialogue_get_ready():
+    ready_to_go = true
