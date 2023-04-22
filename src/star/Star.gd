@@ -2,6 +2,8 @@ class_name Star
 extends RigidBody2D
 
 signal reset()
+signal retry_dialogue()
+signal stop_time_limit_timer()
 
 signal gravity_change(gravity)
 signal score_change(score)
@@ -28,6 +30,7 @@ signal fallen_end()
 signal first_throw()
 
 var ready_to_go = false
+var retry_clicked = false
 
 export (bool) var dev = false
 
@@ -126,10 +129,12 @@ func reset():
     update_max_position(Vector2.ZERO)
     reset_score_timer()
     reset_jumps()
+    #yield(get_tree().create_timer(1.0), "timeout")
     emit_signal("reset")
     reset_throw()
     update_gravity(initial_gravity)
     change_state("Idle")
+    emit_signal("retry_dialogue")
 
 
 func start_score_timer():
@@ -159,7 +164,7 @@ var throw_position = Vector2.ZERO
 
 # the regular physics loop for the star; asks for velocity components, a delta, and whether the star is flailing
 func normal_physics(delta):
-
+    
     if under_y_minimum:
         under_y_minimum = false
         global_transform.origin.y = y_minimum - 5
@@ -252,14 +257,22 @@ func _ready():
 
 
 
+func show_retry_dialogue():
+    emit_signal("retry_dialogue")
+
 func update_max_position(new_max_position):
     max_position = new_max_position
-    max_max_position = get_max_position_vector(max_max_position)
+    update_max_max_position()
     emit_signal("max_position_change", max_position)
     
-func update_max_max_position(new_max_max):
-    max_max_position = new_max_max
-    emit_signal("max_max_position_changed")
+func update_max_max_position():
+    if max_max_position.x < max_position.x:
+        max_max_position.x = max_position.x
+    
+    if max_position.x < 0:
+        max_max_position.x = max_position.x
+        
+    emit_signal("max_max_position_changed", max_max_position)
 
 
 func get_max_position_vector(test_vector) -> Vector2:
@@ -285,3 +298,6 @@ func _on_TimeLimitTimer_timeout():
 
 func _on_StartDialogue_get_ready():
     ready_to_go = true
+
+func _on_RetryDialogue_get_ready():
+    _on_StartDialogue_get_ready()

@@ -7,7 +7,7 @@
   <br>
   <strong style="font-size:1.17em">Starfish</strong>
   <br>
-  <code style="font-size:1em">alpha-0.2.8</code>
+  <code style="font-size:1em">alpha-0.3.0</code>
   <br>
   <h6 align="center" style="margin-top:0; margin-bottom:0">
     by <a href="https://nickesc.github.io">N. Escobar</a> / <a href="https://github.com/nickesc">nickesc</a>
@@ -30,7 +30,9 @@
 
 Click-and-drag on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to slightly increase or decrease the speed of the starfish while it's in the air.
 
-You can throw the starfish up to 3 times, but if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also fall out of the air, so watch out for birds! 
+In the current `alpha` versions, you can throw the starfish up to 3 times, but if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds and boats! 
+
+Try and collect as many shells as you can!
 
 <br>
 <p align="center" >
@@ -54,11 +56,11 @@ The game is loosely based on the starfish story:
 
 In the final game, the idea is you play as the old man, trying out the child's point-of-view and throwing in as many starfish as he can.
 
-There will also be significantly more obstacles, including boosting obstacles, trampoline obstacles, boat obstacles and shells as currency. Shells will be used to purchase upgrades to do things like increase your time limit, increase your max power, and increase your number of throws.
+There will also be more obstacles, including boosting obstacles and potentially trampoline obstacles. Shells will be used to purchase upgrades to do things like increase your time limit, increase your max power, and increase your number of throws.
 
 *Starfish* is currently in active development as an entry in the [__Gamedev.js Jam 2023__](https://itch.io/jam/gamedevjs-2023) game jam. Entries are required to be playable in the browser, so it has been designed from the ground up to be playable both on desktop and on mobile. The game is also being submitted to be judged in the Open-Source category.
 
-*Starfish* is built with [Godot 3.5](https://godotengine.org/), and using tools like Pixelorama and Photoshop.
+*Starfish* is built with [Godot](https://godotengine.org/).
 
 
 ### Download

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/water/water.png" type="Texture" id=5]
 [ext_resource path="res://assets/beach/beach.png" type="Texture" id=6]
 [ext_resource path="res://src/ui/JumpsLabel.gd" type="Script" id=7]
-[ext_resource path="res://scenes/sky/LowCloud.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sky/sky_gradient_slice.png" type="Texture" id=9]
 [ext_resource path="res://src/sky/SkyParallax.gd" type="Script" id=10]
 [ext_resource path="res://src/ocean/OceanParallax.gd" type="Script" id=11]
@@ -46,6 +45,7 @@
 [ext_resource path="res://assets/ui/button_texture.png" type="Texture" id=44]
 [ext_resource path="res://assets/ui/box_texture.png" type="Texture" id=45]
 [ext_resource path="res://src/ui/StartDialogue.gd" type="Script" id=46]
+[ext_resource path="res://src/ui/RetryDialogue.gd" type="Script" id=47]
 
 [sub_resource type="PhysicsMaterial" id=15]
 bounce = 0.75
@@ -84,6 +84,9 @@ animations = [ {
 "name": "front",
 "speed": 5.0
 } ]
+
+[sub_resource type="PhysicsMaterial" id=27]
+absorbent = true
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 48.5, 3819.5 )
@@ -134,6 +137,7 @@ modulate_color = Color( 0.465537, 0.703125, 0.416226, 1 )
 
 [sub_resource type="StyleBoxTexture" id=24]
 texture = ExtResource( 45 )
+region_rect = Rect2( 0, 0, 160, 170 )
 margin_left = 20.0
 margin_right = 20.0
 margin_top = 20.0
@@ -158,6 +162,10 @@ size = 32
 font_data = ExtResource( 21 )
 
 [sub_resource type="ButtonGroup" id=26]
+
+[sub_resource type="DynamicFont" id=28]
+size = 32
+font_data = ExtResource( 21 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -338,102 +346,11 @@ scale = Vector2( 5, 5 )
 frames = SubResource( 6 )
 animation = "front"
 
-[node name="LowClouds" type="Node2D" parent="."]
-visible = false
-
-[node name="LowCloud" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 759, -217 )
-
-[node name="LowCloud2" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1128, -377 )
-
-[node name="LowCloud3" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1469, -70 )
-
-[node name="LowCloud4" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1666, -415 )
-
-[node name="LowCloud5" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1886, 0 )
-
-[node name="LowCloud6" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2164, -390 )
-
-[node name="LowCloud7" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1423, -251 )
-
-[node name="LowCloud8" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2715, -789 )
-
-[node name="LowCloud9" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2284, -639 )
-
-[node name="LowCloud10" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 3005, -545 )
-
-[node name="LowCloud11" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1572, -778 )
-
-[node name="LowCloud12" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 1158, -627 )
-
-[node name="LowCloud13" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 664, -598 )
-
-[node name="LowCloud14" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2418, -150 )
-
-[node name="LowCloud15" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2978, -226 )
-
-[node name="LowCloud16" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 3341, -654 )
-
-[node name="LowCloud17" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 3456, -365 )
-
-[node name="LowCloud18" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 4058, -610 )
-
-[node name="LowCloud19" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 4414, -687 )
-
-[node name="LowCloud20" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 967, -27 )
-
-[node name="LowCloud21" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2011, -184 )
-
-[node name="LowCloud22" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2722, -493 )
-
-[node name="LowCloud23" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 3262, -97 )
-
-[node name="LowCloud24" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 2609, -10 )
-
-[node name="LowCloud25" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 3728, 42 )
-
-[node name="LowCloud26" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 3739, -525 )
-
-[node name="LowCloud27" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 4219, -79 )
-
-[node name="LowCloud28" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 4350, -456 )
-
-[node name="LowCloud29" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 4830, -422 )
-
-[node name="LowCloud30" parent="LowClouds" instance=ExtResource( 8 )]
-position = Vector2( 4588, 86 )
-
-[node name="LeftBarrier" type="KinematicBody2D" parent="."]
+[node name="LeftBarrier" type="RigidBody2D" parent="."]
 collision_layer = 16
-collision/safe_margin = 0.5
+mode = 3
+physics_material_override = SubResource( 27 )
+can_sleep = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
 position = Vector2( 56, -3317.5 )
@@ -477,7 +394,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "alpha-0.2.8"
+text = "alpha-0.3.0"
 
 [node name="ShellsLabel" type="Label" parent="HUD"]
 margin_left = 27.0
@@ -493,7 +410,6 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 6
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
@@ -598,6 +514,57 @@ enabled_focus_mode = 0
 group = SubResource( 26 )
 text = "Start"
 
+[node name="RetryDialogue" type="PanelContainer" parent="HUD"]
+visible = false
+margin_left = 120.0
+margin_top = 10.0
+margin_right = 380.0
+margin_bottom = 241.0
+theme = SubResource( 21 )
+script = ExtResource( 47 )
+star_path = NodePath("../../Star")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/RetryDialogue"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 240.0
+margin_bottom = 211.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/RetryDialogue/VBoxContainer"]
+margin_top = 23.0
+margin_right = 220.0
+margin_bottom = 55.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 28 )
+text = "Best: "
+align = 1
+autowrap = true
+
+[node name="Spacer" type="Label" parent="HUD/RetryDialogue/VBoxContainer"]
+margin_top = 59.0
+margin_right = 220.0
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 28 )
+align = 1
+autowrap = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="HUD/RetryDialogue/VBoxContainer"]
+margin_top = 95.0
+margin_right = 220.0
+margin_bottom = 167.0
+
+[node name="RetryButton" type="Button" parent="HUD/RetryDialogue/VBoxContainer/CenterContainer2"]
+margin_left = 57.0
+margin_right = 163.0
+margin_bottom = 72.0
+focus_mode = 0
+custom_fonts/font = SubResource( 19 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = "retry"
+
 [node name="TimeLimitTimer" type="Timer" parent="."]
 script = ExtResource( 35 )
 
@@ -613,6 +580,7 @@ script = ExtResource( 35 )
 [connection signal="flying" from="Star" to="HUD/MovementButtons" method="_on_Star_flying"]
 [connection signal="flying_end" from="Star" to="HUD/MovementButtons" method="_on_Star_flying_end"]
 [connection signal="jumps_changed" from="Star" to="HUD/JumpsLabel" method="_on_Star_jumps_changed"]
+[connection signal="max_max_position_changed" from="Star" to="HUD/RetryDialogue" method="_on_Star_max_max_position_changed"]
 [connection signal="max_position_change" from="Star" to="ObstacleController" method="_on_Star_max_position_change"]
 [connection signal="max_position_change" from="Star" to="HUD/MetersLabel" method="_on_Star_max_position_change"]
 [connection signal="modifying_movement" from="Star" to="HUD/MovementButtons" method="_on_Star_modifying_movement"]
@@ -620,6 +588,7 @@ script = ExtResource( 35 )
 [connection signal="reset" from="Star" to="OceanParallaxBackground" method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="SandFront" method="_on_Star_reset"]
 [connection signal="reset" from="Star" to="ObstacleController" method="_on_Star_reset"]
+[connection signal="retry_dialogue" from="Star" to="HUD/RetryDialogue" method="_on_Star_retry_dialogue"]
 [connection signal="score_change" from="Star" to="HUD/ScoreLabel" method="_on_Star_score_change"]
 [connection signal="stopped_modifying_movement" from="Star" to="HUD/MovementButtons" method="_on_Star_stopped_modifying_movement"]
 [connection signal="thrown" from="Star" to="OceanParallaxBackground" method="_on_Star_thrown"]
@@ -628,6 +597,8 @@ script = ExtResource( 35 )
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
 [connection signal="get_ready" from="HUD/StartDialogue" to="Star" method="_on_StartDialogue_get_ready"]
 [connection signal="button_up" from="HUD/StartDialogue/VBoxContainer/CenterContainer2/StartButton" to="HUD/StartDialogue" method="_on_StartButton_button_up"]
+[connection signal="get_ready" from="HUD/RetryDialogue" to="Star" method="_on_RetryDialogue_get_ready"]
+[connection signal="button_up" from="HUD/RetryDialogue/VBoxContainer/CenterContainer2/RetryButton" to="HUD/RetryDialogue" method="_on_RetryButton_button_up"]
 [connection signal="time_change" from="TimeLimitTimer" to="HUD/ScoreLabel" method="_on_TimeLimitTimer_time_change"]
 [connection signal="timeout" from="TimeLimitTimer" to="." method="_on_TimeLimitTimer_timeout"]
 [connection signal="timeout" from="TimeLimitTimer" to="Star" method="_on_TimeLimitTimer_timeout"]
