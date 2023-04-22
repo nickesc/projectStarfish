@@ -157,7 +157,7 @@ func normal_physics(delta):
 
     if under_y_minimum:
         under_y_minimum = false
-        position.y = y_minimum
+        global_transform.origin.y = y_minimum - 5
         change_state("Fallen")
 
 
@@ -182,7 +182,7 @@ func normal_physics(delta):
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
-    #print("help")
+    print("ig")
 
     if curr_throwing:
         curr_throwing = false

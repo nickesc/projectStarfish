@@ -248,6 +248,7 @@ margin_bottom = 87.0
 position = Vector2( 202, 328 )
 physics_material_override = SubResource( 15 )
 gravity_scale = 8.0
+can_sleep = false
 gravity = 9.8
 camera_path = NodePath("../Camera2D")
 
