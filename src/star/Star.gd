@@ -102,7 +102,8 @@ func reset_jumps():
 
 
 func reset_throw():
-    position = initial_position
+    #position = initial_position
+    global_transform.origin = initial_position
     obstacle_spawn_x_interval_progress = 0
     last_position = position
     y_minimum = initial_y_minimum + beach_y_offset
@@ -168,6 +169,9 @@ func normal_physics(delta):
         if position.x > initial_position.x + beach_x_offset and position.y < initial_y_minimum:
             y_minimum = initial_y_minimum
 
+    if position.x < initial_position.x + beach_x_offset:
+        y_minimum = initial_y_minimum + beach_y_offset
+
     last_position = position
     update_max_position(get_max_position_vector(last_position))
 
@@ -184,30 +188,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
     print("ig")
 
-    if curr_throwing:
-        curr_throwing = false
-        var t = state.get_transform()
-        t.origin.x = throw_position.x
-        t.origin.y = throw_position.y
-        state.set_transform(t)
-
-
-
     pass
-    # if reset_star:
-    #     set_mode(RigidBody2D.MODE_RIGID)
-    #     var r = state.get_transform()
-    #     print("reset")
-    #     reset_star = false
-    #     #position = initial_position
-    #     r.origin.x = initial_position.x
-    #     r.origin.y =  initial_position.y
-    #     state.set_transform(r)
-
-
-
-#func _integrate_forces(state):
-
 
 func movement_cleanup(velocity):
 

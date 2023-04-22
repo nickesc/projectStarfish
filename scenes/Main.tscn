@@ -444,7 +444,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
