@@ -46,6 +46,7 @@ var jumps
 var score = 0
 var max_position = Vector2.ZERO
 var max_max_position = max_position
+var throw_power_upgrade: float = 1.0
 
 export var right_flying_movement_modifier = 1.5
 export var left_flying_movement_modifier = .3
@@ -230,7 +231,7 @@ func throw(power, degrees):
     throw_position = position
 
     set_mode(RigidBody2D.MODE_RIGID)
-    apply_central_impulse(Vector2(Vx,Vy))
+    apply_central_impulse(Vector2(Vx,Vy) * throw_power_upgrade)
 
     update_jumps(jumps-1)
 
@@ -301,3 +302,7 @@ func _on_StartDialogue_get_ready():
 
 func _on_RetryDialogue_get_ready():
     _on_StartDialogue_get_ready()
+
+
+func _on_Buy_button_up():
+    pass # Replace with function body.
