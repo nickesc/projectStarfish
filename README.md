@@ -28,11 +28,11 @@
 
 *Starfish* is a small, physics-based game with a simple premise: throw the starfish as far as you can before the timer runs out.
 
-Click-and-drag on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to slightly increase or decrease the speed of the starfish while it's in the air.
+Click-and-drag on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to apply a small force in either direction to the starfish while it's in the air.
 
-In the current `alpha` versions, you can throw the starfish up to 3 times, but if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds and boats! 
+In the current `beta` versions, you start by being able to throw the starfish up to 3 times, and if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds and boats!
 
-Try and collect as many shells as you can!
+Try and collect as many shells as you can! They can be used to purchase upgrades after your throw, to do things like increase your time limit, increase your maximum throw power, and increase your number of throws.
 
 <br>
 <p align="center" >
@@ -56,7 +56,7 @@ The game is loosely based on the starfish story:
 
 In the final game, the idea is you play as the old man, trying out the child's point-of-view and throwing in as many starfish as he can.
 
-There will also be more obstacles, including boosting obstacles and potentially trampoline obstacles. Shells will be used to purchase upgrades to do things like increase your time limit, increase your max power, and increase your number of throws.
+There will also hopefully be more obstacles, including boosting obstacles and potentially trampoline obstacles.
 
 *Starfish* is currently in active development as an entry in the [__Gamedev.js Jam 2023__](https://itch.io/jam/gamedevjs-2023) game jam. Entries are required to be playable in the browser, so it has been designed from the ground up to be playable both on desktop and on mobile. The game is also being submitted to be judged in the Open-Source category.
 
