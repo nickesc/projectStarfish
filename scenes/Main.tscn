@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/water/water.png" type="Texture" id=5]
 [ext_resource path="res://assets/beach/beach.png" type="Texture" id=6]
 [ext_resource path="res://src/ui/JumpsLabel.gd" type="Script" id=7]
+[ext_resource path="res://assets/ui/theme.tres" type="Theme" id=8]
 [ext_resource path="res://assets/sky/sky_gradient_slice.png" type="Texture" id=9]
 [ext_resource path="res://src/sky/SkyParallax.gd" type="Script" id=10]
 [ext_resource path="res://src/ocean/OceanParallax.gd" type="Script" id=11]
@@ -41,11 +42,21 @@
 [ext_resource path="res://src/ui/MetersLabel.gd" type="Script" id=40]
 [ext_resource path="res://scenes/obstacles/ObstacleController.tscn" type="PackedScene" id=41]
 [ext_resource path="res://src/game/Camera.gd" type="Script" id=42]
-[ext_resource path="res://assets/ui/button_pressed_texture.png" type="Texture" id=43]
-[ext_resource path="res://assets/ui/button_texture.png" type="Texture" id=44]
-[ext_resource path="res://assets/ui/box_texture.png" type="Texture" id=45]
+[ext_resource path="res://assets/ui/button_pressed_texture_small.png" type="Texture" id=43]
+[ext_resource path="res://assets/ui/button_texture_small.png" type="Texture" id=44]
+[ext_resource path="res://assets/ui/shell/shell2.png" type="Texture" id=45]
 [ext_resource path="res://src/ui/StartDialogue.gd" type="Script" id=46]
 [ext_resource path="res://src/ui/RetryDialogue.gd" type="Script" id=47]
+[ext_resource path="res://assets/ui/shell/shell5.png" type="Texture" id=48]
+[ext_resource path="res://assets/ui/shell/shell1.png" type="Texture" id=49]
+[ext_resource path="res://assets/ui/shell/shell4.png" type="Texture" id=50]
+[ext_resource path="res://assets/ui/shell/shell0.png" type="Texture" id=51]
+[ext_resource path="res://assets/ui/shell/shell3.png" type="Texture" id=52]
+[ext_resource path="res://assets/ui/shell/shell6.png" type="Texture" id=53]
+[ext_resource path="res://assets/Starfish.png" type="Texture" id=54]
+[ext_resource path="res://src/ui/Splash.gd" type="Script" id=55]
+[ext_resource path="res://assets/ui/tapslashclick/tapslashclick0.png" type="Texture" id=56]
+[ext_resource path="res://assets/ui/tapslashclick/tapslashclick1.png" type="Texture" id=57]
 
 [sub_resource type="PhysicsMaterial" id=15]
 bounce = 0.75
@@ -91,10 +102,43 @@ absorbent = true
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 48.5, 3819.5 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=13]
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=19]
+size = 64
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=43]
+size = 32
+font_data = ExtResource( 21 )
+
+[sub_resource type="StyleBoxTexture" id=45]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 15.0
+modulate_color = Color( 0.498039, 0.403922, 0.760784, 1 )
+
+[sub_resource type="StyleBoxTexture" id=46]
+texture = ExtResource( 43 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 15.0
+margin_bottom = 10.0
+modulate_color = Color( 0.498039, 0.403922, 0.760784, 1 )
+
+[sub_resource type="AnimatedTexture" id=44]
+frames = 2
+fps = 0.5
+frame_0/texture = ExtResource( 56 )
+frame_1/texture = ExtResource( 57 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 21 )
 
 [sub_resource type="DynamicFont" id=14]
@@ -117,54 +161,90 @@ font_data = ExtResource( 21 )
 use_mipmaps = true
 font_data = ExtResource( 21 )
 
-[sub_resource type="StyleBoxTexture" id=22]
-texture = ExtResource( 44 )
-region_rect = Rect2( 0, 0, 160, 170 )
-margin_left = 20.0
-margin_right = 20.0
-margin_top = 20.0
-margin_bottom = 20.0
-modulate_color = Color( 0.465537, 0.703125, 0.416226, 1 )
-
-[sub_resource type="StyleBoxTexture" id=23]
-texture = ExtResource( 43 )
-region_rect = Rect2( 0, 0, 160, 170 )
-margin_left = 20.0
-margin_right = 20.0
-margin_top = 20.0
-margin_bottom = 20.0
-modulate_color = Color( 0.465537, 0.703125, 0.416226, 1 )
-
-[sub_resource type="StyleBoxTexture" id=24]
-texture = ExtResource( 45 )
-region_rect = Rect2( 0, 0, 160, 170 )
-margin_left = 20.0
-margin_right = 20.0
-margin_top = 20.0
-margin_bottom = 20.0
-
-[sub_resource type="DynamicFont" id=20]
-font_data = ExtResource( 21 )
-
-[sub_resource type="Theme" id=21]
-default_font = SubResource( 20 )
-Button/colors/font_color = Color( 1, 1, 1, 1 )
-Button/styles/hover = SubResource( 22 )
-Button/styles/normal = SubResource( 22 )
-Button/styles/pressed = SubResource( 23 )
-PanelContainer/styles/panel = SubResource( 24 )
-
-[sub_resource type="DynamicFont" id=25]
-font_data = ExtResource( 21 )
-
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=33]
 size = 32
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 10
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 20
 font_data = ExtResource( 21 )
 
 [sub_resource type="ButtonGroup" id=26]
 
 [sub_resource type="DynamicFont" id=28]
+size = 48
+font_data = ExtResource( 21 )
+
+[sub_resource type="StyleBoxTexture" id=35]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 15.0
+modulate_color = Color( 0.945098, 0.615686, 0.329412, 1 )
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 43 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 15.0
+margin_bottom = 10.0
+modulate_color = Color( 0.945098, 0.615686, 0.329412, 1 )
+
+[sub_resource type="DynamicFont" id=37]
+size = 48
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=38]
 size = 32
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=30]
+size = 32
+font_data = ExtResource( 21 )
+
+[sub_resource type="StyleBoxTexture" id=39]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 15.0
+modulate_color = Color( 0.294118, 0.45098, 0.831373, 1 )
+
+[sub_resource type="StyleBoxTexture" id=40]
+texture = ExtResource( 43 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 15.0
+margin_bottom = 10.0
+modulate_color = Color( 0.294118, 0.45098, 0.831373, 1 )
+
+[sub_resource type="AnimatedTexture" id=41]
+frames = 7
+frame_0/texture = ExtResource( 51 )
+frame_1/texture = ExtResource( 49 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 45 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 52 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 50 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 48 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 53 )
+frame_6/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=42]
+size = 3
 font_data = ExtResource( 21 )
 
 [node name="Main" type="Node"]
@@ -368,6 +448,81 @@ wait_time = 0.1
 [node name="ObstacleController" parent="." instance=ExtResource( 41 )]
 spawn_seed = 9853
 
+[node name="Build" type="CanvasLayer" parent="."]
+layer = 11
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
+script = ExtResource( 37 )
+
+[node name="BuildLabel" type="Label" parent="Build"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 77.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "alpha-0.3.1"
+
+[node name="Splash" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource( 55 )
+hud_path = NodePath("../HUD")
+
+[node name="TextureRect" type="TextureRect" parent="Splash"]
+margin_left = 77.0
+margin_top = 65.0
+margin_right = 860.0
+margin_bottom = 325.0
+texture = ExtResource( 54 )
+stretch_mode = 1
+
+[node name="PlayButtons" type="Control" parent="Splash/TextureRect"]
+margin_left = -52.0
+margin_top = 255.0
+margin_right = 908.0
+margin_bottom = 430.0
+
+[node name="Play" type="Button" parent="Splash/TextureRect/PlayButtons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -44.5
+margin_right = 88.0
+margin_bottom = 44.5
+focus_mode = 0
+theme = ExtResource( 8 )
+custom_fonts/font = SubResource( 19 )
+enabled_focus_mode = 0
+text = "play"
+
+[node name="Story" type="Button" parent="Splash/TextureRect/PlayButtons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 264.0
+margin_top = 20.5
+margin_right = 482.0
+margin_bottom = 77.5
+focus_mode = 0
+theme = ExtResource( 8 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 45 )
+custom_styles/pressed = SubResource( 46 )
+custom_styles/normal = SubResource( 45 )
+enabled_focus_mode = 0
+text = "read the story"
+
+[node name="TapSlashClick" type="TextureRect" parent="Splash/TextureRect"]
+margin_left = 152.0
+margin_top = 232.0
+margin_right = 682.0
+margin_bottom = 408.0
+texture = SubResource( 44 )
+
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 10
 scale = Vector2( 2, 2 )
@@ -385,16 +540,6 @@ custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "Time Left:"
 align = 2
-
-[node name="BuildLabel" type="Label" parent="HUD"]
-margin_left = 4.0
-margin_top = 2.0
-margin_right = 77.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 13 )
-text = "alpha-0.3.0"
 
 [node name="ShellsLabel" type="Label" parent="HUD"]
 margin_left = 27.0
@@ -473,97 +618,330 @@ action = "starfish_left"
 
 [node name="StartDialogue" type="PanelContainer" parent="HUD"]
 margin_left = 120.0
-margin_top = 10.0
-margin_right = 380.0
-margin_bottom = 241.0
-theme = SubResource( 21 )
+margin_top = 27.0
+margin_right = 640.0
+margin_bottom = 417.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 8 )
 script = ExtResource( 46 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/StartDialogue"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 240.0
-margin_bottom = 211.0
+margin_right = 500.0
+margin_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+custom_constants/separation = 15
+alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="HUD/StartDialogue/VBoxContainer"]
-margin_right = 220.0
-
-[node name="Label" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
-margin_top = 4.0
-margin_right = 220.0
-margin_bottom = 115.0
+[node name="Instructions2" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+margin_top = 2.0
+margin_right = 480.0
+margin_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 25 )
-text = "Throw the starfish back into the ocean as far as possible!
-Click and drag on the screen to select your angle and power, and release to throw.
-Pick up shells and avoid obstacles!"
+custom_fonts/font = SubResource( 33 )
+text = "Throw the starfish back into the
+ocean as far as possible!"
+align = 1
+
+[node name="Spacer2" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+visible = false
+margin_top = 153.0
+margin_right = 480.0
+margin_bottom = 164.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 34 )
+text = " "
+align = 1
+autowrap = true
+
+[node name="Instructions" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+margin_top = 84.0
+margin_right = 480.0
+margin_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 33 )
+text = "Click and drag on the screen
+to select your angle and power, "
+align = 1
+
+[node name="Spacer3" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+visible = false
+margin_top = 231.0
+margin_right = 480.0
+margin_bottom = 242.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 34 )
+text = " "
+align = 1
+autowrap = true
+
+[node name="Instructions3" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+margin_top = 166.0
+margin_right = 480.0
+margin_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 33 )
+text = "Pick up shells and avoid obstacles!"
+align = 1
+
+[node name="Spacer" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+margin_top = 213.0
+margin_right = 480.0
+margin_bottom = 233.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 32 )
+text = " "
+align = 1
 autowrap = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="HUD/StartDialogue/VBoxContainer"]
-margin_top = 119.0
-margin_right = 220.0
-margin_bottom = 191.0
+margin_top = 248.0
+margin_right = 480.0
+margin_bottom = 337.0
 
 [node name="StartButton" type="Button" parent="HUD/StartDialogue/VBoxContainer/CenterContainer2"]
-margin_left = 59.0
-margin_right = 161.0
-margin_bottom = 72.0
+margin_left = 148.0
+margin_right = 332.0
+margin_bottom = 89.0
 focus_mode = 0
 custom_fonts/font = SubResource( 19 )
 enabled_focus_mode = 0
 group = SubResource( 26 )
-text = "Start"
+text = " start "
 
 [node name="RetryDialogue" type="PanelContainer" parent="HUD"]
 visible = false
 margin_left = 120.0
-margin_top = 10.0
-margin_right = 380.0
-margin_bottom = 241.0
-theme = SubResource( 21 )
+margin_top = 24.0
+margin_right = 640.0
+margin_bottom = 426.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 8 )
 script = ExtResource( 47 )
 star_path = NodePath("../../Star")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/RetryDialogue"]
+[node name="Retry" type="VBoxContainer" parent="HUD/RetryDialogue"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 240.0
-margin_bottom = 211.0
+margin_right = 500.0
+margin_bottom = 372.0
+theme = ExtResource( 8 )
+custom_constants/separation = 30
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/RetryDialogue/VBoxContainer"]
-margin_top = 23.0
-margin_right = 220.0
-margin_bottom = 55.0
+[node name="BestLabel" type="Label" parent="HUD/RetryDialogue/Retry"]
+margin_top = 67.0
+margin_right = 480.0
+margin_bottom = 166.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 28 )
-text = "Best: "
+text = "Longest Throw:
+ "
 align = 1
 autowrap = true
 
-[node name="Spacer" type="Label" parent="HUD/RetryDialogue/VBoxContainer"]
-margin_top = 59.0
-margin_right = 220.0
-margin_bottom = 91.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 28 )
-align = 1
-autowrap = true
+[node name="CenterContainer2" type="CenterContainer" parent="HUD/RetryDialogue/Retry"]
+margin_top = 196.0
+margin_right = 480.0
+margin_bottom = 285.0
 
-[node name="CenterContainer2" type="CenterContainer" parent="HUD/RetryDialogue/VBoxContainer"]
-margin_top = 95.0
-margin_right = 220.0
-margin_bottom = 167.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/RetryDialogue/Retry/CenterContainer2"]
+margin_left = 33.0
+margin_right = 447.0
+margin_bottom = 89.0
+custom_constants/separation = 30
 
-[node name="RetryButton" type="Button" parent="HUD/RetryDialogue/VBoxContainer/CenterContainer2"]
-margin_left = 57.0
-margin_right = 163.0
-margin_bottom = 72.0
+[node name="RetryButton" type="Button" parent="HUD/RetryDialogue/Retry/CenterContainer2/HBoxContainer"]
+margin_right = 192.0
+margin_bottom = 89.0
 focus_mode = 0
 custom_fonts/font = SubResource( 19 )
 enabled_focus_mode = 0
 group = SubResource( 26 )
-text = "retry"
+text = " retry "
+
+[node name="StoreButton" type="Button" parent="HUD/RetryDialogue/Retry/CenterContainer2/HBoxContainer"]
+margin_left = 222.0
+margin_right = 414.0
+margin_bottom = 89.0
+focus_mode = 0
+custom_fonts/font = SubResource( 19 )
+custom_styles/hover = SubResource( 35 )
+custom_styles/pressed = SubResource( 36 )
+custom_styles/normal = SubResource( 35 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = " store "
+
+[node name="Store" type="VBoxContainer" parent="HUD/RetryDialogue"]
+visible = false
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 500.0
+margin_bottom = 372.0
+custom_constants/separation = 12
+
+[node name="Upgrades" type="Label" parent="HUD/RetryDialogue/Store"]
+margin_right = 480.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 37 )
+text = "Upgrades:"
+
+[node name="Time" type="HBoxContainer" parent="HUD/RetryDialogue/Store"]
+margin_left = 8.0
+margin_top = 60.0
+margin_right = 472.0
+margin_bottom = 121.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 72
+
+[node name="Name" type="Label" parent="HUD/RetryDialogue/Store/Time"]
+margin_top = 6.0
+margin_right = 156.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 37 )
+text = "time limit"
+
+[node name="Amount" type="Label" parent="HUD/RetryDialogue/Store/Time"]
+margin_left = 228.0
+margin_top = 14.0
+margin_right = 284.0
+margin_bottom = 46.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 38 )
+text = "x000"
+
+[node name="Buy" type="Button" parent="HUD/RetryDialogue/Store/Time"]
+margin_left = 356.0
+margin_right = 464.0
+margin_bottom = 61.0
+focus_mode = 0
+custom_fonts/font = SubResource( 30 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 40 )
+custom_styles/normal = SubResource( 39 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = " x10 "
+icon = SubResource( 41 )
+
+[node name="Time2" type="HBoxContainer" parent="HUD/RetryDialogue/Store"]
+margin_left = 7.0
+margin_top = 133.0
+margin_right = 472.0
+margin_bottom = 194.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 35
+
+[node name="Name" type="Label" parent="HUD/RetryDialogue/Store/Time2"]
+margin_top = 6.0
+margin_right = 231.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 37 )
+text = "throw power"
+
+[node name="Amount" type="Label" parent="HUD/RetryDialogue/Store/Time2"]
+margin_left = 266.0
+margin_top = 14.0
+margin_right = 322.0
+margin_bottom = 46.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 38 )
+text = "x000"
+
+[node name="Buy" type="Button" parent="HUD/RetryDialogue/Store/Time2"]
+margin_left = 357.0
+margin_right = 465.0
+margin_bottom = 61.0
+focus_mode = 0
+custom_fonts/font = SubResource( 30 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 40 )
+custom_styles/normal = SubResource( 39 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = " x10 "
+icon = SubResource( 41 )
+
+[node name="Time3" type="HBoxContainer" parent="HUD/RetryDialogue/Store"]
+margin_left = 8.0
+margin_top = 206.0
+margin_right = 472.0
+margin_bottom = 267.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 24
+
+[node name="Name" type="Label" parent="HUD/RetryDialogue/Store/Time3"]
+margin_top = 6.0
+margin_right = 252.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 37 )
+text = "throw number"
+
+[node name="Amount" type="Label" parent="HUD/RetryDialogue/Store/Time3"]
+margin_left = 276.0
+margin_top = 14.0
+margin_right = 332.0
+margin_bottom = 46.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 38 )
+text = "x000"
+
+[node name="Buy" type="Button" parent="HUD/RetryDialogue/Store/Time3"]
+margin_left = 356.0
+margin_right = 464.0
+margin_bottom = 61.0
+focus_mode = 0
+custom_fonts/font = SubResource( 30 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 40 )
+custom_styles/normal = SubResource( 39 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = " x10 "
+icon = SubResource( 41 )
+
+[node name="Spacer" type="Label" parent="HUD/RetryDialogue/Store"]
+margin_top = 279.0
+margin_right = 480.0
+margin_bottom = 283.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 42 )
+text = " "
+align = 1
+autowrap = true
+
+[node name="BackButton" type="Button" parent="HUD/RetryDialogue/Store"]
+margin_top = 295.0
+margin_right = 480.0
+margin_bottom = 352.0
+focus_mode = 0
+custom_fonts/font = SubResource( 30 )
+custom_styles/hover = SubResource( 35 )
+custom_styles/pressed = SubResource( 36 )
+custom_styles/normal = SubResource( 35 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = "back"
 
 [node name="TimeLimitTimer" type="Timer" parent="."]
 script = ExtResource( 35 )
@@ -595,10 +973,13 @@ script = ExtResource( 35 )
 [connection signal="thrown" from="Star" to="SandFront" method="_on_Star_thrown"]
 [connection signal="timeout" from="AngleTimer" to="." method="_on_AngleTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
+[connection signal="button_up" from="Splash/TextureRect/PlayButtons/Play" to="Splash" method="_on_Play_button_up"]
 [connection signal="get_ready" from="HUD/StartDialogue" to="Star" method="_on_StartDialogue_get_ready"]
 [connection signal="button_up" from="HUD/StartDialogue/VBoxContainer/CenterContainer2/StartButton" to="HUD/StartDialogue" method="_on_StartButton_button_up"]
 [connection signal="get_ready" from="HUD/RetryDialogue" to="Star" method="_on_RetryDialogue_get_ready"]
-[connection signal="button_up" from="HUD/RetryDialogue/VBoxContainer/CenterContainer2/RetryButton" to="HUD/RetryDialogue" method="_on_RetryButton_button_up"]
+[connection signal="button_up" from="HUD/RetryDialogue/Retry/CenterContainer2/HBoxContainer/RetryButton" to="HUD/RetryDialogue" method="_on_RetryButton_button_up"]
+[connection signal="button_up" from="HUD/RetryDialogue/Retry/CenterContainer2/HBoxContainer/StoreButton" to="HUD/RetryDialogue" method="_on_StoreButton_button_up"]
+[connection signal="button_up" from="HUD/RetryDialogue/Store/BackButton" to="HUD/RetryDialogue" method="_on_BackButton_button_up"]
 [connection signal="time_change" from="TimeLimitTimer" to="HUD/ScoreLabel" method="_on_TimeLimitTimer_time_change"]
 [connection signal="timeout" from="TimeLimitTimer" to="." method="_on_TimeLimitTimer_timeout"]
 [connection signal="timeout" from="TimeLimitTimer" to="Star" method="_on_TimeLimitTimer_timeout"]
