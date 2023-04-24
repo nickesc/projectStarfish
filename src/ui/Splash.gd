@@ -46,3 +46,7 @@ func _on_Play_button_up():
     star.set_visible(true)
     #music_controller.play_game_music()
     
+
+
+func _on_Story_button_up():
+    $StoryDialogue.set_visible(true)

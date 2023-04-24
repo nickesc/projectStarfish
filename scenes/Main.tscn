@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=2]
+[gd_scene load_steps=112 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://assets/audio/effects/button_up.wav" type="AudioStream" id=71]
 [ext_resource path="res://assets/audio/effects/no_buy.wav" type="AudioStream" id=72]
 [ext_resource path="res://assets/audio/effects/time_up.wav" type="AudioStream" id=73]
+[ext_resource path="res://src/ui/StoryDialogue.gd" type="Script" id=74]
 
 [sub_resource type="PhysicsMaterial" id=15]
 bounce = 0.75
@@ -174,6 +175,16 @@ frame_0/texture = ExtResource( 56 )
 frame_1/texture = ExtResource( 57 )
 frame_1/delay_sec = 0.0
 
+[sub_resource type="DynamicFont" id=52]
+size = 48
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=51]
+size = 64
+font_data = ExtResource( 21 )
+
+[sub_resource type="ButtonGroup" id=26]
+
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 21 )
 
@@ -208,8 +219,6 @@ font_data = ExtResource( 21 )
 [sub_resource type="DynamicFont" id=32]
 size = 20
 font_data = ExtResource( 21 )
-
-[sub_resource type="ButtonGroup" id=26]
 
 [sub_resource type="DynamicFont" id=28]
 size = 48
@@ -552,7 +561,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "beta-0.5.2"
+text = "beta-0.5.3"
 
 [node name="Splash" type="CanvasLayer" parent="."]
 layer = 10
@@ -651,6 +660,73 @@ margin_right = 682.0
 margin_bottom = 408.0
 texture = SubResource( 44 )
 
+[node name="StoryDialogue" type="PanelContainer" parent="Splash"]
+margin_left = 240.0
+margin_top = 39.0
+margin_right = 995.0
+margin_bottom = 893.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 8 )
+script = ExtResource( 74 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Splash/StoryDialogue"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 735.0
+margin_bottom = 824.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Story1" type="Label" parent="Splash/StoryDialogue/VBoxContainer"]
+margin_right = 715.0
+margin_bottom = 711.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
+text = "Starfish is loosely based on the classic 'Starfish Story':
+
+One day, an old man was walking along the beach when he saw a child bend down, pick up a starfish and throw it into the sea.
+
+The old man asks the child, \"what are you doing?\" The child responds, gesturing down to the starfish covered beach, \"throwing them back in the water. The tide is going out. If I don't throw them back, they'll die.\""
+autowrap = true
+
+[node name="Story2" type="Label" parent="Splash/StoryDialogue/VBoxContainer"]
+visible = false
+margin_top = 715.0
+margin_right = 715.0
+margin_bottom = 1324.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
+text = "The old man shakes his head, and says \"it's pointless, there are hundreds of starfish on the beach, you won't make a difference.\"
+
+The child bends down and picks up another starfish. \"Maybe,\" they say, throwing in the starfish.
+
+\"But to that one, it made all the difference in the world.\"
+"
+autowrap = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="Splash/StoryDialogue/VBoxContainer"]
+margin_top = 715.0
+margin_right = 715.0
+margin_bottom = 804.0
+
+[node name="NextButton" type="Button" parent="Splash/StoryDialogue/VBoxContainer/CenterContainer2"]
+margin_left = 295.0
+margin_right = 419.0
+margin_bottom = 89.0
+focus_mode = 0
+custom_fonts/font = SubResource( 51 )
+enabled_focus_mode = 0
+group = SubResource( 26 )
+text = "next"
+
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 10
 scale = Vector2( 2, 2 )
@@ -683,7 +759,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 6
+frame = 5
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
@@ -746,6 +822,7 @@ pressed = ExtResource( 38 )
 action = "starfish_left"
 
 [node name="StartDialogue" type="PanelContainer" parent="HUD"]
+visible = false
 margin_left = 120.0
 margin_top = 27.0
 margin_right = 640.0
@@ -1162,12 +1239,16 @@ script = ExtResource( 35 )
 [connection signal="button_up" from="Splash/Logo/PlayButtons/Play" to="Splash" method="_on_Play_button_up"]
 [connection signal="button_down" from="Splash/Logo/PlayButtons/Story" to="MusicController" method="play_click_down"]
 [connection signal="button_up" from="Splash/Logo/PlayButtons/Story" to="MusicController" method="play_click_up"]
+[connection signal="button_up" from="Splash/Logo/PlayButtons/Story" to="Splash" method="_on_Story_button_up"]
 [connection signal="button_up" from="Splash/Logo/PlayButtons/MuteEffects" to="MusicController" method="play_click_up"]
 [connection signal="pressed" from="Splash/Logo/PlayButtons/MuteEffects" to="MusicController" method="effects_mute_toggle"]
 [connection signal="toggled" from="Splash/Logo/PlayButtons/MuteEffects" to="HUD/RetryDialogue/Retry/CenterContainer/HBoxContainer/MuteEffects" method="_on_other_button_toggle"]
 [connection signal="button_down" from="Splash/Logo/PlayButtons/MuteMusic" to="MusicController" method="play_click_up"]
 [connection signal="pressed" from="Splash/Logo/PlayButtons/MuteMusic" to="MusicController" method="music_mute_toggle"]
 [connection signal="toggled" from="Splash/Logo/PlayButtons/MuteMusic" to="HUD/RetryDialogue/Retry/CenterContainer/HBoxContainer/MuteMusic" method="_on_other_button_toggle"]
+[connection signal="button_down" from="Splash/StoryDialogue/VBoxContainer/CenterContainer2/NextButton" to="MusicController" method="play_click_down"]
+[connection signal="button_up" from="Splash/StoryDialogue/VBoxContainer/CenterContainer2/NextButton" to="MusicController" method="play_click_up"]
+[connection signal="button_up" from="Splash/StoryDialogue/VBoxContainer/CenterContainer2/NextButton" to="Splash/StoryDialogue" method="_on_NextButton_button_up"]
 [connection signal="pressed" from="HUD/MovementButtons/RightMovementButton" to="MusicController" method="play_click_down"]
 [connection signal="released" from="HUD/MovementButtons/RightMovementButton" to="MusicController" method="play_click_up"]
 [connection signal="pressed" from="HUD/MovementButtons/LeftMovementButton" to="MusicController" method="play_click_down"]
