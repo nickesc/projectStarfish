@@ -30,3 +30,11 @@ follow_viewport_enable = true
 [node name="UFOs" type="CanvasLayer" parent="."]
 layer = 0
 follow_viewport_enable = true
+
+[node name="Twinkles" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enable = true
+
+[node name="Fish" type="CanvasLayer" parent="."]
+layer = -3
+follow_viewport_enable = true

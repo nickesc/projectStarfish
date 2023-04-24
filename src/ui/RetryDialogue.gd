@@ -6,7 +6,8 @@ var amount_format = "x%02d"
 
 export var initial_global_cost = 10
 export var initial_global_amount = 0
-export var throw_upgrade_increase = .2
+export var throw_power_upgrade_increase = .05
+export var time_limit_upgrade_increase = 5
 export var max_amount = 99
 export var max_cost = 99
 var global_cost_increase
@@ -133,7 +134,7 @@ func _on_ThrowPower_Buy_button_up():
             music_controller.play_buy_effect()
             main.update_shells(main.shells - throw_power["cost"])
             set_cost(throw_power,throw_power["cost"]+global_cost_increase)
-            star.throw_power_upgrade += throw_upgrade_increase
+            star.throw_power_upgrade += throw_power_upgrade_increase
         else:
             music_controller.play_no_buy_effect()
     else:
@@ -146,7 +147,7 @@ func _on_TimeLimit_Buy_button_up():
             music_controller.play_buy_effect()
             main.update_shells(main.shells - time_limit["cost"])
             set_cost(time_limit,time_limit["cost"]+global_cost_increase)
-            main.initial_time_limit += 5
+            main.initial_time_limit += time_limit_upgrade_increase
             main.reset_time_limit_timer()
         else:
             music_controller.play_no_buy_effect()

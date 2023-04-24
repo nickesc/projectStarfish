@@ -1,0 +1,30 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/obstacles/Obstacle.gd" type="Script" id=1]
+[ext_resource path="res://assets/obstacles/fish/fish1.png" type="Texture" id=2]
+[ext_resource path="res://assets/obstacles/fish/fish4.png" type="Texture" id=3]
+[ext_resource path="res://assets/obstacles/fish/fish0.png" type="Texture" id=4]
+[ext_resource path="res://assets/obstacles/fish/fish3.png" type="Texture" id=5]
+[ext_resource path="res://assets/obstacles/fish/fish9.png" type="Texture" id=6]
+[ext_resource path="res://assets/obstacles/fish/fish2.png" type="Texture" id=7]
+[ext_resource path="res://assets/obstacles/fish/fish5.png" type="Texture" id=8]
+[ext_resource path="res://assets/obstacles/fish/fish6.png" type="Texture" id=9]
+[ext_resource path="res://assets/obstacles/fish/fish7.png" type="Texture" id=10]
+[ext_resource path="res://assets/obstacles/fish/fish8.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[node name="Obstacle" type="KinematicBody2D"]
+script = ExtResource( 1 )
+playing_by_default = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 9
+playing = true

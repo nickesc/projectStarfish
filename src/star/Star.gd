@@ -34,7 +34,7 @@ var retry_clicked = false
 
 export (bool) var dev = false
 
-export var max_jumps = 3
+export var max_jumps = 1
 export var gravity = 7.3
 onready var state_machine =  get_node("StarStateMachine")
 export var flailing_speed = -35
@@ -56,6 +56,7 @@ export var down_movement_modifier = 1.5
 export var velocity_increase_reward = .75
 export var velocity_decrease_cost = 1.5
 export var throw_input_power_division_factor = 35
+export var throw_dampener = .75
 export var pixel_to_meter_conversion_factor = 200
 
 export var beach_x_offset = 250
@@ -221,6 +222,7 @@ func start_line_sound():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func throw(power, degrees):
+    
     start_time = Time.get_ticks_usec()
 
     speed = power * 100
@@ -234,7 +236,7 @@ func throw(power, degrees):
     throw_position = position
 
     set_mode(RigidBody2D.MODE_RIGID)
-    apply_central_impulse(Vector2(Vx,Vy) * throw_power_upgrade)
+    apply_central_impulse(Vector2(Vx,Vy) * throw_power_upgrade * throw_dampener)
     $ThrowEffect.play()
 
     update_jumps(jumps-1)

@@ -116,7 +116,7 @@ animations = [ {
 absorbent = true
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 48.5, 3819.5 )
+extents = Vector2( 48.5, 5836.5 )
 
 [sub_resource type="DynamicFont" id=13]
 font_data = ExtResource( 21 )
@@ -472,7 +472,7 @@ physics_material_override = SubResource( 27 )
 can_sleep = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
-position = Vector2( 56, -3317.5 )
+position = Vector2( 56, -5334.5 )
 shape = SubResource( 8 )
 
 [node name="AngleTimer" type="Timer" parent="."]
@@ -485,7 +485,7 @@ wait_time = 0.1
 wait_time = 0.1
 
 [node name="ObstacleController" parent="." instance=ExtResource( 41 )]
-spawn_seed = 9828
+spawn_seed = 9817
 
 [node name="MusicController" type="Node" parent="."]
 script = ExtResource( 60 )
@@ -658,9 +658,9 @@ transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 script = ExtResource( 37 )
 
 [node name="TimeLeftLabel" type="Label" parent="HUD"]
-margin_left = 355.0
+margin_left = 352.0
 margin_top = 2.0
-margin_right = 416.0
+margin_right = 413.0
 margin_bottom = 18.0
 grow_horizontal = 0
 size_flags_horizontal = 3
@@ -683,7 +683,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 2
+frame = 6
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
