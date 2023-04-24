@@ -283,7 +283,7 @@ frame_6/delay_sec = 0.0
 size = 3
 font_data = ExtResource( 21 )
 
-[node name="Main" type="Node" groups=["boats", "walters"]]
+[node name="Main" type="Node" groups=["boats", "boosts", "walters"]]
 script = ExtResource( 2 )
 clear_color = Color( 0.0235294, 0.027451, 0.054902, 1 )
 time_limit = 15.0
@@ -552,7 +552,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "beta-0.5.1"
+text = "beta-0.5.2"
 
 [node name="Splash" type="CanvasLayer" parent="."]
 layer = 10

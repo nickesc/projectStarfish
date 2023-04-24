@@ -30,7 +30,7 @@
 
 Click-and-drag on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to apply a small force in either direction to the starfish while it's in the air.
 
-In the current `beta` versions, you start by being able to throw the starfish up to 3 times, and if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds and boats!
+In the current `beta` versions, you start by being able to throw the starfish up to 3 times, and if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds, boats, planes and maybe even visitors from another world! There are also special boost spots that will take the starfish up higher!
 
 Try and collect as many shells as you can! They can be used to purchase upgrades after your throw, to do things like increase your time limit, increase your maximum throw power, and increase your number of throws.
 
@@ -56,8 +56,6 @@ The game is loosely based on the starfish story:
 
 In the final game, the idea is you play as the old man, trying out the child's point-of-view and throwing in as many starfish as he can.
 
-There will also hopefully be more obstacles, including boosting obstacles and potentially trampoline obstacles.
-
 *Starfish* is currently in active development as an entry in the [__Gamedev.js Jam 2023__](https://itch.io/jam/gamedevjs-2023) game jam. Entries are required to be playable in the browser, so it has been designed from the ground up to be playable both on desktop and on mobile. The game is also being submitted to be judged in the Open-Source category.
 
 *Starfish* is built with [Godot](https://godotengine.org/).
@@ -70,6 +68,13 @@ There will also hopefully be more obstacles, including boosting obstacles and po
 Directions for download and install are available on the [__Releases__](https://github.com/nickesc/projectStarfish/releases) page, as well as previous versions.
 
 The game is also playable in, and primarily developed for, the browser, at [`https://nickesc.github.io/projectStarfish`](https://nickesc.github.io/projectStarfish), which hosts the active development build.
+
+### Attributions
+
+Music by [Dream-Protocol](https://pixabay.com/users/dream-protocol-9556087) from [Pixabay](https://pixabay.com/music)
+
+Title Music - [*Tuneful Chips - Classic Arcade Game*](https://pixabay.com/music/video-games-tuneful-chips-classic-arcade-game-116829/) by [Dream-Protocol](https://pixabay.com/users/dream-protocol-9556087)
+Game Music - [*Garbage File - Classic Arcade Game*](https://pixabay.com/music/video-games-garbage-file-classic-arcade-game-116811/)
 
 ### License
 

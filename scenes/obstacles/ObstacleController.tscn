@@ -13,16 +13,20 @@ layer = -5
 follow_viewport_enable = true
 
 [node name="LowerClouds" type="CanvasLayer" parent="."]
+layer = 2
 follow_viewport_enable = true
 
 [node name="Shells" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
 [node name="Boosts" type="CanvasLayer" parent="."]
+layer = 0
 follow_viewport_enable = true
 
 [node name="Planes" type="CanvasLayer" parent="."]
+layer = 0
 follow_viewport_enable = true
 
 [node name="UFOs" type="CanvasLayer" parent="."]
+layer = 0
 follow_viewport_enable = true
