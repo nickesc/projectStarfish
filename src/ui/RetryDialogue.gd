@@ -23,7 +23,7 @@ var main: Node
 export var music_controller_path: NodePath
 var music_controller: Node
 
-var position_format = "Longest Throw:\n %.1f m"
+var position_format = "Farthest Throw:\n %.1f m"
 
 func set_cost(upgrade, new_cost):
     if new_cost>max_cost:

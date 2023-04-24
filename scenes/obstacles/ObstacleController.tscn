@@ -4,7 +4,6 @@
 
 [node name="ObstacleController" type="Node"]
 script = ExtResource( 1 )
-spawn_seed = 9859
 
 [node name="Walters" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -20,4 +19,10 @@ follow_viewport_enable = true
 follow_viewport_enable = true
 
 [node name="Boosts" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Planes" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="UFOs" type="CanvasLayer" parent="."]
 follow_viewport_enable = true

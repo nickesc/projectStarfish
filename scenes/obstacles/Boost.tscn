@@ -24,6 +24,7 @@ animations = [ {
 extents = Vector2( 51, 46 )
 
 [node name="Boost" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 5 )
 playing_by_default = true
 

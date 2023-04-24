@@ -9,9 +9,10 @@ export var num_lower_clouds = 20
 export var num_middle_clouds = 20
 export var num_high_clouds = 20
 export var num_boosts = 10
-export var num_trampolines = 150
+export var num_planes = 20
 export var num_shells = 150
 export var num_boats = 1
+export var num_ufos = 20
 
 export var cloud_speed = .3
 
@@ -49,16 +50,17 @@ func _process(delta):
 
 
 
-func set_spawn_parameters(distance_interval,walters,lower_clouds,middle_clouds,high_clouds,boosts,trampolines,shells,boats):
+func set_spawn_parameters(distance_interval,walters,lower_clouds,middle_clouds,high_clouds,boosts,planes,shells,boats,ufos):
     spawn_distance_interval = distance_interval
     num_walters = walters
     num_lower_clouds = lower_clouds
     num_middle_clouds = middle_clouds
     num_high_clouds = high_clouds
     num_boosts = boosts
-    num_trampolines = trampolines
+    num_planes = planes
     num_shells = shells
-    num_boats = boats 
+    num_boats = boats
+    num_ufos = ufos
 
 func spawn_obstacles(position_offset):
     print("spawning")
@@ -70,6 +72,7 @@ func spawn_obstacles(position_offset):
         make_lower_clouds(position_offset)
         make_shells(position_offset)
         make_boosts(position_offset)
+        make_planes(position_offset)
 
 func clear_obstacles():
     intervals_spawned = 0
@@ -99,7 +102,7 @@ func make_boosts(position_offset = Vector2.ZERO):
         
         var boost = load("res://scenes/obstacles/Boost.tscn")
         
-        var boost_positions = generate_random_vector_list(num_boosts, position_offset, [400,0])
+        var boost_positions = generate_random_vector_list(num_boosts, position_offset, [400,4000])
         
         for vector in boost_positions:
             var boost_instance = boost.instance()
@@ -123,7 +126,35 @@ func make_lower_clouds(position_offset = Vector2.ZERO):
             obstacles.append(lower_cloud_instance)
             lower_cloud_instance.position = vector
             
+func make_ufos(position_offset = Vector2.ZERO):
+    if configured:
+        var ufo = load("res://scenes/obstacles/UFO.tscn")
+        
+        var ufo_positions = generate_random_vector_list(num_ufos, position_offset, [3500,5000])
+        
+        
+        for vector in ufo_positions:
+            var ufo_instance = ufo.instance()
+            ufo_instance.controller = self
+            $UFOs.add_child(ufo_instance)
+            obstacles.append(ufo_instance)
+            ufo_instance.position = vector
+            ufo_instance.add_to_group("boats")
 
+func make_planes(position_offset = Vector2.ZERO):
+    if configured:
+        var plane = load("res://scenes/obstacles/Plane.tscn")
+        
+        var plane_positions = generate_random_vector_list(num_planes, position_offset, [1600,3500])
+        
+        
+        for vector in plane_positions:
+            var plane_instance = plane.instance()
+            plane_instance.controller = self
+            $Planes.add_child(plane_instance)
+            obstacles.append(plane_instance)
+            plane_instance.position = vector
+            plane_instance.add_to_group("boats")
 
 func make_boats(position_offset = Vector2.ZERO):
     if configured:

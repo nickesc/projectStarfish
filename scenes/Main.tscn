@@ -485,7 +485,7 @@ wait_time = 0.1
 wait_time = 0.1
 
 [node name="ObstacleController" parent="." instance=ExtResource( 41 )]
-spawn_seed = 9853
+spawn_seed = 9828
 
 [node name="MusicController" type="Node" parent="."]
 script = ExtResource( 60 )
@@ -552,7 +552,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "beta-0.5.0"
+text = "beta-0.5.1"
 
 [node name="Splash" type="CanvasLayer" parent="."]
 layer = 10
@@ -889,7 +889,7 @@ margin_right = 480.0
 margin_bottom = 146.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 28 )
-text = "Longest Throw:
+text = "Farthest Throw:
  "
 align = 1
 autowrap = true
