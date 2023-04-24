@@ -661,9 +661,10 @@ margin_bottom = 408.0
 texture = SubResource( 44 )
 
 [node name="StoryDialogue" type="PanelContainer" parent="Splash"]
-margin_left = 240.0
+visible = false
+margin_left = 310.0
 margin_top = 39.0
-margin_right = 995.0
+margin_right = 1065.0
 margin_bottom = 893.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 8 )
@@ -759,7 +760,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
@@ -822,7 +823,6 @@ pressed = ExtResource( 38 )
 action = "starfish_left"
 
 [node name="StartDialogue" type="PanelContainer" parent="HUD"]
-visible = false
 margin_left = 120.0
 margin_top = 27.0
 margin_right = 640.0
