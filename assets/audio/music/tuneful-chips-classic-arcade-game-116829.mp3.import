@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tuneful-chips-classic-arcade-game-116829.mp3-35fc05f8f7a195437b7173fb5d995437.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/tuneful-chips-classic-arcade-game-116829.mp3"
+dest_files=[ "res://.import/tuneful-chips-classic-arcade-game-116829.mp3-35fc05f8f7a195437b7173fb5d995437.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

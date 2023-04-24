@@ -8,7 +8,7 @@ export var num_walters = 20
 export var num_lower_clouds = 20
 export var num_middle_clouds = 20
 export var num_high_clouds = 20
-export var num_boosts = 150
+export var num_boosts = 10
 export var num_trampolines = 150
 export var num_shells = 150
 export var num_boats = 1
@@ -69,6 +69,7 @@ func spawn_obstacles(position_offset):
         make_boats(position_offset)
         make_lower_clouds(position_offset)
         make_shells(position_offset)
+        make_boosts(position_offset)
 
 func clear_obstacles():
     intervals_spawned = 0
@@ -92,6 +93,20 @@ func make_shells(position_offset = Vector2.ZERO):
             obstacles.append(shell_instance)
             shell_instance.position = vector
             shell_instance.connect("collect_shell", owner, "_on_collect_shell")
+
+func make_boosts(position_offset = Vector2.ZERO):
+    if configured:
+        
+        var boost = load("res://scenes/obstacles/Boost.tscn")
+        
+        var boost_positions = generate_random_vector_list(num_boosts, position_offset, [400,0])
+        
+        for vector in boost_positions:
+            var boost_instance = boost.instance()
+            boost_instance.controller = self
+            $Boosts.add_child(boost_instance)
+            obstacles.append(boost_instance)
+            boost_instance.position = vector
 
 func make_lower_clouds(position_offset = Vector2.ZERO):
     if configured:
@@ -123,6 +138,7 @@ func make_boats(position_offset = Vector2.ZERO):
             obstacles.append(boat_instance)
             vector.y = 285
             boat_instance.position = vector
+            boat_instance.add_to_group("boats")
 
 func make_walters(position_offset = Vector2.ZERO):
     if configured:
@@ -137,6 +153,7 @@ func make_walters(position_offset = Vector2.ZERO):
             $Walters.add_child(walter_instance)
             obstacles.append(walter_instance)
             walter_instance.position = vector
+            walter_instance.add_to_group("walters")
     
 func generate_random_vector_list(num_vectors = 0, position_offset = Vector2.ZERO, y_range = [0,0]) -> PoolVector2Array:
     var vector_list = PoolVector2Array()

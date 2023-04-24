@@ -7,6 +7,8 @@ var amount_format = "x%02d"
 export var initial_global_cost = 10
 export var initial_global_amount = 0
 export var throw_upgrade_increase = .2
+export var max_amount = 99
+export var max_cost = 99
 var global_cost_increase
 var time_limit = {"name":"TimeLimit","cost":0,"amount":0}
 var throw_power = {"name":"ThrowPower","cost":0,"amount":0}
@@ -18,16 +20,19 @@ var star: Star
 export var main_path: NodePath
 var main: Node
 
+export var music_controller_path: NodePath
+var music_controller: Node
+
 var position_format = "Longest Throw:\n %.1f m"
 
 func set_cost(upgrade, new_cost):
-    if new_cost>99:
-        new_cost = 99
+    if new_cost>max_cost:
+        new_cost = max_cost
     upgrade["cost"] = new_cost
     get_node("Store/"+upgrade["name"]+"/Buy").text = "x" + str(new_cost)
 
 func set_amount(upgrade, new_amount):
-    if new_amount>10:
+    if new_amount>max_amount:
         return false
     upgrade["amount"] = new_amount
     get_node("Store/"+upgrade["name"]+"/Amount").text = amount_format % new_amount
@@ -51,6 +56,7 @@ func hide_and_ready():
 func _ready():
     star = get_node(star_path)
     main = get_node(main_path)
+    music_controller = get_node(music_controller_path)
     
     global_cost_increase = initial_global_cost/2
     
@@ -106,11 +112,16 @@ func _on_ThrowNumber_Buy_button_up():
     if main.shells >= throw_number["cost"]:
         
         if set_amount(throw_number, throw_number["amount"]+1):
+            music_controller.play_buy_effect()
             main.update_shells(main.shells - throw_number["cost"])
             set_cost(throw_number,throw_number["cost"]+global_cost_increase)
             star.max_jumps += 1
             star.initial_max_jumps = star.max_jumps
             star.update_jumps(star.max_jumps)
+        else:
+            music_controller.play_no_buy_effect()
+    else:
+        music_controller.play_no_buy_effect()
     
     #print(main.shells)
     #print(time_limit,throw_number,throw_power)
@@ -119,15 +130,25 @@ func _on_ThrowNumber_Buy_button_up():
 func _on_ThrowPower_Buy_button_up():
     if main.shells >= throw_power["cost"]:
         if set_amount(throw_power, throw_power["amount"]+1):
+            music_controller.play_buy_effect()
             main.update_shells(main.shells - throw_power["cost"])
             set_cost(throw_power,throw_power["cost"]+global_cost_increase)
             star.throw_power_upgrade += throw_upgrade_increase
+        else:
+            music_controller.play_no_buy_effect()
+    else:
+        music_controller.play_no_buy_effect()
 
 
 func _on_TimeLimit_Buy_button_up():
     if main.shells >= time_limit["cost"]:
         if set_amount(time_limit, time_limit["amount"]+1):
+            music_controller.play_buy_effect()
             main.update_shells(main.shells - time_limit["cost"])
             set_cost(time_limit,time_limit["cost"]+global_cost_increase)
             main.initial_time_limit += 5
             main.reset_time_limit_timer()
+        else:
+            music_controller.play_no_buy_effect()
+    else:
+        music_controller.play_no_buy_effect()

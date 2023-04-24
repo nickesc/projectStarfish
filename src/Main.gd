@@ -43,6 +43,9 @@ var end_mouse_vector = false
 var throw_selection_status = false
 var last_throw_selection_status = false
 
+export var music_controller_path: NodePath
+var music_controller: Node
+
 
 func update_shells(new_shells):
     shells = new_shells
@@ -50,6 +53,7 @@ func update_shells(new_shells):
     emit_signal("shells_change", shells)
 
 func _on_collect_shell():
+    music_controller.play_collect_shell_effect()
     update_shells(shells+1)
 
 func _on_AngleTimer_timeout():
@@ -135,6 +139,7 @@ func _ready():
     set_initial_values()
     VisualServer.set_default_clear_color(clear_color)
     time_limit_timer = $TimeLimitTimer
+    music_controller = get_node(music_controller_path)
     set_time_limit(time_limit)
 
 func _process(delta):
@@ -152,3 +157,4 @@ func _on_TimeLimitTimer_timeout():
 
 func _on_Star_reset():
     reset_game()
+

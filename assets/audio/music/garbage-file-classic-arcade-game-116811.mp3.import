@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/garbage-file-classic-arcade-game-116811.mp3-c7d69b57a74fd123eb4a5f1597824619.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/garbage-file-classic-arcade-game-116811.mp3"
+dest_files=[ "res://.import/garbage-file-classic-arcade-game-116811.mp3-c7d69b57a74fd123eb4a5f1597824619.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

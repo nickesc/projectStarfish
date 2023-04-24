@@ -21,6 +21,7 @@ func handle_input(event: InputEvent) -> void:
         mouse_pos1.y = clamp(mouse_pos1.y, 0, star.screen_size.y)
 
         throwing_vector_line.add_point(mouse_pos1,0)
+        star.start_line_sound()
         print("mouse1: ",mouse_pos1,rad2deg(atan2(mouse_pos1.y, mouse_pos1.x)))
 
     if event.is_action_released("throw_input") and not released:

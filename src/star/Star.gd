@@ -108,6 +108,8 @@ func update_jumps(new_jumps):
 func reset_jumps():
     update_jumps(initial_max_jumps)
 
+func splash():
+    $SplashEffect.play()
 
 func reset_throw():
     #position = initial_position
@@ -214,7 +216,8 @@ func movement_cleanup(velocity):
     last_position = position
     update_max_position(get_max_position_vector(last_position))
 
-
+func start_line_sound():
+    $LineStartEffect.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func throw(power, degrees):
@@ -232,6 +235,7 @@ func throw(power, degrees):
 
     set_mode(RigidBody2D.MODE_RIGID)
     apply_central_impulse(Vector2(Vx,Vy) * throw_power_upgrade)
+    $ThrowEffect.play()
 
     update_jumps(jumps-1)
 
@@ -306,3 +310,10 @@ func _on_RetryDialogue_get_ready():
 
 func _on_Buy_button_up():
     pass # Replace with function body.
+
+
+func _on_Star_body_entered(body):
+    if body.is_in_group("boats"):
+        $HitEffect.play()
+    if body.is_in_group("walters"):
+        $SquakEffect.play()

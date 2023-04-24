@@ -11,6 +11,7 @@ func enter(msg: Dictionary = {}) -> void:
     print("state: fallen")
     star.emit_signal("fallen")
     star.reset_score_timer()
+    star.splash()
     ##change_to_throwing = true
 
 

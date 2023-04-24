@@ -18,3 +18,6 @@ follow_viewport_enable = true
 
 [node name="Shells" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
+
+[node name="Boosts" type="CanvasLayer" parent="."]
+follow_viewport_enable = true

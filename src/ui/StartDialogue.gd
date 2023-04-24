@@ -2,23 +2,17 @@ extends PanelContainer
 
 signal get_ready()
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+export var music_controller_path: NodePath
+var music_controller: Node
 
 func hide_and_ready():
+    music_controller.stop_menu_music()
+    music_controller.play_game_music()
     set_visible(false)
     emit_signal("get_ready")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+    music_controller = get_node(music_controller_path)
 
 
 func _on_StartButton_button_up():
