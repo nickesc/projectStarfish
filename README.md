@@ -1,13 +1,13 @@
 <h3 align="center" >
-  <a href="https://nickesc.github.io/projectStarfish"><img alt="work-in-progress" src="https://img.shields.io/badge/play%20at-nickesc.github.io-brightgreen?style=for-the-badge"></a>
+  <a href="https://nickesc.github.io/projectStarfish"><img alt="play at: nickesc.github.io" src="https://img.shields.io/badge/play%20at-nickesc.github.io-brightgreen?style=for-the-badge"></a>
   <br>
-  <img alt="work-in-progress" src="https://img.shields.io/badge/status-work--in--progress-red?style=for-the-badge">
+  <img alt="Status: beta" src="https://img.shields.io/badge/status-beta-red?style=for-the-badge">
   <br><br>
   <img src="icon.png" width="200"/>
   <br>
   <strong style="font-size:1.17em">Starfish</strong>
   <br>
-  <code style="font-size:1em">beta-0.4.0</code>
+  <code style="font-size:1em">beta-0.5.4</code>
   <br>
   <h6 align="center" style="margin-top:0; margin-bottom:0">
     by <a href="https://nickesc.github.io">N. Escobar</a> / <a href="https://github.com/nickesc">nickesc</a>
