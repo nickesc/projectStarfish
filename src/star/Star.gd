@@ -34,7 +34,7 @@ var retry_clicked = false
 
 export (bool) var dev = false
 
-export var max_jumps = 1
+export var max_jumps = 3
 export var gravity = 7.3
 onready var state_machine =  get_node("StarStateMachine")
 export var flailing_speed = -35

@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://scenes/star/Star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -74,6 +74,7 @@
 [ext_resource path="res://assets/audio/effects/no_buy.wav" type="AudioStream" id=72]
 [ext_resource path="res://assets/audio/effects/time_up.wav" type="AudioStream" id=73]
 [ext_resource path="res://src/ui/StoryDialogue.gd" type="Script" id=74]
+[ext_resource path="res://assets/ui/github-mark.png" type="Texture" id=75]
 
 [sub_resource type="PhysicsMaterial" id=15]
 bounce = 0.75
@@ -140,6 +141,24 @@ margin_bottom = 15.0
 modulate_color = Color( 0.498039, 0.403922, 0.760784, 1 )
 
 [sub_resource type="StyleBoxTexture" id=46]
+texture = ExtResource( 43 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 15.0
+margin_bottom = 10.0
+modulate_color = Color( 0.498039, 0.403922, 0.760784, 1 )
+
+[sub_resource type="StyleBoxTexture" id=53]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 70, 70 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 15.0
+modulate_color = Color( 0.235294, 0.235294, 0.235294, 1 )
+
+[sub_resource type="StyleBoxTexture" id=54]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 70, 70 )
 margin_left = 10.0
@@ -561,7 +580,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "beta-0.5.3"
+text = "beta-0.5.4"
 
 [node name="Splash" type="CanvasLayer" parent="."]
 layer = 10
@@ -616,6 +635,25 @@ custom_styles/pressed = SubResource( 46 )
 custom_styles/normal = SubResource( 45 )
 enabled_focus_mode = 0
 text = "read the story"
+
+[node name="Source" type="Button" parent="Splash/Logo/PlayButtons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 327.0
+margin_top = -44.5
+margin_right = 482.0
+margin_bottom = 12.5
+focus_mode = 0
+theme = ExtResource( 8 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 53 )
+enabled_focus_mode = 0
+text = "source"
+icon = ExtResource( 75 )
 
 [node name="MuteEffects" type="Button" parent="Splash/Logo/PlayButtons"]
 anchor_left = 0.5
@@ -824,9 +862,9 @@ action = "starfish_left"
 
 [node name="StartDialogue" type="PanelContainer" parent="HUD"]
 margin_left = 120.0
-margin_top = 27.0
+margin_top = 20.0
 margin_right = 640.0
-margin_bottom = 417.0
+margin_bottom = 440.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 8 )
 script = ExtResource( 46 )
@@ -836,7 +874,7 @@ music_controller_path = NodePath("../../MusicController")
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 500.0
-margin_bottom = 360.0
+margin_bottom = 390.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -844,17 +882,16 @@ custom_constants/separation = 15
 alignment = 1
 
 [node name="Instructions2" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
-margin_top = 2.0
 margin_right = 480.0
-margin_bottom = 69.0
+margin_bottom = 67.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 33 )
-text = "Throw the starfish back into the
-ocean as far as possible!"
+text = "Throw the starfish back into the ocean as far as possible!"
 align = 1
+autowrap = true
 
 [node name="Spacer2" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
 visible = false
@@ -868,17 +905,17 @@ align = 1
 autowrap = true
 
 [node name="Instructions" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
-margin_top = 84.0
+margin_top = 82.0
 margin_right = 480.0
-margin_bottom = 151.0
+margin_bottom = 219.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 33 )
-text = "Click and drag on the screen
-to select your angle and power, "
+text = "Click and drag anywhere on the screen to select your angle and power, and use the onscreen buttons to adjust your movement in the air."
 align = 1
+autowrap = true
 
 [node name="Spacer3" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
 visible = false
@@ -892,9 +929,9 @@ align = 1
 autowrap = true
 
 [node name="Instructions3" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
-margin_top = 166.0
+margin_top = 234.0
 margin_right = 480.0
-margin_bottom = 198.0
+margin_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
@@ -902,8 +939,10 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 33 )
 text = "Pick up shells and avoid obstacles!"
 align = 1
+autowrap = true
 
 [node name="Spacer" type="Label" parent="HUD/StartDialogue/VBoxContainer"]
+visible = false
 margin_top = 213.0
 margin_right = 480.0
 margin_bottom = 233.0
@@ -914,9 +953,9 @@ align = 1
 autowrap = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="HUD/StartDialogue/VBoxContainer"]
-margin_top = 248.0
+margin_top = 281.0
 margin_right = 480.0
-margin_bottom = 337.0
+margin_bottom = 370.0
 
 [node name="StartButton" type="Button" parent="HUD/StartDialogue/VBoxContainer/CenterContainer2"]
 margin_left = 148.0
@@ -1240,6 +1279,9 @@ script = ExtResource( 35 )
 [connection signal="button_down" from="Splash/Logo/PlayButtons/Story" to="MusicController" method="play_click_down"]
 [connection signal="button_up" from="Splash/Logo/PlayButtons/Story" to="MusicController" method="play_click_up"]
 [connection signal="button_up" from="Splash/Logo/PlayButtons/Story" to="Splash" method="_on_Story_button_up"]
+[connection signal="button_down" from="Splash/Logo/PlayButtons/Source" to="MusicController" method="play_click_down"]
+[connection signal="button_up" from="Splash/Logo/PlayButtons/Source" to="MusicController" method="play_click_up"]
+[connection signal="button_up" from="Splash/Logo/PlayButtons/Source" to="Splash" method="_on_Source_button_up"]
 [connection signal="button_up" from="Splash/Logo/PlayButtons/MuteEffects" to="MusicController" method="play_click_up"]
 [connection signal="pressed" from="Splash/Logo/PlayButtons/MuteEffects" to="MusicController" method="effects_mute_toggle"]
 [connection signal="toggled" from="Splash/Logo/PlayButtons/MuteEffects" to="HUD/RetryDialogue/Retry/CenterContainer/HBoxContainer/MuteEffects" method="_on_other_button_toggle"]

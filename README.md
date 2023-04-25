@@ -30,7 +30,7 @@
 
 Click-and-drag on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to apply a small force in either direction to the starfish while it's in the air.
 
-In the current `beta` versions, you start by being able to throw the starfish up to 3 times, and if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds, boats, planes and maybe even visitors from another world! There are also special boost spots that will take the starfish up higher!
+You start by being able to throw the starfish up to 3 times, and when you cannot throw again even if you have throws remaining. If the starfish hits an obstacle, it will also bounce around, so watch out for birds, boats, planes and maybe even visitors from another world! There are also special boost spots that will take the starfish up higher!
 
 Try and collect as many shells as you can! They can be used to purchase upgrades after your throw, to do things like increase your time limit, increase your maximum throw power, and increase your number of throws.
 
@@ -42,7 +42,7 @@ Try and collect as many shells as you can! They can be used to purchase upgrades
 
 ### About
 
-The game is loosely based on the starfish story:
+The game is loosely based on the classic 'Starfish Story':
 
 > One day, an old man was walking along the beach when he saw a child bend down, pick up a starfish and throw it into the sea. 
 > 
@@ -76,6 +76,7 @@ Music by [Dream-Protocol](https://pixabay.com/users/dream-protocol-9556087) from
 Title Music - [*Tuneful Chips - Classic Arcade Game*](https://pixabay.com/music/video-games-tuneful-chips-classic-arcade-game-116829/) by [Dream-Protocol](https://pixabay.com/users/dream-protocol-9556087)
 Game Music - [*Garbage File - Classic Arcade Game*](https://pixabay.com/music/video-games-garbage-file-classic-arcade-game-116811/)
 
+All other art, sound and assets in the project were made by N. Escobar.
 ### License
 
 *Starfish* is released by N. Escobar Media under the MIT License. For more information, see [`LICENSE`](license).

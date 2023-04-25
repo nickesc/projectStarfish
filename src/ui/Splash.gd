@@ -50,3 +50,7 @@ func _on_Play_button_up():
 
 func _on_Story_button_up():
     $StoryDialogue.set_visible(true)
+
+
+func _on_Source_button_up():
+    OS.shell_open("https://github.com/nickesc/projectStarfish")
