@@ -165,7 +165,7 @@ margin_left = 10.0
 margin_right = 10.0
 margin_top = 15.0
 margin_bottom = 10.0
-modulate_color = Color( 0.498039, 0.403922, 0.760784, 1 )
+modulate_color = Color( 0.235294, 0.235294, 0.235294, 1 )
 
 [sub_resource type="StyleBoxTexture" id=47]
 texture = ExtResource( 64 )
@@ -580,7 +580,7 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
-text = "beta-0.5.4"
+text = "v1.0.0"
 
 [node name="Splash" type="CanvasLayer" parent="."]
 layer = 10
@@ -798,7 +798,6 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="HUD/ShellsLabel"]
 position = Vector2( -11, 6 )
 frames = SubResource( 12 )
-frame = 3
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="HUD"]

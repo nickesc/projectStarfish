@@ -54,6 +54,7 @@ config/name="Starfish"
 run/main_scene="res://scenes/Main.tscn"
 boot_splash/show_image=false
 config/icon="res://icon.png"
+config/macos_native_icon="res://icon.icns"
 
 [debug]
 
