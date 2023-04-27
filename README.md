@@ -30,7 +30,7 @@
 
 *Starfish* is a small, physics-based game with a simple premise: throw the starfish as far as you can before the timer runs out.
 
-Click-and-drag on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to apply a small force in either direction to the starfish while it's in the air.
+Click-and-drag anywhere on the game to select the power and angle, then release to throw! On-screen controls or `WASD`/`arrow keys` allow you to apply a small force in either direction to the starfish while it's in the air.
 
 You start by being able to throw the starfish up to 3 times in 15 seconds, and if the time limit is reached the starfish will fall out of the sky and into the ocean. If the starfish hits an obstacle, it will also bounce around, so watch out for birds, boats, planes and maybe even visitors from another world! There are also special boost spots that will take the starfish up higher!
 
@@ -38,7 +38,7 @@ Try and collect as many shells as you can! They can be used to purchase upgrades
 
 <br>
 <p align="center" >
-  <img alt="A demo of Starfish, where the player drags on the screen to select their throw angle and power, and releases to throw the starfish into the ocean. The starfish flies for a short time before hitting a bird and falling into the water." src="docs/assets/1.0.0_throw_demo.gif" width="64%">
+  <img alt="A demo of Starfish, where the player drags on the screen to select their throw angle and power, and releases to throw the starfish from the beach into the ocean. The starfish flies for a short time before falling into the water. The starfish is thrown 2 more times from the water, bouncing off of birds both times before falling in the water." src="docs/assets/1.0.0_throw_demo_large.gif" width="64%">
 </p>
 
 
